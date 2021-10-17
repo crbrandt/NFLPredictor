@@ -1,48 +1,27 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[445]:
+# In[39]:
 
 
-import urllib
-import urllib.request
-import urllib.parse
-
-
-# In[748] :
-
-
-from bs4 import BeautifulSoup
+import pandas as pd
+import numpy as np
+import streamlit as st
+#conda install statsmodels
+#pip install statsmodels
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from scipy import stats
 import requests
-#pip install html5lib
+import io
+from sklearn.metrics import accuracy_score
+
 import html5lib
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 
 
-# In[355]:
-
-
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-
-
-# In[736]:
-
-
-import pandas as pd
-import numpy as np
-from datetime import timedelta
-from decimal import *
-
-
-# In[356]:
-
-
-driver = webdriver.Chrome('/Users/colebrandt/Downloads/chromedriver')
-
-
-# In[372]:
+# In[4]:
 
 
 url_nfl = 'https://raw.githubusercontent.com/peanutshawny/nfl-sports-betting/master/data/spreadspoke_scores.csv'
@@ -59,24 +38,16 @@ stats_df = pd.read_csv(stats, error_bad_lines=False)
 elo_latest = pd.read_csv(nfl_elo_latest, error_bad_lines=False)
 
 
-# In[215]:
+# In[5]:
 
 
 teams_df = teams_df[["team_name", "team_id"]]
-
-
-# In[216]:
-
 
 teams_df['Nickname'] = teams_df["team_name"].str.split().str[-1]
 teams_df = teams_df[(teams_df['team_name'] != 'Phoenix Cardinals') & (teams_df['team_name'] != 'St. Louis Cardinals') &
                    (teams_df['team_name'] != 'Boston Patriots') & (teams_df['team_name'] != 'Baltimore Colts') & (teams_df['team_name'] != 'Los Angeles Raiders') 
                    & (teams_df['Nickname'] != 'Oilers')]
-teams_df
-
-
-# In[217]:
-
+#teams_df
 
 #Merges
 merged_df1 = nfl_df.merge(teams_df, left_on='team_home', right_on='team_name')
@@ -85,13 +56,7 @@ merged_df2 = merged_df2.rename(columns={"team_id_x": "home_id", "team_id_y": "aw
 merged_df2 = merged_df2.dropna(subset=['spread_favorite'])
 
 
-# In[218]:
-
-
-merged_df2
-
-
-# In[219]:
+# In[6]:
 
 
 merged_df2['score_fav'] = np.where(merged_df2['team_favorite_id']== merged_df2['home_id'], merged_df2['score_home'] , np.where(merged_df2['spread_favorite'] != 0, merged_df2['score_away'], np.nan))
@@ -101,18 +66,14 @@ merged_df2['winner'] = np.where(merged_df2['score_fav'] > merged_df2['score_unde
 merged_df2['indoor_outdoor'] = np.where(merged_df2['weather_detail'].isna(), 'Outdoors',
              np.where(merged_df2['weather_detail'].str.contains('DOME'), 'Indoors', 'Outdoors'))
 
-
-# In[220]:
-
-
 merged_df2['schedule_week_numeric'] = np.where(merged_df2['schedule_week'] == 'Wildcard', 19, 
                                        np.where(merged_df2['schedule_week'] == 'Division', 20,
                                                 np.where(merged_df2['schedule_week'] == 'Conference', 21,
                                                          np.where(merged_df2['schedule_week'] == 'Superbowl', 22,merged_df2['schedule_week']))))
-merged_df2               
+#merged_df2               
 
 
-# In[225]:
+# In[18]:
 
 
 threshold_year = 2002
@@ -134,10 +95,10 @@ df3['schedule_date'] = pd.to_datetime(df3['schedule_date'])
 elo_df3['date'] = pd.to_datetime(elo_df3['date'])
 elo_df4 = pd.merge(df3, elo_df3,  how='inner', left_on=['schedule_date','home_id'], right_on = ['date','team1'])
 
-elo_df4
+#elo_df4
 
 
-# In[226]:
+# In[19]:
 
 
 elo_df4['elo_difference_homeaway'] = elo_df4['qbelo1_pre'] - elo_df4['qbelo2_pre']
@@ -145,11 +106,11 @@ elo_df4['elo_difference_fav_underdog']  = np.where(elo_df4['team_favorite_id'] =
                                                    elo_df4['qbelo1_pre'], elo_df4['qbelo2_pre']) - np.where(elo_df4['team_favorite_id'] == elo_df4['home_id'],
                                                    elo_df4['qbelo2_pre'], elo_df4['qbelo1_pre'])
 
-elo_df4
+#elo_df4
 
 
 
-# In[622]:
+# In[20]:
 
 
 #Was the spread beaten? 
@@ -159,25 +120,10 @@ elo_df4['fav_home'] = np.where(elo_df4['home_id'] == elo_df4['team_favorite_id']
 
 elo_df5 = elo_df4.iloc[:, [0,1,2,3,4,5,6]]
 
-elo_df4
+elo_df4.shape
 
 
-
-# In[ ]:
-
-
-
-
-
-# In[349]:
-
-
-#Stats
-stats_df
-#stats_df.sort_values(['job','count'],ascending=False)
-
-
-# In[233]:
+# In[21]:
 
 
 home_stats = stats_df.iloc[:, [0,2,10,9,12,11,14,13,16,15,18,17,20,19,26,25,28,36,37,38, 37]]
@@ -200,7 +146,7 @@ team_df1 = team_df1.sort_values(["team", "date"], ascending = (True, True))
 
 
 
-# In[663]:
+# In[22]:
 
 
 seasons = elo_df4.iloc[:,[0,1]]
@@ -276,16 +222,10 @@ ts_df = ts_df.assign(opp_sack_yds=ts_df.groupby(['team','schedule_season']).opp_
 
 ts_df = ts_df.assign(games_played =ts_df.groupby(['team','schedule_season']).date.cumcount()+1)
 
-ts_df
+#ts_df
 
 
-# In[715]:
-
-
-
-
-
-# In[859]:
+# In[23]:
 
 
 elo_data = elo_df4.iloc[:,[0,1,2,3,4,5,6,7,8,9,12,13,14,15,16,18,19,21,22,23,24,25,26,40,41,56,57,58,59,60,61,62]]
@@ -390,7 +330,7 @@ df_agg
 #pd.DataFrame(list(elo_df4.columns))
 
 
-# In[1394]:
+# In[33]:
 
 
 df_agg.replace([np.inf, -np.inf], np.nan, inplace=True)
@@ -419,9 +359,10 @@ column_list = list(df_agg.columns)
 
 
 # Split the data into training and testing sets
-train_features, test_features, train_labels, test_labels = train_test_split(pred_df, goal, test_size = 0.4, random_state = 15)
+train_features, test_features, train_labels, test_labels = train_test_split(pred_df, goal, test_size = 0.3, random_state = 15)
 
 
+train_features_win, test_features_win, train_labels_win, test_labels_win = train_test_split(pred_df, goal2, test_size = 0.3, random_state = 15)
 
 
 
@@ -432,20 +373,16 @@ print('Testing Features Shape:', test_features.shape)
 print('Testing Labels Shape:', test_labels.shape)
 
 
-# In[930]:
-
-
-goal2
-
-
-# In[1395]:
+# In[36]:
 
 
 # Instantiate model with 1000 decision trees
 rf = RandomForestRegressor(n_estimators = 1000, random_state = 15)
+rf2 = RandomForestClassifier(n_estimators = 1000, random_state = 15)
 # Train the model on training data
 
 rf.fit(train_features, train_labels)
+rf2.fit(train_features_win, train_labels_win)
 
 
 
@@ -470,58 +407,7 @@ y_pred
 # print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
 
 
-# In[962]:
-
-
-X_test
-
-
-# In[994]:
-
-
-tnf = [6,False,False,75, 0, 240, False, 5,5, (2105/6)-(1580/6), (1685/6)-(1585/6), (512/6)-(682/6), (329/6)-(812/6), (186/270)-(130/209), (176/251)-(142/200), (12/6)-(11/6), (6/9)-(5/6), (195/6)-(137/6), (144/6)-(152/6), 0, 0, 0, 0,0, 0,0, 0, 0, 1]
-
-#train_features, test_features, train_labels, test_labels 
-
-tnf = pd.DataFrame(tnf).transpose()
-
-tnf.columns = train_features.columns
-
-tnf2 = pd.concat([tnf, test_features]).reset_index(drop = True)
-
-
-
-
-test_features.columns
-
-tnf2[tnf2['elo_difference_fav_underdog']==240]
-
-
-tnf2['preds'] = np.array(pd.DataFrame(rf.predict(tnf2)))
-
-tnf2[(tnf2['elo_difference_fav_underdog']>= 4.535) & (tnf2['elo_difference_fav_underdog']< 4.54)]
-
-
-# In[ ]:
-
-
-
-
-
-# In[982]:
-
-
-df_agg[(df_agg['elo_difference_fav_underdog']>= 4.535) & (df_agg['elo_difference_fav_underdog']< 4.54)]
-
-
-# In[1396]:
-
-
-feature_imp = pd.Series(clf.feature_importances_,index=pred_df.columns).sort_values(ascending=False)
-feature_imp
-
-
-# In[932]:
+# In[26]:
 
 
 # Use the forest's predict method on the test data
@@ -543,495 +429,19 @@ print('Accuracy:', round(accuracy, 2), '%.')
 # test_features['errors'] = np.array(errors)
 
 
-# In[935]:
+# In[40]:
 
 
+# Use the forest's predict method on the test data
+predictions2 = rf2.predict(test_features_win)
+# Calculate the absolute errors
+#errors2 = abs(predictions2 - test_labels_win)
 
+accuracy_score(test_labels_win, predictions2)
 
 
-# In[ ]:
+# In[29]:
 
-
-
-
-
-# In[933]:
-
-
-test_features
-
-
-# In[934]:
-
-
-tnf = [6,False,False,75, 0, 240, False, 5,5, (2105/6)-(1580/6), (1685/6)-(1585/6), (512/6)-(682/6), (329/6)-(812/6), (186/270)-(130/209), (176/251)-(142/200), (12/6)-(11/6), (6/9)-(5/6), (195/6)-(137/6), (144/6)-(152/6), 0, 0, 0, 0,0, 0,0, 0, 0, 1]
-
-
-
-tnf = pd.DataFrame(tnf).transpose()
-
-tnf.columns = test_features.columns
-
-tnf2 = pd.concat([tnf, test_features]).reset_index(drop = True)
-
-
-
-
-test_features.columns
-
-tnf2[tnf2['elo_difference_fav_underdog']==240]
-
-
-tnf2['preds'] = np.array(pd.DataFrame(rf.predict(tnf2)))
-
-tnf2
-
-
-# In[900]:
-
-
-tnf.columns
-
-
-# In[617]:
-
-
-driver.get('https://projects.fivethirtyeight.com/2021-nfl-predictions/')
-elo_teams = driver.find_elements_by_xpath('//td[@class="team"]')
-
-elo_teams_list = []
-for t in range(len(elo_teams)):
-    elo_teams_list.append(elo_teams[t].text)
-
-
-elo_teams_list2 = []
-
-for t in elo_teams_list:
-    team_str = ''
-    for tt in t:
-        if tt.isalpha():
-            team_str += tt
-    if team_str == 'ers':
-        team_str = '49ers'
-    elo_teams_list2.append(team_str)
-
-
-# In[996]:
-
-
-elo_page = requests.get("https://projects.fivethirtyeight.com/2021-nfl-predictions/")
-
-soup = BeautifulSoup(elo_page.content, 'html.parser')
-
-#print(soup.prettify())
-#list(soup.children)
-#[type(item) for item in list(soup.children)]
-html = list(soup.children)[1]
-
-#list(html.children)
-body = list(html.children)[1]
-p = list(body.children)[3]
-#list(body.children)
-
-#list(html.children)
-#p = list(body.children)[1]
-#body = list(html.children)[3]
-#p
-
-
-# In[558]:
-
-
-pp = list(p.children)[1]
-ppp = list(pp.children)[2]
-pppp = list(ppp.children)[0]
-ppppp = list(pppp.children)[0]
-pt = ppppp.get_text()
-pt
-
-
-# In[619]:
-
-
-import re
-Index = pt.index('super bowl')
-pt2 = pt[Index + 10:]
-pt2 = pt2.replace('49ers', 'FortyNiners')
-
-#pt2
-pt3 = pt2.split('%')
-
-pt4 = []
-pt5_all = []
-
-
-for item in pt3:
-    if len(item) >= 5:
-        pt4.append(int(item[:4]))
-        pt5_all.append(item)
-
-        
-pt_qb_adj = []
-sub = ''
-
-for item in pt5_all:
-    if ('-' in item[5: 9]):
-        #pt_qb_adj.append(item[4:10][item[4:10].find('-')+1, item[4:10].find('-')+3])
-        sub = item[5:10]
-        dash = sub.find('-')
-        pt_qb_adj.append(-1*int(re.sub("[^0-9]", "", sub[dash+1:dash+3])))
-    elif('+' in item[5:9]):
-        #pt_qb_adj.append(item[4:10][item[4:10].find('+')+1, item[4:10].find('+')+3])
-        sub = item[5:10]
-        dash = sub.find('+')
-        pt_qb_adj.append(int(re.sub("[^0-9]", "", sub[dash+1:dash+3])))
-    else:
-        pt_qb_adj.append(0)
-        
-        
-    
-        
-#pt4
-
-elos_df = pd.DataFrame({'Team':elo_teams_list2,'elo':pt4, 'qb_adj': pt_qb_adj})
-#elos_df
-#pt5_all
-
-elos_df['adj_elo'] = elos_df['elo'] + elos_df['qb_adj']
-elos_df
-
-
-# In[1369]:
-
-
-##
-##Pulling in Offensive Data
-##
-
-offensive_url = 'https://www.pro-football-reference.com/years/2021/'
-defensive_url = 'https://www.pro-football-reference.com/years/2021/opp.htm'
-    
-driver.get(offensive_url)
-
-
-# rowCount = driver.find_elements_by_xpath('//*[@id="wrapper"]/table/tbody/tr/td[2]/table[2]/tbody/tr[2]/td/table/tbody/tr')
-# len(rowCount)
-
-nfl_list = []
-pf_list = []
-pa_list = []
-
-
-for row in [2,3,4,5,7,8,9,10,12,13,14,15,17,18,19,20]:
-    nfl_list.append(((driver.find_elements_by_xpath('//*[@id="AFC"]/tbody/tr[' + str(row) + ']/th'))[0].text))
-    nfl_list.append(((driver.find_elements_by_xpath('//*[@id="NFC"]/tbody/tr[' + str(row) + ']/th'))[0].text))
-    pf_list.append(((driver.find_elements_by_xpath('//*[@id="AFC"]/tbody/tr[' + str(row) + ']/td[4]'))[0].text))
-    pf_list.append(((driver.find_elements_by_xpath('//*[@id="NFC"]/tbody/tr[' + str(row) + ']/td[4]'))[0].text))
-    pa_list.append(((driver.find_elements_by_xpath('//*[@id="AFC"]/tbody/tr[' + str(row) + ']/td[5]'))[0].text))
-    pa_list.append(((driver.find_elements_by_xpath('//*[@id="NFC"]/tbody/tr[' + str(row) + ']/td[5]'))[0].text))
-    
-nfl_record_df = pd.DataFrame(zip(nfl_list, pf_list, pa_list))
-nfl_record_df.rename(columns={0:'Team', 1:'PF', 2:'PA'}, inplace=True)
-
-
-# In[1312]:
-
-
-nfl_off_teams = []
-nfl_g = []
-nfl_off_comp = []
-nfl_off_pass_att = []
-nfl_off_pass_yds = []
-nfl_off_rush_yds = []
-nfl_team_TO = []
-
-
-rl = [*range(1,26), *range(28,35)]
-
-
-for row in rl:
-    nfl_off_teams.append(((driver.find_elements_by_xpath('//*[@id="team_stats"]/tbody/tr[' + str(row) + ']/td[1]/a'))[0].text))  
-    nfl_g.append(((driver.find_elements_by_xpath('//*[@id="team_stats"]/tbody/tr[' + str(row) + ']/td[2]'))[0].text))
-    nfl_off_comp.append(((driver.find_elements_by_xpath('//*[@id="team_stats"]/tbody/tr[' + str(row) + ']/td[10]'))[0].text))
-    nfl_off_pass_att.append(((driver.find_elements_by_xpath('//*[@id="team_stats"]/tbody/tr[' + str(row) + ']/td[11]'))[0].text))
-    nfl_off_pass_yds.append(((driver.find_elements_by_xpath('//*[@id="team_stats"]/tbody/tr[' + str(row) + ']/td[12]'))[0].text))
-    nfl_off_rush_yds.append(((driver.find_elements_by_xpath('//*[@id="team_stats"]/tbody/tr[' + str(row) + ']/td[18]'))[0].text))
-    nfl_team_TO.append(((driver.find_elements_by_xpath('//*[@id="team_stats"]/tbody/tr[' + str(row) + ']/td[7]'))[0].text))
-    
-nfl_off_df = pd.DataFrame(zip(nfl_off_teams, nfl_g, nfl_off_comp, nfl_off_pass_att, nfl_off_pass_yds, nfl_off_rush_yds, nfl_team_TO))
-
-nfl_off_df.rename(columns={0:'Team', 1:'G', 2:'Passes Completed', 3:'Pass Attempts', 4:'Pass Yards', 5:'Rush Yards', 6:'Turnovers'}, inplace=True)
-
-
-nfl_off_df
-
-
-# In[1307]:
-
-
-
-
-
-# In[1376]:
-
-
-nfl_sack_teams = []
-nfl_sacks_off = []
-
-
-rp = [*range(1,26), *range(27,34)]
-
-
-for row in rp:
-    nfl_sack_teams.append(((driver.find_elements_by_xpath('//*[@id="passing"]/tbody/tr[' + str(row) + ']/td[1]'))[0].text))  
-    nfl_sacks_off.append(((driver.find_elements_by_xpath('//*[@id="passing"]/tbody/tr[' + str(row) + ']/td[17]'))[0].text))  
-    
-
-off_sack_df = pd.DataFrame(zip(nfl_sack_teams, nfl_sacks_off))
-off_sack_df = off_sack_df.rename(columns={0:'Team', 1:'Off_Sacks'})
-
-pd.options.display.max_rows = 50
-off_sack_df
-
-
-# In[1378]:
-
-
-nfl_def_teams = []
-nfl_def_comp = []
-nfl_def_pass_att = []
-nfl_def_pass_yds = []
-nfl_def_rush_yds = []
-nfl_def_TO = []
-nfl_def_sacks = []
-
-driver.get(defensive_url)
-
-rd = [*range(1,26), *range(28,35)]
-
-
-for row in rd:
-    nfl_def_teams.append(((driver.find_elements_by_xpath('//*[@id="team_stats"]/tbody/tr[' + str(row) + ']/td[1]'))[0].text))  
-    nfl_def_comp.append(((driver.find_elements_by_xpath('//*[@id="team_stats"]/tbody/tr[' + str(row) + ']/td[10]'))[0].text))
-    nfl_def_pass_att.append(((driver.find_elements_by_xpath('//*[@id="team_stats"]/tbody/tr[' + str(row) + ']/td[11]'))[0].text))
-    nfl_def_pass_yds.append(((driver.find_elements_by_xpath('//*[@id="team_stats"]/tbody/tr[' + str(row) + ']/td[12]'))[0].text))
-    nfl_def_rush_yds.append(((driver.find_elements_by_xpath('//*[@id="team_stats"]/tbody/tr[' + str(row) + ']/td[18]'))[0].text))
-    nfl_def_TO.append(((driver.find_elements_by_xpath('//*[@id="team_stats"]/tbody/tr[' + str(row) + ']/td[7]'))[0].text))
-    
-nfl_def_df = pd.DataFrame(zip(nfl_def_teams, nfl_def_comp, nfl_def_pass_att, nfl_def_pass_yds, nfl_def_rush_yds, nfl_def_TO))
-nfl_def_df.rename(columns={0:'Team',  1:'Passes_Completed_Def', 2:'Pass_Attempts_Def', 3:'Pass_Yards_Def', 4:'Rush_Yards_Def', 5:'Turnovers_Def'}, inplace=True)
-
-nfl_def_df
-
-
-# In[1379]:
-
-
-nfl_sack_teams_def = []
-nfl_sacks_def = []
-
-
-rp = [*range(1,26), *range(27,34)]
-
-
-for row in rp:
-    nfl_sack_teams_def.append(((driver.find_elements_by_xpath('//*[@id="passing"]/tbody/tr[' + str(row) + ']/td[1]'))[0].text))  
-    nfl_sacks_def.append(((driver.find_elements_by_xpath('//*[@id="passing"]/tbody/tr[' + str(row) + ']/td[17]'))[0].text))  
-    
-
-def_sack_df = pd.DataFrame(zip(nfl_sack_teams_def, nfl_sacks_def))
-def_sack_df.rename(columns={0:'Team', 1:'Def_Sacks'})
-
-
-# In[1390]:
-
-
-current_df = nfl_record_df.merge(nfl_off_df, left_on='Team', right_on='Team').merge(off_sack_df, left_on='Team', right_on='Team').merge(nfl_def_df, left_on='Team', right_on = 'Team').merge(def_sack_df, left_on='Team', right_on = 0)
-current_df = current_df.rename(columns={1:'Def_Sacks'})
-current_df = current_df.drop(columns = 0)
-
-
-#current_df = current_df.merge()
-elos_df['Full Team Name'] = np.select(
-    [
-        elos_df['Team'] == 'Bills', 
-        elos_df['Team'] == 'Buccaneers',
-        elos_df['Team'] == 'Ravens', 
-        elos_df['Team'] == 'Chargers',
-        elos_df['Team'] == 'Rams', 
-        elos_df['Team'] == 'Cardinals',
-        elos_df['Team'] == 'Cowboys', 
-        elos_df['Team'] == 'Packers',
-        elos_df['Team'] == 'Chiefs', 
-        elos_df['Team'] == 'Browns',
-        elos_df['Team'] == 'Saints', 
-        elos_df['Team'] == 'Titans',
-        elos_df['Team'] == 'Seahawks', 
-        elos_df['Team'] == '49ers',
-        elos_df['Team'] == 'Broncos', 
-        elos_df['Team'] == 'Vikings',
-        elos_df['Team'] == 'Patriots', 
-        elos_df['Team'] == 'Colts',
-        elos_df['Team'] == 'Bengals', 
-        elos_df['Team'] == 'Panthers',
-        elos_df['Team'] == 'Raiders', 
-        elos_df['Team'] == 'Washington',
-        elos_df['Team'] == 'Bears', 
-        elos_df['Team'] == 'Steelers',
-        elos_df['Team'] == 'Eagles', 
-        elos_df['Team'] == 'Falcons',
-        elos_df['Team'] == 'Giants', 
-        elos_df['Team'] == 'Dolphins',
-        elos_df['Team'] == 'Jets', 
-        elos_df['Team'] == 'Jaguars',
-        elos_df['Team'] == 'Lions', 
-        elos_df['Team'] == 'Texans'  
-    ], 
-    [
-        'Buffalo Bills', 
-        'Tampa Bay Buccaneers',
-        'Baltimore Ravens', 
-        'Los Angeles Chargers',
-        'Los Angeles Rams', 
-        'Arizona Cardinals',
-        'Dallas Cowboys', 
-        'Green Bay Packers',
-        'Kansas City Chiefs', 
-        'Cleveland Browns',
-        'New Orleans Saints', 
-        'Tennessee Titans',
-        'Seattle Seahawks', 
-        'San Francisco 49ers',
-        'Denver Broncos', 
-        'Minnesota Vikings',
-        'New England Patriots', 
-        'Indianapolis Colts',
-        'Cincinnati Bengals', 
-        'Carolina Panthers',
-        'Las Vegas Raiders', 
-        'Washington Football Team',
-        'Chicago Bears', 
-        'Pittsburgh Steelers',
-        'Philadelphia Eagles', 
-        'Atlanta Falcons',
-        'New York Giants', 
-        'Miami Dolphins',
-        'New York Jets', 
-        'Jacksonville Jaguars',
-        'Detroit Lions', 
-        'Houston Texans'
-    ], 
-    default='Unknown'
-)
-
-current_df = current_df.merge(elos_df, left_on='Team', right_on = 'Full Team Name')
-
-current_df = current_df.drop(columns = ['Full Team Name', 'elo', 'qb_adj'])
-
-current_df
-
-
-# In[1391]:
-
-
-current_df['PFpg'] = current_df['PF'].astype(int)/current_df['G'].astype(int)
-current_df['PApg'] = current_df['PA'].astype(int)/current_df['G'].astype(int)
-current_df['CompPCT_Off'] = current_df['Passes Completed'].astype(int)/current_df['Pass Attempts'].astype(int)
-current_df['PassYardspg'] = current_df['Pass Yards'].astype(int)/current_df['G'].astype(int)
-current_df['RushYardspg'] = current_df['Rush Yards'].astype(int)/current_df['G'].astype(int)
-current_df['OffSackspg'] = current_df['Off_Sacks'].astype(int)/current_df['G'].astype(int)
-current_df['TurnoverMargin'] = current_df['Turnovers_Def'].astype(int)/current_df['Turnovers'].astype(int)
-
-current_df['CompPCT_Def'] = current_df['Passes_Completed_Def'].astype(int)/current_df['Pass_Attempts_Def'].astype(int)
-current_df['PassYardspg_Def'] = current_df['Pass_Yards_Def'].astype(int)/current_df['G'].astype(int)
-current_df['RushYardspg_Def'] = current_df['Rush_Yards_Def'].astype(int)/current_df['G'].astype(int)
-current_df['DefSackspg'] = current_df['Def_Sacks'].astype(int)/current_df['G'].astype(int)
-
-
-
-current_df_full = current_df.drop(columns = ['PF', 'PA', 'Passes Completed', 'Pass Attempts', 'Pass Yards', 'Rush Yards', 'Turnovers', 'Off_Sacks', 
-                                       'Passes_Completed_Def', 'Pass_Attempts_Def', 'Pass_Yards_Def', 'Rush_Yards_Def', 'Turnovers_Def', 'Def_Sacks'])
-
-
-
-
-#current_df_full
-
-
-
-# In[1203]:
-
-
-
-
-
-# In[1176]:
-
-
-##
-##Pulling in Weather Data
-##
-driver.get('https://www.vegasinsider.com/nfl/weather/')
-
-(driver.find_elements_by_xpath('//*[@id="wrapper"]/table/tbody/tr/td[2]/table[2]/tbody/tr[2]/td/table/tbody/tr[2]/td[1]/b[2]/a'))[0].text
-
-home_team_list = []
-away_team_list = []
-weather_list = []
-wind_list = []
-temp_list = []
-
-rowCount = driver.find_elements_by_xpath('//*[@id="wrapper"]/table/tbody/tr/td[2]/table[2]/tbody/tr[2]/td/table/tbody/tr')
-len(rowCount)
-
-for row in range(2, len(rowCount)):
-    home_team_list.append((driver.find_elements_by_xpath('//*[@id="wrapper"]/table/tbody/tr/td[2]/table[2]/tbody/tr[2]/td/table/tbody/tr[' + str(row) + ']/td[1]/b[2]/a'))[0].text)
-    away_team_list.append((driver.find_elements_by_xpath('//*[@id="wrapper"]/table/tbody/tr/td[2]/table[2]/tbody/tr[2]/td/table/tbody/tr[' + str(row) + ']/td[1]/b[1]/a'))[0].text)
-    weather_list.append((driver.find_elements_by_xpath('//*[@id="wrapper"]/table/tbody/tr/td[2]/table[2]/tbody/tr[2]/td/table/tbody/tr[' + str(row) + ']/td[3]'))[0].text)
-    wind_list.append((driver.find_elements_by_xpath('//*[@id="wrapper"]/table/tbody/tr/td[2]/table[2]/tbody/tr[2]/td/table/tbody/tr[' + str(row) + ']/td[4]'))[0].text)
-    temp_list.append((driver.find_elements_by_xpath('//*[@id="wrapper"]/table/tbody/tr/td[2]/table[2]/tbody/tr[2]/td/table/tbody/tr[' + str(row) + ']/td[5]'))[0].text)
-
-
-weather_df = pd.DataFrame(zip(away_team_list, home_team_list, weather_list, wind_list, temp_list))
-weather_df.rename(columns={0:'Away_Team', 1:'Home_Team', 2:'Weather', 3:'Wind', 4:'Temp'}, inplace=True)
-
-weather_df['Weather'] = np.where(weather_df['Weather'] == ' ', 'DOME', weather_df['Weather'])
-weather_df['Wind'] = np.where(weather_df['Wind'] == ' ', '0-0', weather_df['Wind'])
-weather_df['Temp'] = np.where(weather_df['Temp'] == ' ', 72, weather_df['Temp'])
-
-for row in range(0,weather_df.shape[0]):
-     weather_df.loc[row, 'Wind'] = re.sub('[^1234567890-]', '', 
-                                 weather_df.loc[row, 'Wind'])
-
-weather_df[['Wind_Min','Wind_Max']] = weather_df['Wind'].str.split('-',expand=True)
-weather_df['Game_Wind_Avg'] = (weather_df['Wind_Min'].astype(int)+weather_df['Wind_Max'].astype(int))/2
-
-# weather_df.shape[0]
-
-weather_df = weather_df.drop(columns = ['Wind', 'Wind_Min', 'Wind_Max'])
-
-
-# In[1177]:
-
-
-weather_df
-
-
-# In[ ]:
-
-
-
-
-
-# In[1392]:
-
-
-import streamlit as st
-#conda install statsmodels
-#pip install statsmodels
-import statsmodels.api as sm
-import statsmodels.formula.api as smf
-from scipy import stats
 
 
 ##Updating Page Logo and Tab Title
@@ -1051,11 +461,23 @@ def color(text):
 
 
 ##Loading in Regression and Classification Models
-model_reg = reg
-model_class = clf
+# model_reg = reg
+# model_class = clf
 
 
-# In[1399]:
+
+# In[30]:
+
+
+df_full_url = 'https://raw.githubusercontent.com/crbrandt/NFLPredictor/main/Data/df_full.csv'
+weather_url = 'https://raw.githubusercontent.com/crbrandt/NFLPredictor/main/Data/weather_df.csv'
+
+df_full =  pd.read_csv(df_full_url, index_col=0)
+df_weather =  pd.read_csv(weather_url, index_col=0)
+
+
+
+# In[31]:
 
 
 model_inputs = {
