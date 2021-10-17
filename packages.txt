@@ -1,2 +1,2 @@
 firefox-esr
-geckodriver
+xvfb
