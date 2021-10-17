@@ -19,6 +19,8 @@ defusedxml==0.7.1
 entrypoints==0.3
 gitdb==4.0.7
 GitPython==3.1.17
+html5lib==1.0.1
+htmlmin==0.1.12
 idna==2.10
 importlib-metadata==4.0.1
 ipykernel==5.5.5
