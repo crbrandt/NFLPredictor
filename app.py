@@ -821,9 +821,9 @@ if len(visitor) == 1 & len(home) == 1:
         st.text('Temperature:')
         st.text('Wind (mph):')
     with w2:
-        st.text(df_weather.iloc['Weather'])
-        st.text(df_weather.iloc['Temp'])
-        st.text(df_weather.iloc['Game_Wind_Avg'])
+        st.text(df_weather.iloc[]['Weather'])
+        st.text(df_weather.iloc[]['Temp'])
+        st.text(df_weather.iloc[]['Game_Wind_Avg'])
 
     
 # ##Selectbox for Favorite
