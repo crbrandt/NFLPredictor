@@ -744,8 +744,8 @@ with col2:
 with col3:
     st.markdown("<h1 style='text-align: center;'>Home Team</h1>", unsafe_allow_html=True)
     home = st.multiselect('Select the home team', df_full['Team_x'])
-#   if 'Arizona Cardinals' in visitor:
-    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+    if 'Arizona Cardinals' in home:
+        pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
     elif 'Atlanta Falcons' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/173/full/299.png'
     elif 'Ravens' in home:
