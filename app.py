@@ -829,8 +829,8 @@ with col3:
 
     
 if len(visitor) > 1 & len(home) > 1:
-    if (home[0] in list(df_weather['Home_Team'])):
-        df_weather = df_weather[df_weather['Home_Team'] == home[0]]
+    if (home in list(df_weather['Home_Team'])):
+        df_weather = df_weather[df_weather['Home_Team'] == home]
         st.header('Gametime Weather:')
         st.text('Weather:'  + str(df_weather.iat[0,2]))
         st.text('Temperature (degrees Fahrenheit):'  + str(df_weather.iat[0,3]))
