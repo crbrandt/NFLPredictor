@@ -845,7 +845,7 @@ if (len(visitor) > 2) & (len(home) > 2):
         favorite = st.selectbox('Select the favorite', [' ',visitor, home])
         st.markdown('')
         st.markdown('What is the spread?')
-        spread = abs(st.number_input('Insert a number', min_value = -30, max_value = 30, value = 0.0, step = 0.5))
+        spread = abs(st.number_input('Insert a number', min_value = -30.0, max_value = 30.0, value = 0.0, step = 0.5))
         submit_button = st.form_submit_button(label='Predict Result')
 
 
