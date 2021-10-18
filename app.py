@@ -497,7 +497,7 @@ season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
 current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 
-# In[75]:
+# In[76]:
 
 
 model_inputs = {
@@ -671,7 +671,7 @@ with col_title:
 with col_logo:
   st.image("https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png")
 st.write("#")
-st.markdown('#NFL Week ' + str(current_week_num))
+highlight('NFL Week ' + str(current_week_num))
 
 
 col1, col2, col3 = st.beta_columns([3,1,3])
