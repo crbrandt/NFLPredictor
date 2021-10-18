@@ -676,65 +676,65 @@ with col1:
         pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
     elif 'Atlanta Falcons' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/173/full/299.png'
-    elif 'Ravens' in visitor:
+    elif 'Baltimore Ravens' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/153/full/318.png'
-    elif 'Bills' in visitor:
+    elif 'Buffalo Bills' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png'   
-    elif 'Panthers' in visitor:
+    elif 'Carolina Panthers' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png'    
-    elif 'Bears' in visitor:
+    elif 'Chicago Bears' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/169/full/364.png'    
-    elif 'Bengals' in visitor:
+    elif 'Cincinnati Bengals' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png'
-    elif 'Browns' in visitor:
+    elif 'Cleveland Browns' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png'
-    elif 'Cowboys' in visitor:
+    elif 'Dallas Cowboys' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/165/full/406.png'
-    elif 'Broncos' in visitor:
+    elif 'Denver Broncos' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png'
-    elif 'Lions' in visitor:
+    elif 'Detroit Lions' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png'
-    elif 'Packers' in visitor:
+    elif 'Green Bay Packers' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png'
-    elif 'Texans' in visitor:
+    elif 'Houston Texans' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/157/full/570.png'
-    elif 'Colts' in visitor:
+    elif 'Indianapolis Colts' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/158/full/593.png'
-    elif 'Jaguars' in visitor:
+    elif 'Jacksonville Jaguars' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png'   
-    elif 'Chiefs' in visitor:
+    elif 'Kansas City Chiefs' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/162/full/857.png'    
-    elif 'Raiders' in visitor:
+    elif 'Las Vegas Raiders' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png'    
-    elif 'Chargers' in visitor:
+    elif 'Los Angeles Chargers' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png'
-    elif 'Rams' in visitor:
+    elif 'Los Angeles Rams' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png'
-    elif 'Dolphins' in visitor:
+    elif 'Miami Dolphins' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png'
-    elif 'Vikings' in visitor:
+    elif 'Minnesota Vikings' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png'
-    elif 'Patriots' in visitor:
+    elif 'New England Patriots' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/151/full/y71myf8mlwlk8lbgagh3fd5e0.png'
-    elif 'Saints' in visitor:
+    elif 'New Orleans Saints' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/175/full/907.png'
-    elif 'Giants' in visitor:
+    elif 'New York Giants' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/166/full/80fw425vg3404shgkeonlmsgf.png'
-    elif 'Jets' in visitor:
+    elif 'New York Jets' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/152/full/9116_new_york_jets-primary-2019.png'
-    elif 'Eagles' in visitor:
+    elif 'Philadelphia Eagles' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/167/full/960.png'   
-    elif 'Steelers' in visitor:
+    elif 'Pittsburgh Steelers' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/156/full/970.png'    
-    elif '49ers' in visitor:
+    elif 'San Francisco 49ers' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png'    
-    elif 'Seahawks' in visitor:
+    elif 'Seattle Seahawks' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png'
-    elif 'Tampa Bay' in visitor:
+    elif 'Tampa Bay Buccaneers' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png'
-    elif 'Titans' in visitor:
+    elif 'Tennessee Titans' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/160/full/1053.png'
-    elif 'Washington' in visitor:
+    elif 'Washington Football Team' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/6741/full/8837_washington_football_team-wordmark-20201.png'
     st.image(pic_vis)
     st.text(visitor)
@@ -748,65 +748,65 @@ with col3:
         pic_home = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
     elif 'Atlanta Falcons' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/173/full/299.png'
-    elif 'Ravens' in home:
+    elif 'Baltimore Ravens' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/153/full/318.png'
-    elif 'Bills' in home:
+    elif 'Buffalo Bills' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png'   
-    elif 'Panthers' in home:
+    elif 'Carolina Panthers' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png'    
-    elif 'Bears' in home:
+    elif 'Chicago Bear' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/169/full/364.png'    
-    elif 'Bengals' in home:
+    elif 'Cincinnati Bengals' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png'
-    elif 'Browns' in home:
+    elif 'Cleveland Browns' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png'
-    elif 'Cowboys' in home:
+    elif 'Dallas Cowboys' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/165/full/406.png'
-    elif 'Broncos' in home:
+    elif 'Denver Broncos' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png'
-    elif 'Lions' in home:
+    elif 'Detroit Lions' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png'
-    elif 'Packers' in home:
+    elif 'Green Bay Packers' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png'
-    elif 'Texans' in home:
+    elif 'Houston Texans' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/157/full/570.png'
-    elif 'Colts' in home:
+    elif 'Indianapolis Colts' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/158/full/593.png'
-    elif 'Jaguars' in home:
+    elif 'Jacksonville Jaguars' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png'   
-    elif 'Chiefs' in home:
+    elif 'Kansas City Chiefs' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/162/full/857.png'    
-    elif 'Raiders' in home:
+    elif 'Las Vegas Raiders' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png'    
-    elif 'Chargers' in home:
+    elif 'San Diego Chargers' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png'
-    elif 'Rams' in home:
+    elif 'Los Angeles Rams' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png'
-    elif 'Dolphins' in home:
+    elif 'Miami Dolphins' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png'
-    elif 'Vikings' in home:
+    elif 'Minnesota Vikings' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png'
-    elif 'Patriots' in home:
+    elif 'New England Patriots' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/151/full/y71myf8mlwlk8lbgagh3fd5e0.png'
-    elif 'Saints' in home:
+    elif 'New Orleans Saints' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/175/full/907.png'
-    elif 'Giants' in home:
+    elif 'New York Giants' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/166/full/80fw425vg3404shgkeonlmsgf.png'
-    elif 'Jets' in home:
+    elif 'New York Jets' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/152/full/9116_new_york_jets-primary-2019.png'
-    elif 'Eagles' in home:
+    elif 'Philadelphia Eagles' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/167/full/960.png'   
-    elif 'Steelers' in home:
+    elif 'Pittsburgh Steelers' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/156/full/970.png'    
-    elif '49ers' in home:
+    elif 'San Francisco 49ers' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png'    
-    elif 'Seahawks' in home:
+    elif 'Seattle Seahawks' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png'
-    elif 'Tampa Bay' in home:
+    elif 'Tampa Bay Buccaneers' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png'
-    elif 'Titans' in home:
+    elif 'Tennessee Titans' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/160/full/1053.png'
-    elif 'Washington' in home:
+    elif 'Washington Football Team' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/6741/full/8837_washington_football_team-wordmark-20201.png'
     st.image(pic_home)
     st.text(home)
