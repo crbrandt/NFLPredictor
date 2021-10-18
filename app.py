@@ -27,7 +27,7 @@ from datetime import datetime
 import math
 
 
-# In[42]:
+# In[77]:
 
 
 ##Updating Page Logo and Tab Title
@@ -41,7 +41,7 @@ st.set_page_config(page_title='NFL Game Predictor',
 
 ##Creating Text format options with orange colors
 def highlight(text):
-     st.markdown(f'<p style="text-align: center;color:#013369;font-size:22px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+     st.markdown(f'<p style="text-align: center;color:#013369;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
 def color(text):
      st.markdown(f'<p style="color:#013369;font-size:20px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
 
@@ -497,7 +497,7 @@ season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
 current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 
-# In[76]:
+# In[78]:
 
 
 model_inputs = {
@@ -837,9 +837,9 @@ if len(visitor) == 1 & len(home) == 1:
         st.text('Temperature:')
         st.text('Wind (mph):')
     with w2:
-        st.text(df_weather.iloc['Weather'])
-        st.text(df_weather.iloc['Temp'])
-        st.text(df_weather.iloc['Game_Wind_Avg'])
+        st.text(df_weather.iat[0,2])
+        st.text(df_weather.iat[0,3])
+        st.text(df_weather.iat[0,4])
 
     
 # ##Selectbox for Favorite
@@ -899,10 +899,10 @@ if len(visitor) == 1 & len(home) == 1:
 #     width= 100, caption='2021 Caryt Marketing Co.')
 
 
-# In[60]:
+# In[79]:
 
 
-#df_weather
+
 
 
 # In[ ]:
