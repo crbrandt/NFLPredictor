@@ -497,7 +497,7 @@ season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
 current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 
-# In[78]:
+# In[87]:
 
 
 model_inputs = {
@@ -675,8 +675,8 @@ highlight('NFL Week ' + str(current_week_num))
 
 
 col1, col2, col3 = st.beta_columns([3,1,3])
-visitor = ''
-home = ''
+visitor = ['Cole','R']
+home = ['Brandt']
 
 pic_home = 'https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png'
 pic_vis = 'https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png'
@@ -829,17 +829,16 @@ with col3:
     st.text(pic_home)
     
 if len(visitor) == 1 & len(home) == 1:
-    df_weather = df_weather[df_weather['Home_Team'] == home[0]]
-    st.header('Gametime Weather:')
-    w1, w2 = st.beta_columns(2)
-    with w1:
-        st.text('Weather:')
-        st.text('Temperature:')
-        st.text('Wind (mph):')
-    with w2:
-        st.text(df_weather.iat[0,2])
-        st.text(df_weather.iat[0,3])
-        st.text(df_weather.iat[0,4])
+    if (home[0] in list(df_weather['Home_Team'])):
+        df_weather = df_weather[df_weather['Home_Team'] == home[0]]
+        st.header('Gametime Weather:')
+        st.text('Weather:'  + str(df_weather.iat[0,2]))
+        st.text('Temperature (degrees Fahrenheit):'  + str(df_weather.iat[0,3]))
+        st.text('Wind (mph):' + str(df_weather.iat[0,4]))
+    else:
+        st.text('Weather data not available for this game in week ' + current_week_num)
+        
+
 
     
 # ##Selectbox for Favorite
@@ -899,8 +898,12 @@ if len(visitor) == 1 & len(home) == 1:
 #     width= 100, caption='2021 Caryt Marketing Co.')
 
 
-# In[79]:
+# In[95]:
 
+
+if (len(home) == 1 & len(visitor) == 1):
+    df_display = df_full[df_full['Team_x'].isin(visitor+home)]
+    df_display.rename(columns={"Team_x": "Team Full Name", "G": "Games Played", 'Team_y': 'Nickname', 'adj_elo': 'QB-Adjusted ELO Rating'})
 
 
 
