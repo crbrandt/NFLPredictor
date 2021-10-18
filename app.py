@@ -482,7 +482,7 @@ df_weather =  pd.read_csv(weather_url, index_col=0)
 
 
 
-# In[57]:
+# In[62]:
 
 
 model_inputs = {
@@ -812,6 +812,20 @@ with col3:
     st.text(home)
     st.text(pic_home)
     
+if len(visitor) == 1 & len(home) == 1:
+    df_weather = df_weather[df_weather['Home_Team'] == home[0]]
+    st.header('Gametime Weather:')
+    w1, w2 = st.beta_columns(2)
+    with w1:
+        st.text('Weather:')
+        st.text('Temperature:')
+        st.text('Wind (mph):')
+    with w2:
+        st.text(df_weather.iloc['Weather'])
+        st.text(df_weather.iloc['Temp'])
+        st.text(df_weather.iloc['Game_Wind_Avg'])
+
+    
 # ##Selectbox for Favorite
 # away = st.multiselect(
 #       'Select the Away Team',
@@ -869,14 +883,10 @@ with col3:
 #     width= 100, caption='2021 Caryt Marketing Co.')
 
 
-# In[ ]:
+# In[60]:
 
 
-
-# In[58]:
-
-
-#df_full
+#df_weather
 
 
 # In[ ]:
