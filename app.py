@@ -664,7 +664,6 @@ home = ''
 
 pic_home = 'https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png'
 pic_vis = 'https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png'
-
     
 
 
@@ -672,7 +671,7 @@ with col1:
     st.markdown("<h1 style='text-align: center;'>Visiting Team</h1>", unsafe_allow_html=True)
     visitor = st.selectbox('Select the visiting team', df_full['Team_x'].sort_values())
     if visitor == 'Arizona Cardinals':
-    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+        pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
     elif visitor == 'Atlanta Falcons':
         pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
     elif 'Ravens' in visitor:
