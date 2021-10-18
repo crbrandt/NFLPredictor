@@ -758,6 +758,160 @@ with col1:
 with col2:
     st.markdown("<h1 style='text-align: center;'>vs.</h1>", unsafe_allow_html=True)
 
+with col3:
+    st.markdown("<h1 style='text-align: center;'>Home Team</h1>", unsafe_allow_html=True)
+    home = st.multiselect('Select the home team', df_full['Team_x'])
+    if 'Arizona Cardinals' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+    elif 'Atlanta Falcons' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/173/full/299.png'
+    elif 'Baltimore Ravens' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/153/full/318.png'
+    elif 'Buffalo Bills' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png'   
+    elif 'Carolina Panthers' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png'    
+    elif 'Chicago Bear' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/169/full/364.png'    
+    elif 'Cincinnati Bengals' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png'
+    elif 'Cleveland Browns' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png'
+    elif 'Dallas Cowboys' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/165/full/406.png'
+    elif 'Denver Broncos' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png'
+    elif 'Detroit Lions' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png'
+    elif 'Green Bay Packers' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png'
+    elif 'Houston Texans' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/157/full/570.png'
+    elif 'Indianapolis Colts' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/158/full/593.png'
+    elif 'Jacksonville Jaguars' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png'   
+    elif 'Kansas City Chiefs' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/162/full/857.png'    
+    elif 'Las Vegas Raiders' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png'    
+    elif 'San Diego Chargers' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png'
+    elif 'Los Angeles Rams' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png'
+    elif 'Miami Dolphins' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png'
+    elif 'Minnesota Vikings' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png'
+    elif 'New England Patriots' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/151/full/y71myf8mlwlk8lbgagh3fd5e0.png'
+    elif 'New Orleans Saints' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/175/full/907.png'
+    elif 'New York Giants' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/166/full/80fw425vg3404shgkeonlmsgf.png'
+    elif 'New York Jets' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/152/full/9116_new_york_jets-primary-2019.png'
+    elif 'Philadelphia Eagles' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/167/full/960.png'   
+    elif 'Pittsburgh Steelers' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/156/full/970.png'    
+    elif 'San Francisco 49ers' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png'    
+    elif 'Seattle Seahawks' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png'
+    elif 'Tampa Bay Buccaneers' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png'
+    elif 'Tennessee Titans' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/160/full/1053.png'
+    elif 'Washington Football Team' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/6741/full/8837_washington_football_team-wordmark-20201.png'
+    st.image(pic_home, width = 100)
+    st.text(home)
+    st.text(pic_home)
+    
+if len(visitor) == 1 & len(home) == 1:
+    if (home[0] in list(df_weather['Home_Team'])):
+        df_weather = df_weather[df_weather['Home_Team'] == home[0]]
+        st.header('Gametime Weather:')
+        st.text('Weather:'  + str(df_weather.iat[0,2]))
+        st.text('Temperature (degrees Fahrenheit):'  + str(df_weather.iat[0,3]))
+        st.text('Wind (mph):' + str(df_weather.iat[0,4]))
+    else:
+        st.text('Weather data not available for this game in week ' + current_week_num)
+        
+
+
+    
+# ##Selectbox for Favorite
+# away = st.multiselect(
+#       'Select the Away Team',
+#       (
+#           list(df_full['Team_x'].sort())
+#       ), help = 'Please select the road team for the game.'
+#       )
+
+# if len(favorite) > 1:
+#   color('Please limit your selection to one team.')
+
+# ##Selectbox for underdog (note: if more than one mood is selected, users will not be able to continue)
+# underdog = st.multiselect(
+#     'Select the Underdog',
+#     list(df_full['Team_x'].sort()), help = 'Please select the team which is not favored in the game.'
+#     )
+
+# if len(underdog) > 1:
+#   color('Please limit your mood selections to one team.')
+
+
+# # ##Multiselect for celebrity types. When celebrities are selected, their specific count values will be editable using sliders.
+# # celebs = st.multiselect(
+# #     'Select Types of Celebrities',
+# #     [x for x in celeb_map.keys()], help = 'Please select the type(s) of celebrities which will be included in your advertisement.'
+# #     )
+
+# # celeb_sliders = []
+# # for celeb in celebs:
+# #     
+# spread_slider = st.slider('Spread' , min_value=-30.0, max_value=30.0, step = 0.5)
+
+# spread = spread_slider
+    
+
+# ##Predictions for score and cluster
+# if len(favorite) <= 1 and len(underdog) <= 1:
+#     button = st.button('Predict')
+  
+
+# # Bottom info bar ------------------------------------------------------------------------
+# st.markdown('___')
+# about = st.beta_expander('About')
+# with about:
+#     '''
+#     Thank you for visiting the Super Bowl Advertisement Optimizer, powered by Caryt Marketing Co. For more information, please visit our team's [Github repository] (https://github.com/crbrandt/CarytMarketingCo).
+    
+#     Curated by the Caryt Marketing Co. Analytics team: \n
+#     Cole Brandt, Anton Averin, Ranaa Ansari, Young Jang, Tyrone Brown
+    
+#     [Contact Our Team] (mailto:colebrandt2021@u.northwestern.edu)
+#     '''
+    
+# st.image("https://i.ibb.co/9qDzx87/Sunrise-Abstract-Shapes-Logo-Template-copy.png",
+#     width= 100, caption='2021 Caryt Marketing Co.')
+
+
+# In[95]:
+
+
+# df_display = df_full[df_full['Team_x'].isin(visitor+home)]
+# df_display.rename(columns={"Team_x": "Team Full Name", "G": "Games Played", 'Team_y': 'Nickname', 'adj_elo': 'QB-Adjusted ELO Rating'})
+
+# if (len(home) == 1 & len(visitor) == 1):
+#     st.table(df_display)
+
+
+
+
+# In[ ]:
 
 
 
