@@ -670,10 +670,10 @@ with col2:
     st.markdown("<h1 style='text-align: center;'>vs.</h1>", unsafe_allow_html=True)
 with col3:
     st.markdown("<h1 style='text-align: center;'>Home Team</h1>", unsafe_allow_html=True)
-    if len(visitor) > 1:
-      home = st.selectbox('Select the home team', df_full[df_full['Team_x'] != visitor]['Team_x'].sort_values())
-    else:
-      home = st.selectbox('Select the home team', df_full['Team_x'].sort_values())
+#     if len(visitor) >= 1:
+#       home = st.selectbox('Select the home team', df_full[df_full['Team_x'] != visitor]['Team_x'].sort_values())
+#     else:
+    home = st.selectbox('Select the home team', df_full['Team_x'].sort_values())
     st.image("https://static.streamlit.io/examples/dog.jpg")
 
 # ##Selectbox for Favorite
