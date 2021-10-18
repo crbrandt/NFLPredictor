@@ -496,7 +496,7 @@ season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
 current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 
-# In[114]:
+# In[117]:
 
 
 model_inputs = {
@@ -829,14 +829,28 @@ with col3:
 
 favorite = ''
 
-if st.button('Process'):
-        with st.spinner("test cole..."):
-            #pass flags to processing function
-            if ((len(visitor)) > 2 & (len(home) > 2)):
-                st.markdown('Which team is favored to win?')
-                favorite = st.selectbox('Select the favorite', [' ',visitor, home])
-        st.markdown("complete")
-        st.balloons()
+# if st.button('Process'):
+#         with st.spinner("Processing..."):
+#             #pass flags to processing function
+#             df2 = process_data(df, cols, add_some_stuff, flag_other_stuff)
+#         st.markdown("The first 50 rows:")
+#         st.write(df2.head(50))
+#         st.balloons()
+
+
+if ((len(visitor)) > 2 & (len(home) > 2)):
+    with st.form(key='fav_form'):
+        st.markdown('Which team is favored to win?')
+        favorite = st.selectbox('Select the favorite', [' ',visitor, home])
+        st.markdown('')
+        st.markdown('What is the spread?')
+        spread = st.number_input('Insert a number', min_value = -24.0, max_value = 0.0, value = 0.0, step = 0.5)
+        submit_button = st.form_submit_button(label='Predict Result')
+
+    
+if ((len(visitor)) > 2 & (len(home) > 2)):
+    st.markdown('Which team is favored to win?')
+    favorite = st.selectbox('Select the favorite', [' ',visitor, home])
     
 if (len(favorite) > 2 ):
     st.markdown('What is the spread?')
