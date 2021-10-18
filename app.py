@@ -482,7 +482,7 @@ df_weather =  pd.read_csv(weather_url, index_col=0)
 
 
 
-# In[47]:
+# In[53]:
 
 
 model_inputs = {
@@ -662,10 +662,81 @@ col1, col2, col3 = st.beta_columns(3)
 visitor = ''
 home = ''
 
+pic_home = 'https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png'
+pic_vis = 'https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png'
+
+if 'Cardinals' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Falcons' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Ravens' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Bills' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'   
+elif 'Panthers' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'    
+elif 'Bears' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'    
+elif 'Bengals' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Browns' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Cowboys' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Broncos' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Lions' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Packers' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Texans' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Colts' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Jaguars' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'   
+elif 'Chiefs' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'    
+elif 'Raiders' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'    
+elif 'Chargers' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Rams' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Dolphins' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Vikings' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Patriots' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Saints' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Giants' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Jets' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Eagles' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'   
+elif 'Steelers' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'    
+elif '49ers' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'    
+elif 'Seahawks' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Tampa Bay' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Titans' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+elif 'Washington' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+
+    
+
+
 with col1:
     st.markdown("<h1 style='text-align: center;'>Visiting Team</h1>", unsafe_allow_html=True)
     visitor = st.selectbox('Select the visiting team', df_full['Team_x'].sort_values())
-    st.image("https://static.streamlit.io/examples/cat.jpg")
+    st.image(pic_vis)
 with col2:
     st.markdown("<h1 style='text-align: center;'>vs.</h1>", unsafe_allow_html=True)
 with col3:
@@ -684,10 +755,10 @@ with col3:
 #       ), help = 'Please select the road team for the game.'
 #       )
 
-# # if len(favorite) > 1:
-# #   color('Please limit your selection to one team.')
+# if len(favorite) > 1:
+#   color('Please limit your selection to one team.')
 
-# ##Selectbox for hometeam (note: if more than one mood is selected, users will not be able to continue)
+# ##Selectbox for underdog (note: if more than one mood is selected, users will not be able to continue)
 # underdog = st.multiselect(
 #     'Select the Underdog',
 #     list(df_full['Team_x'].sort()), help = 'Please select the team which is not favored in the game.'
