@@ -701,7 +701,7 @@ with col1:
     elif 'Colts' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/158/full/593.png'
     elif 'Jaguars' in visitor:
-        pic_vis = 'https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png  ' 
+        pic_vis = 'https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png'   
     elif 'Chiefs' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/162/full/857.png'    
     elif 'Raiders' in visitor:
@@ -743,12 +743,75 @@ with col2:
     st.markdown("<h1 style='text-align: center;'>vs.</h1>", unsafe_allow_html=True)
 with col3:
     st.markdown("<h1 style='text-align: center;'>Home Team</h1>", unsafe_allow_html=True)
-#     if len(visitor) >= 1:
-#       home = st.selectbox('Select the home team', df_full[df_full['Team_x'] != visitor]['Team_x'].sort_values())
-#     else:
-    home = st.selectbox('Select the home team', df_full['Team_x'].sort_values())
-    st.image("https://static.streamlit.io/examples/dog.jpg")
-
+    home = st.multiselect('Select the home team', df_full['Team_x'])
+#   if 'Arizona Cardinals' in visitor:
+    pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
+    elif 'Atlanta Falcons' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/173/full/299.png'
+    elif 'Ravens' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/153/full/318.png'
+    elif 'Bills' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png'   
+    elif 'Panthers' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png'    
+    elif 'Bears' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/169/full/364.png'    
+    elif 'Bengals' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png'
+    elif 'Browns' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png'
+    elif 'Cowboys' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/165/full/406.png'
+    elif 'Broncos' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png'
+    elif 'Lions' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png'
+    elif 'Packers' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png'
+    elif 'Texans' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/157/full/570.png'
+    elif 'Colts' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/158/full/593.png'
+    elif 'Jaguars' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png'   
+    elif 'Chiefs' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/162/full/857.png'    
+    elif 'Raiders' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png'    
+    elif 'Chargers' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png'
+    elif 'Rams' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png'
+    elif 'Dolphins' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png'
+    elif 'Vikings' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png'
+    elif 'Patriots' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/151/full/y71myf8mlwlk8lbgagh3fd5e0.png'
+    elif 'Saints' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/175/full/907.png'
+    elif 'Giants' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/166/full/80fw425vg3404shgkeonlmsgf.png'
+    elif 'Jets' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/152/full/9116_new_york_jets-primary-2019.png'
+    elif 'Eagles' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/167/full/960.png'   
+    elif 'Steelers' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/156/full/970.png'    
+    elif '49ers' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png'    
+    elif 'Seahawks' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png'
+    elif 'Tampa Bay' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png'
+    elif 'Titans' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/160/full/1053.png'
+    elif 'Washington' in home:
+        pic_home = 'https://content.sportslogos.net/logos/7/6741/full/8837_washington_football_team-wordmark-20201.png'
+    st.image(pic_home)
+    st.text(home)
+    st.text(pic_home)
+    
 # ##Selectbox for Favorite
 # away = st.multiselect(
 #       'Select the Away Team',
@@ -813,7 +876,7 @@ with col3:
 # In[58]:
 
 
-df_full
+#df_full
 
 
 # In[ ]:
