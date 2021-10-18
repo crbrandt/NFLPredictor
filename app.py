@@ -27,7 +27,7 @@ from sklearn.ensemble import RandomForestRegressor
 url_nfl = 'https://raw.githubusercontent.com/peanutshawny/nfl-sports-betting/master/data/spreadspoke_scores.csv'
 url_teams = 'https://raw.githubusercontent.com/peanutshawny/nfl-sports-betting/master/data/nfl_teams.csv'
 url_elo = 'https://raw.githubusercontent.com/peanutshawny/nfl-sports-betting/master/data/nfl_elo.csv'
-stats = '/Users/colebrandt/Documents/NFL Predictor/nfl_dataset_2002-2019week6.csv'
+stats = 'https://raw.githubusercontent.com/crbrandt/NFLPredictor/main/Data/nfl_dataset_2002-2019week6.csv'
 
 nfl_elo_latest = 'https://projects.fivethirtyeight.com/nfl-api/nfl_elo_latest.csv'
 
