@@ -9,7 +9,8 @@ import numpy as np
 import streamlit as st
 #conda install statsmodels
 #pip install statsmodels
-
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
 from scipy import stats
 import requests
 import io
@@ -496,7 +497,7 @@ season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
 current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 
-# In[87]:
+# In[102]:
 
 
 model_inputs = {
@@ -686,7 +687,7 @@ df_full = df_full.reset_index(drop=True)
 
 with col1:
     st.markdown("<h1 style='text-align: center;'>Visiting Team</h1>", unsafe_allow_html=True)
-    visitor = st.multiselect('Select the visiting team', df_full['Team_x'])
+    visitor = st.selectbox('Select the visiting team', ([' '] + list(df_full['Team_x'])))
     if 'Arizona Cardinals' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
     elif 'Atlanta Falcons' in visitor:
@@ -755,10 +756,10 @@ with col1:
 
 with col2:
     st.markdown("<h1 style='text-align: center;'>vs.</h1>", unsafe_allow_html=True)
-
+    
 with col3:
     st.markdown("<h1 style='text-align: center;'>Home Team</h1>", unsafe_allow_html=True)
-    home = st.multiselect('Select the home team', df_full['Team_x'])
+    home = st.selectbox('Select the home team', ([' '] + list(df_full['Team_x'])))
     if 'Arizona Cardinals' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
     elif 'Atlanta Falcons' in home:
@@ -834,7 +835,7 @@ if len(visitor) == 1 & len(home) == 1:
         st.text('Temperature (degrees Fahrenheit):'  + str(df_weather.iat[0,3]))
         st.text('Wind (mph):' + str(df_weather.iat[0,4]))
     else:
-        st.text('Weather data not available for this game in week ' + current_week_num)
+        st.text('Weather data not available for this game in week ' + str(current_week_num))
         
 
 
@@ -896,7 +897,7 @@ if len(visitor) == 1 & len(home) == 1:
 #     width= 100, caption='2021 Caryt Marketing Co.')
 
 
-# In[95]:
+# In[98]:
 
 
 df_display = df_full[df_full['Team_x'].isin(visitor+home)]
@@ -907,8 +908,8 @@ if (len(home) == 1 & len(visitor) == 1):
 
 
 
-
 # In[ ]:
+
 
 
 
