@@ -484,178 +484,178 @@ df_weather =  pd.read_csv(weather_url, index_col=0)
 
 # In[31]:
 
+model_inputs = {
+  'ppg_diff':0,
+  'opp_ppg_diff':0,
+  'turnover_ratio_diff':0,
+  'elo_difference_fav_underdog':0,
+  'passing_ypg_opp_diff':0,
+  'passing_comp_pct_diff_opp':0,
+  'rushing_ypg_opp_diff':0,
+  'sacks_per_game_diff':0,
+  'passing_ypg_diff':0,
+  'rushing_ypg_diff':0,
+  'passing_comp_pct_diff':0,
+  'weather_temperature':0,
+  'schedule_week':0,
+  'weather_wind_mph':0,
+  'fav_home':0,
+  'weather_detail_DOME':0,
+  'indoor_outdoor_Outdoors':0,
+  'indoor_outdoor_Indoors':0,
+  'weather_detail_Rain':0,
+  'weather_detail_DOME (Open Roof)':0,
+  'schedule_playoff':0,
+  'weather_detail_Fog':0,
+  'weather_detail_Rain | Fog':0,
+  'weather_detail_Snow':0,
+  'stadium_neutral':0,
+  'weather_detail_Snow | Fog':0,
+  'weather_detail_Snow | Freezing Rain':0
+}
 
-# model_inputs = {
-#   'ppg_diff':0,
-#   'opp_ppg_diff':0,
-#   'turnover_ratio_diff':0,
-#   'elo_difference_fav_underdog':0,
-#   'passing_ypg_opp_diff':0,
-#   'passing_comp_pct_diff_opp':0,
-#   'rushing_ypg_opp_diff':0,
-#   'sacks_per_game_diff':0,
-#   'passing_ypg_diff':0,
-#   'rushing_ypg_diff':0,
-#   'passing_comp_pct_diff':0,
-#   'weather_temperature':0,
-#   'schedule_week':0,
-#   'weather_wind_mph':0,
-#   'fav_home':0,
-#   'weather_detail_DOME':0,
-#   'indoor_outdoor_Outdoors':0,
-#   'indoor_outdoor_Indoors':0,
-#   'weather_detail_Rain':0,
-#   'weather_detail_DOME (Open Roof)':0,
-#   'schedule_playoff':0,
-#   'weather_detail_Fog':0,
-#   'weather_detail_Rain | Fog':0,
-#   'weather_detail_Snow':0,
-#   'stadium_neutral':0,
-#   'weather_detail_Snow | Fog':0,
-#   'weather_detail_Snow | Freezing Rain':0
-# }
+##Creating prediction functions
+def predict(industry,moods,celebs):
+    for industry_selection in industry:
+        if industry_map[industry_selection] in model_inputs:
+            model_inputs[industry_map[industry_selection]] = 1
 
-# ##Creating prediction functions
-# def predict(industry,moods,celebs):
-#     for industry_selection in industry:
-#         if industry_map[industry_selection] in model_inputs:
-#             model_inputs[industry_map[industry_selection]] = 1
-
-#     for mood in moods:
-#         if mood_map[mood] in model_inputs:
-#           model_inputs[mood_map[mood]] = 1
+    for mood in moods:
+        if mood_map[mood] in model_inputs:
+          model_inputs[mood_map[mood]] = 1
           
-#     # Interaction Inputs
-#     model_inputs['industry_mortgages * mood_funny'] = model_inputs['industry_mortgages'] * model_inputs['mood_funny']
-#     model_inputs['industry_cars1 * mood_funny'] = model_inputs['industry_cars1'] * model_inputs['mood_funny']
+    # Interaction Inputs
+    model_inputs['industry_mortgages * mood_funny'] = model_inputs['industry_mortgages'] * model_inputs['mood_funny']
+    model_inputs['industry_cars1 * mood_funny'] = model_inputs['industry_cars1'] * model_inputs['mood_funny']
 
-#     prediction = round(model.predict(model_inputs)[0]*100,2)
-#     if prediction < 0:
-#       prediction = 0
-#     if prediction > 100:
-#       prediction = 100
+    prediction = round(model.predict(model_inputs)[0]*100,2)
+    if prediction < 0:
+      prediction = 0
+    if prediction > 100:
+      prediction = 100
     
-#     return prediction
+    return prediction
 
-# ###Mapping industry values in the data to their display options on the application
-# industry_map = {
-#     'Auto Parts & Accessories':'industry_auto_parts_accessories',
-#     'Airlines':'industry_airline_industry',
-#     'Beauty':'industry_beauty',
-#     'Beer':'industry_beer',
-#     'Beverages':'industry_beverages',
-#     'Candy':'industry_candy',
-#     'Cars':'industry_cars1',
-#     'Cellular, Internet, and TV Providers': 'industry_cellular',
-#     'Cleaning Supplies':'industry_cleaning_supplies',
-#     'Cola Drinks': 'industry_cola_drinks',
-#     'Software and Technology':'industry_computer_software',
-#     'Computer Hardware':'industry_computer_hardware',
-#     'Credit Cards':'industry_credit_cards',
-#     'Deodorant':'industry_deodorant',
-#     'Dips':'industry_dips',
-#     'Music, Movies, and Entertainment':'industry_entertainment',
-#     'Energy Drinks':'industry_energy_drinks',
-#     'Restaurants and Fast Food':'industry_fast_food',
-#     'Financial Services_1':'industry_financial_services',
-#     'Food Delivery':'industry_food_delivery',
-#     'Freelancers':'industry_freelancers',
-#     'Games':'industry_games',
-#     'Home Security':'industry_home_security',
-#     'Hotels':'industry_hotels',
-#     'Hygiene':'industry_hygiene',
-#     'Insurance':'industry_insurance',
-#     'Investments':'industry_investments',
-#     'Job Search':'industry_job_search',
-#     'Lawn Care':'industry_lawn_care',
-#     'Liquors':'industry_alcoholic_beverages',
-#     'Financial Services':'industry_loans',
-#     'Mobile Phones':'industry_mobile_phones',
-#     'Mortgages':'industry_mortgages',
-#     'Movies':'industry_movies',
-#     'Nuts':'industry_nuts',
-#     'Online Retailers':'industry_online_retailers',
-#     'Online Streaming Services':'industry_online_streaming',
-#     'Pizza':'industry_pizza',
-#     'Potato Chips':'industry_potato_chips',
-#     'Retail Stores':'industry_retail_stores',
-#     'Search Engines':'industry_search_engines',
-#     'Shoes':'industry_shoes',
-#     'Snacks':'industry_snacks1',
-#     'Soap':'industry_soap',
-#     'Social Media':'industry_social_media',
-#     'Soft Drinks':'industry_soft_drinks',
-#     'Sports Leagues':'industry_sports_leagues',
-#     'Taxes':'industry_taxes',
-#     'Travel':'industry_travel_industry',
-#     'Trucks':'industry_trucks',
-#     'TV Providers':'industry_TV_providers',
-#     'Virtual Assistants':'industry_virtual_assistants',
-#     'Water':'industry_water',
-#     'Yogurt':'industry_yogurt',
-#     'Other':'other'
-#     }
+###Mapping industry values in the data to their display options on the application
+industry_map = {
+    'Auto Parts & Accessories':'industry_auto_parts_accessories',
+    'Airlines':'industry_airline_industry',
+    'Beauty':'industry_beauty',
+    'Beer':'industry_beer',
+    'Beverages':'industry_beverages',
+    'Candy':'industry_candy',
+    'Cars':'industry_cars1',
+    'Cellular, Internet, and TV Providers': 'industry_cellular',
+    'Cleaning Supplies':'industry_cleaning_supplies',
+    'Cola Drinks': 'industry_cola_drinks',
+    'Software and Technology':'industry_computer_software',
+    'Computer Hardware':'industry_computer_hardware',
+    'Credit Cards':'industry_credit_cards',
+    'Deodorant':'industry_deodorant',
+    'Dips':'industry_dips',
+    'Music, Movies, and Entertainment':'industry_entertainment',
+    'Energy Drinks':'industry_energy_drinks',
+    'Restaurants and Fast Food':'industry_fast_food',
+    'Financial Services_1':'industry_financial_services',
+    'Food Delivery':'industry_food_delivery',
+    'Freelancers':'industry_freelancers',
+    'Games':'industry_games',
+    'Home Security':'industry_home_security',
+    'Hotels':'industry_hotels',
+    'Hygiene':'industry_hygiene',
+    'Insurance':'industry_insurance',
+    'Investments':'industry_investments',
+    'Job Search':'industry_job_search',
+    'Lawn Care':'industry_lawn_care',
+    'Liquors':'industry_alcoholic_beverages',
+    'Financial Services':'industry_loans',
+    'Mobile Phones':'industry_mobile_phones',
+    'Mortgages':'industry_mortgages',
+    'Movies':'industry_movies',
+    'Nuts':'industry_nuts',
+    'Online Retailers':'industry_online_retailers',
+    'Online Streaming Services':'industry_online_streaming',
+    'Pizza':'industry_pizza',
+    'Potato Chips':'industry_potato_chips',
+    'Retail Stores':'industry_retail_stores',
+    'Search Engines':'industry_search_engines',
+    'Shoes':'industry_shoes',
+    'Snacks':'industry_snacks1',
+    'Soap':'industry_soap',
+    'Social Media':'industry_social_media',
+    'Soft Drinks':'industry_soft_drinks',
+    'Sports Leagues':'industry_sports_leagues',
+    'Taxes':'industry_taxes',
+    'Travel':'industry_travel_industry',
+    'Trucks':'industry_trucks',
+    'TV Providers':'industry_TV_providers',
+    'Virtual Assistants':'industry_virtual_assistants',
+    'Water':'industry_water',
+    'Yogurt':'industry_yogurt',
+    'Other':'other'
+    }
 
-# mood_map = {
-#     'Adventurous':'mood_adventurous',
-#     'Alluring':'mood_alluring',
-#     'Boring':'mood_boring',
-#     'Controversial':'mood_controversial',
-#     'Cute/Adorable':'mood_cute\adorable',
-#     'Dramatic':'mood_dramatic',
-#     'Emotional':'mood_emotional',
-#     'Exciting':'mood_exciting',
-#     'Flirty':'mood_flirty',
-#     'Funny':'mood_funny',
-#     'Goofy':'mood_goofy',
-#     'Gross':'mood_gross',
-#     'Heartwarming':'mood_heartwarming',
-#     'Informative':'mood_informative',
-#     'Inspirational':'mood_inspirational',
-#     'Light-hearted':'mood_light hearted',
-#     'Mysterious':'mood_mysterious',
-#     'Party-themed':'mood_party themed',
-#     'Patriotic':'mood_patriotic',
-#     'Romantic':'mood_romantic',
-#     'Scary':'mood_scary',
-#     'Serious':'mood_serious',
-#     'Sexy':'mood_sexy',
-#     'Shocking':'mood_shocking',
-#     'Somber':'mood_somber',
-#     'Suspenseful':'mood_suspenseful',
-#     'Unique':'mood_unique',
-#     'Weird':'mood_weird'
-#     }
+mood_map = {
+    'Adventurous':'mood_adventurous',
+    'Alluring':'mood_alluring',
+    'Boring':'mood_boring',
+    'Controversial':'mood_controversial',
+    'Cute/Adorable':'mood_cute\adorable',
+    'Dramatic':'mood_dramatic',
+    'Emotional':'mood_emotional',
+    'Exciting':'mood_exciting',
+    'Flirty':'mood_flirty',
+    'Funny':'mood_funny',
+    'Goofy':'mood_goofy',
+    'Gross':'mood_gross',
+    'Heartwarming':'mood_heartwarming',
+    'Informative':'mood_informative',
+    'Inspirational':'mood_inspirational',
+    'Light-hearted':'mood_light hearted',
+    'Mysterious':'mood_mysterious',
+    'Party-themed':'mood_party themed',
+    'Patriotic':'mood_patriotic',
+    'Romantic':'mood_romantic',
+    'Scary':'mood_scary',
+    'Serious':'mood_serious',
+    'Sexy':'mood_sexy',
+    'Shocking':'mood_shocking',
+    'Somber':'mood_somber',
+    'Suspenseful':'mood_suspenseful',
+    'Unique':'mood_unique',
+    'Weird':'mood_weird'
+    }
 
-# celeb_map = {
-#     'Athletes':'n_athlete',
-#     'Bands':'n_band',
-#     'Business Leaders':'n_business_leader',
-#     'Comedians':'n_comedian',
-#     'Football Coaches':'n_football_coaches',
-#     'Historical Figures':'n_historical_figures',
-#     'Models':'n_models',
-#     'Musicians':'n_musician',
-#     'NFL Players':'n_nfl',
-#     'Politicians':'n_politician',
-#     'Reality TV Stars':'n_reality_tv_stars',
-#     'Sports Commentators':'n_sports_commentators',
-#     'Talk Show Hosts':'n_talk_show_hosts',
-#     'Top Actors':'n_top_actors'
-#     }
+celeb_map = {
+    'Athletes':'n_athlete',
+    'Bands':'n_band',
+    'Business Leaders':'n_business_leader',
+    'Comedians':'n_comedian',
+    'Football Coaches':'n_football_coaches',
+    'Historical Figures':'n_historical_figures',
+    'Models':'n_models',
+    'Musicians':'n_musician',
+    'NFL Players':'n_nfl',
+    'Politicians':'n_politician',
+    'Reality TV Stars':'n_reality_tv_stars',
+    'Sports Commentators':'n_sports_commentators',
+    'Talk Show Hosts':'n_talk_show_hosts',
+    'Top Actors':'n_top_actors'
+    }
 
 
 
-# ##--------------------------------------------------------Application Displayed Portion-----------------------------------------
+##--------------------------------------------------------Application Displayed Portion-----------------------------------------
 
-# ##Header and Logo
-# col_title, col_logo = st.beta_columns([4,1])
-# with col_title:
-#   st.title('NFL Game Predictor')
-#   st.markdown(' ## Created by Cole Brandt')
-# with col_logo:
-#   st.image("https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png")
-# st.write("#")
+##Header and Logo
+col_title, col_logo = st.beta_columns([4,1])
+with col_title:
+  st.title('NFL Game Predictor')
+  st.markdown(' ## Created by Cole Brandt')
+with col_logo:
+  st.image("https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png")
+st.write("#")
+
 
 
 
