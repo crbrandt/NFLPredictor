@@ -3,15 +3,13 @@
 
 # In[70]:
 
-pip install statsmodels
 
 import pandas as pd
 import numpy as np
 import streamlit as st
 #conda install statsmodels
 #pip install statsmodels
-import statsmodels.api as sm
-import statsmodels.formula.api as smf
+
 from scipy import stats
 import requests
 import io
