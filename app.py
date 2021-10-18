@@ -832,11 +832,12 @@ if ((len(visitor)) > 2 & (len(home) > 2)):
     if (home in list(df_weather['Home_Team'])):
         df_weather = df_weather[df_weather['Home_Team'] == home]
         st.header('Gametime Weather:')
-        st.text('Weather:'  + str(df_weather.iat[0,2]))
-        st.text('Temperature (degrees Fahrenheit):'  + str(df_weather.iat[0,3]))
-        st.text('Wind (mph):' + str(df_weather.iat[0,4]))
+        st.text('Weather: '  + str(df_weather.iat[0,2]))
+        st.text('Temperature (degrees Fahrenheit): '  + str(df_weather.iat[0,3]))
+        st.text('Wind (mph): ' + str(df_weather.iat[0,4]))
     else:
         st.text('Weather data not available for this game in week ' + str(current_week_num))
+        
         
 
 
@@ -904,8 +905,9 @@ if ((len(visitor)) > 2 & (len(home) > 2)):
 df_display = df_full[df_full['Team_x'].isin([visitor,home])]
 df_display.rename(columns={"Team_x": "Team Full Name", "G": "Games Played", 'Team_y': 'Nickname', 'adj_elo': 'QB-Adjusted ELO Rating'})
 
-if (len(home)> 1 & len(visitor)> 1):
+if ((len(home)> 1) & (len(visitor)> 1)):
     st.table(df_display)
+
 
 
 
