@@ -496,7 +496,7 @@ season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
 current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 
-# In[113]:
+# In[114]:
 
 
 model_inputs = {
@@ -830,12 +830,13 @@ with col3:
 favorite = ''
 if ((len(visitor)) > 2 & (len(home) > 2)):
     st.markdown('Which team is favored to win?')
-    favorite = st.selectbox('Select the favorite', [visitor, home])
+    favorite = st.selectbox('Select the favorite', [' ',visitor, home])
     
 if (len(favorite) > 2 ):
     st.markdown('What is the spread?')
-    spread = st.number_input('Insert a number', min_value = 0.0, max_value = 24.0)
-    
+    spread = st.number_input('Insert a number', min_value = -24.0, max_value = 0.0, value = 0.0, step = 0.5)
+ 
+
 if ((len(visitor)) > 2 & (len(home) > 2)):
     if (home in list(df_weather['Home_Team'])):
         df_weather = df_weather[df_weather['Home_Team'] == home]
