@@ -663,15 +663,18 @@ visitor = ''
 home = ''
 
 with col1:
-    st.header("Visiting Team")
+    st.markdown("<h1 style='text-align: center;'>Visiting Team</h1>", unsafe_allow_html=True)
     visitor = st.selectbox('Select the visiting team', df_full['Team_x'].sort_values())
     st.image("https://static.streamlit.io/examples/cat.jpg")
 with col2:
-    st.markdown("<h1 style='text-align: center; color: red;'>vs.</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>vs.</h1>", unsafe_allow_html=True)
 with col3:
-    st.header("Home Team")
-    home = st.selectbox('Select the home team', df_full[df_full['Team_x'] != visitor]['Team_x'].sort_values())
-    st.image("https://static.streamlit.io/examples/cat.jpg")
+    st.markdown("<h1 style='text-align: center;'>Home Team</h1>", unsafe_allow_html=True)
+    if len(visitor) > 1:
+      home = st.selectbox('Select the home team', df_full[df_full['Team_x'] != visitor]['Team_x'].sort_values())
+    else:
+      home = st.selectbox('Select the home team', df_full['Team_x'].sort_values())
+    st.image("https://static.streamlit.io/examples/dog.jpg")
 
 ##Selectbox for Favorite
 away = st.multiselect(
