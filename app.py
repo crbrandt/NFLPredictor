@@ -666,6 +666,7 @@ pic_home = 'https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFoot
 pic_vis = 'https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png'
     
 df_full = df_full.sort_values(by=['Team_x'])
+df_full = df_full.reset_index(drop=True)
 
 with col1:
     st.markdown("<h1 style='text-align: center;'>Visiting Team</h1>", unsafe_allow_html=True)
