@@ -828,9 +828,15 @@ with col3:
         st.image(pic_home, width = 100)
 
 favorite = ''
-if ((len(visitor)) > 2 & (len(home) > 2)):
-    st.markdown('Which team is favored to win?')
-    favorite = st.selectbox('Select the favorite', [' ',visitor, home])
+
+if st.button('Process'):
+        with st.spinner("test cole..."):
+            #pass flags to processing function
+            if ((len(visitor)) > 2 & (len(home) > 2)):
+                st.markdown('Which team is favored to win?')
+                favorite = st.selectbox('Select the favorite', [' ',visitor, home])
+        st.markdown("complete")
+        st.balloons()
     
 if (len(favorite) > 2 ):
     st.markdown('What is the spread?')
