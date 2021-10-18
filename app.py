@@ -825,7 +825,7 @@ with col3:
     elif 'Washington Football Team' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/6741/full/8837_washington_football_team-wordmark-20201.png'
     if len(home)> 1:
-        st.image(pic_vis, width = 100)
+        st.image(pic_home, width = 100)
 
     
 if len(visitor) > 1 & len(home) > 1:
