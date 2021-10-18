@@ -482,7 +482,7 @@ df_weather =  pd.read_csv(weather_url, index_col=0)
 
 
 
-# In[46]:
+# In[47]:
 
 
 model_inputs = {
@@ -658,13 +658,25 @@ with col_logo:
 st.write("#")
 
 
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.header("Visiting Team")
+    visitor = st.selectbox('Select the visiting team', df_full['Team_x'].sort())
+    st.image("https://static.streamlit.io/examples/cat.jpg")
+with col2:
+    st.header("vs.")
+with col3:
+    st.header("Home Team")
+    visitor = st.selectbox('Select the home team', df_full[df_full['Team_x'] != visitor]['Team_x'].sort())
+    st.image("https://static.streamlit.io/examples/cat.jpg")
 
 ##Selectbox for Favorite
-favorite = st.multiselect(
-      'Select the Betting Favorite',
+away = st.multiselect(
+      'Select the Away Team',
       (
-          list(df_full['Team_x'])
-      ), help = 'Please select the team which is favored in the game.'
+          list(df_full['Team_x'].sort())
+      ), help = 'Please select the road team for the game.'
       )
 
 if len(favorite) > 1:
@@ -673,7 +685,7 @@ if len(favorite) > 1:
 ##Selectbox for underdog (note: if more than one mood is selected, users will not be able to continue)
 underdog = st.multiselect(
     'Select the Underdog',
-    list(df_full['Team_x']), help = 'Please select the team which is not favored in the game.'
+    list(df_full['Team_x'].sort()), help = 'Please select the team which is not favored in the game.'
     )
 
 if len(underdog) > 1:
