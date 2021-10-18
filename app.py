@@ -735,6 +735,8 @@ with col1:
     elif 'Washington' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/177/full/kwth8f1cfa2sch5xhjjfaof90.png'
     st.image(pic_vis)
+    st.text(visitor)
+    st.text(pic_vis)
 with col2:
     st.markdown("<h1 style='text-align: center;'>vs.</h1>", unsafe_allow_html=True)
 with col3:
