@@ -701,7 +701,7 @@ with col1:
     elif 'Colts' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/158/full/593.png'
     elif 'Jaguars' in visitor:
-        pic_vis = 'https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png   
+        pic_vis = 'https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png  ' 
     elif 'Chiefs' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/162/full/857.png'    
     elif 'Raiders' in visitor:
