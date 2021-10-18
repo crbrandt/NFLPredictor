@@ -36,9 +36,9 @@ st.set_page_config(page_title='NFL Game Predictor',
 
 ##Creating Text format options with orange colors
 def highlight(text):
-     st.markdown(f'<p style="text-align: center;color:#f19e28;font-size:22px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+     st.markdown(f'<p style="text-align: center;color:#013369;font-size:22px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
 def color(text):
-     st.markdown(f'<p style="color:#f19e28;font-size:20px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
+     st.markdown(f'<p style="color:#013369;font-size:20px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
 
 
 ##Loading in Regression and Classification Models
@@ -482,7 +482,7 @@ df_weather =  pd.read_csv(weather_url, index_col=0)
 
 
 
-# In[31]:
+# In[46]:
 
 
 model_inputs = {
@@ -659,25 +659,25 @@ st.write("#")
 
 
 
-# #Selectbox for Industry
-# favorite = st.multiselect(
-#       'Select the Betting Favorite',
-#       (
-#           list(current_df_full['Team_x'])
-#       ), help = 'Please select the team which is favored in the game.'
-#       )
+##Selectbox for Favorite
+favorite = st.multiselect(
+      'Select the Betting Favorite',
+      (
+          list(df_full['Team_x'])
+      ), help = 'Please select the team which is favored in the game.'
+      )
 
-# if len(favorite) > 1:
-#   color('Please limit your selection to one team.')
+if len(favorite) > 1:
+  color('Please limit your selection to one team.')
 
-# ##Selectbox for mood (note: if more than three moods are selected, users will not be able to continue)
-# underdog = st.multiselect(
-#     'Select the Underdog',
-#     list(current_df_full['Team_x']), help = 'Please select the team which is not favored in the game.'
-#     )
+##Selectbox for underdog (note: if more than one mood is selected, users will not be able to continue)
+underdog = st.multiselect(
+    'Select the Underdog',
+    list(df_full['Team_x']), help = 'Please select the team which is not favored in the game.'
+    )
 
-# if len(underdog) > 1:
-#   color('Please limit your mood selections to one team.')
+if len(underdog) > 1:
+  color('Please limit your mood selections to one team.')
 
 
 # # ##Multiselect for celebrity types. When celebrities are selected, their specific count values will be editable using sliders.
