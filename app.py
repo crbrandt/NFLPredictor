@@ -838,26 +838,20 @@ favorite = ''
 #         st.balloons()
 
 
-if ((len(visitor)) > 2 & (len(home) > 2)):
+
+if (len(visitor) > 2) & (len(home) > 2):
     with st.form(key='fav_form'):
         st.markdown('Which team is favored to win?')
         favorite = st.selectbox('Select the favorite', [' ',visitor, home])
         st.markdown('')
         st.markdown('What is the spread?')
-        spread = st.number_input('Insert a number', min_value = -24.0, max_value = 0.0, value = 0.0, step = 0.5)
+        spread = abs(st.number_input('Insert a number', min_value = -30, max_value = 30, value = 0.0, step = 0.5))
         submit_button = st.form_submit_button(label='Predict Result')
 
-    
-if ((len(visitor)) > 2 & (len(home) > 2)):
-    st.markdown('Which team is favored to win?')
-    favorite = st.selectbox('Select the favorite', [' ',visitor, home])
-    
-if (len(favorite) > 2 ):
-    st.markdown('What is the spread?')
-    spread = st.number_input('Insert a number', min_value = -24.0, max_value = 0.0, value = 0.0, step = 0.5)
+
  
 
-if ((len(visitor)) > 2 & (len(home) > 2)):
+if (len(visitor) > 2) & (len(home) > 2):
     if (home in list(df_weather['Home_Team'])):
         df_weather = df_weather[df_weather['Home_Team'] == home]
         st.header('Gametime Weather:')
@@ -866,6 +860,7 @@ if ((len(visitor)) > 2 & (len(home) > 2)):
         st.text('Wind (mph): ' + str(df_weather.iat[0,4]))
     else:
         st.text('Weather data not available for this game in week ' + str(current_week_num))
+        
         
 
 
