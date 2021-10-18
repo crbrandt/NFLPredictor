@@ -662,13 +662,13 @@ col1, col2, col3 = st.beta_columns(3)
 
 with col1:
     st.header("Visiting Team")
-    visitor = st.selectbox('Select the visiting team', df_full['Team_x'].sort())
+    visitor = st.selectbox('Select the visiting team', df_full['Team_x'].sort_values())
     st.image("https://static.streamlit.io/examples/cat.jpg")
 with col2:
     st.header("vs.")
 with col3:
     st.header("Home Team")
-    home = st.selectbox('Select the home team', df_full[df_full['Team_x'] != visitor]['Team_x'].sort())
+    home = st.selectbox('Select the home team', df_full[df_full['Team_x'] != visitor]['Team_x'].sort_values())
     st.image("https://static.streamlit.io/examples/cat.jpg")
 
 ##Selectbox for Favorite
