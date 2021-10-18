@@ -658,7 +658,7 @@ with col_logo:
 st.write("#")
 
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3 = st.beta_columns(3)
 
 with col1:
     st.header("Visiting Team")
@@ -668,7 +668,7 @@ with col2:
     st.header("vs.")
 with col3:
     st.header("Home Team")
-    visitor = st.selectbox('Select the home team', df_full[df_full['Team_x'] != visitor]['Team_x'].sort())
+    home = st.selectbox('Select the home team', df_full[df_full['Team_x'] != visitor]['Team_x'].sort())
     st.image("https://static.streamlit.io/examples/cat.jpg")
 
 ##Selectbox for Favorite
