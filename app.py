@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[41]:
+# In[70]:
 
 
 import pandas as pd
@@ -20,6 +20,11 @@ import html5lib
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.ensemble import RandomForestClassifier
+
+from datetime import date
+from datetime import datetime
+
+import math
 
 
 # In[42]:
@@ -482,7 +487,17 @@ df_weather =  pd.read_csv(weather_url, index_col=0)
 
 
 
-# In[62]:
+# In[74]:
+
+
+current_week_num =0
+
+season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
+
+current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
+
+
+# In[75]:
 
 
 model_inputs = {
@@ -656,6 +671,7 @@ with col_title:
 with col_logo:
   st.image("https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png")
 st.write("#")
+st.markdown('#NFL Week ' + str(current_week_num))
 
 
 col1, col2, col3 = st.beta_columns([3,1,3])
@@ -821,9 +837,9 @@ if len(visitor) == 1 & len(home) == 1:
         st.text('Temperature:')
         st.text('Wind (mph):')
     with w2:
-        st.text(df_weather.iloc[2])
-        st.text(df_weather.iloc[3])
-        st.text(df_weather.iloc[4])
+        st.text(df_weather.iloc['Weather'])
+        st.text(df_weather.iloc['Temp'])
+        st.text(df_weather.iloc['Game_Wind_Avg'])
 
     
 # ##Selectbox for Favorite
