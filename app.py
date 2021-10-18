@@ -1,7 +1,28 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[41]:
+
+
+import pandas as pd
+import numpy as np
+import streamlit as st
+#conda install statsmodels
+#pip install statsmodels
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from scipy import stats
+import requests
+import io
+from sklearn.metrics import accuracy_score
+
+import html5lib
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestClassifier
+
+
+# In[42]:
 
 
 ##Updating Page Logo and Tab Title
@@ -23,27 +44,6 @@ def color(text):
 ##Loading in Regression and Classification Models
 # model_reg = reg
 # model_class = clf
-
-
-# In[39]:
-
-
-import pandas as pd
-import numpy as np
-import streamlit as st
-#conda install statsmodels
-#pip install statsmodels
-import statsmodels.api as sm
-import statsmodels.formula.api as smf
-from scipy import stats
-import requests
-import io
-from sklearn.metrics import accuracy_score
-
-import html5lib
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.ensemble import RandomForestClassifier
 
 
 # In[4]:
