@@ -31,7 +31,7 @@ import math
 
 ##Updating Page Logo and Tab Title
 st.set_page_config(page_title='NFL Game Predictor',
-                   page_icon='https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png/revision/latest?cb=20120419223002',
+                   page_icon='https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png',
                    layout="wide")
 
 # div[data-baseweb="select"] > div {
@@ -828,7 +828,7 @@ with col3:
         st.image(pic_home, width = 100)
 
     
-if len(visitor) > 1 & len(home) > 1:
+if (len(visitor) > 2 & len(home) > 2):
     if (home in list(df_weather['Home_Team'])):
         df_weather = df_weather[df_weather['Home_Team'] == home]
         st.header('Gametime Weather:')
