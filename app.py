@@ -676,25 +676,25 @@ with col3:
       home = st.selectbox('Select the home team', df_full['Team_x'].sort_values())
     st.image("https://static.streamlit.io/examples/dog.jpg")
 
-##Selectbox for Favorite
-away = st.multiselect(
-      'Select the Away Team',
-      (
-          list(df_full['Team_x'].sort())
-      ), help = 'Please select the road team for the game.'
-      )
+# ##Selectbox for Favorite
+# away = st.multiselect(
+#       'Select the Away Team',
+#       (
+#           list(df_full['Team_x'].sort())
+#       ), help = 'Please select the road team for the game.'
+#       )
 
-if len(favorite) > 1:
-  color('Please limit your selection to one team.')
+# # if len(favorite) > 1:
+# #   color('Please limit your selection to one team.')
 
-##Selectbox for underdog (note: if more than one mood is selected, users will not be able to continue)
-underdog = st.multiselect(
-    'Select the Underdog',
-    list(df_full['Team_x'].sort()), help = 'Please select the team which is not favored in the game.'
-    )
+# ##Selectbox for hometeam (note: if more than one mood is selected, users will not be able to continue)
+# underdog = st.multiselect(
+#     'Select the Underdog',
+#     list(df_full['Team_x'].sort()), help = 'Please select the team which is not favored in the game.'
+#     )
 
-if len(underdog) > 1:
-  color('Please limit your mood selections to one team.')
+# if len(underdog) > 1:
+#   color('Please limit your mood selections to one team.')
 
 
 # # ##Multiselect for celebrity types. When celebrities are selected, their specific count values will be editable using sliders.
