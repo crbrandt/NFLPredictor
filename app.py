@@ -899,7 +899,7 @@ if len(visitor) == 1 & len(home) == 1:
 # In[98]:
 
 
-df_display = df_full[df_full['Team_x'].isin(visitor+home)]
+df_display = df_full[df_full['Team_x'].isin([visitor,home])]
 df_display.rename(columns={"Team_x": "Team Full Name", "G": "Games Played", 'Team_y': 'Nickname', 'adj_elo': 'QB-Adjusted ELO Rating'})
 
 if (len(home) == 1 & len(visitor) == 1):
