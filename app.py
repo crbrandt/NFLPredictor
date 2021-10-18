@@ -1,6 +1,30 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[ ]:
+
+
+##Updating Page Logo and Tab Title
+st.set_page_config(page_title='NFL Game Predictor',
+                   page_icon='https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png/revision/latest?cb=20120419223002',
+                   layout="wide")
+
+# div[data-baseweb="select"] > div {
+#     background-color: '#575757';
+# }
+
+##Creating Text format options with orange colors
+def highlight(text):
+     st.markdown(f'<p style="text-align: center;color:#f19e28;font-size:22px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+def color(text):
+     st.markdown(f'<p style="color:#f19e28;font-size:20px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
+
+
+##Loading in Regression and Classification Models
+# model_reg = reg
+# model_class = clf
+
+
 # In[39]:
 
 
@@ -121,7 +145,7 @@ elo_df4['fav_home'] = np.where(elo_df4['home_id'] == elo_df4['team_favorite_id']
 
 elo_df5 = elo_df4.iloc[:, [0,1,2,3,4,5,6]]
 
-elo_df4.shape
+#elo_df4.shape
 
 
 # In[21]:
@@ -325,7 +349,7 @@ df_agg.loc[df_agg['schedule_week'].str.upper() == 'DIVISION', 'schedule_week'] =
 df_agg.loc[df_agg['schedule_week'].str.upper() == 'CONFERENCE', 'schedule_week'] = 21
 df_agg.loc[df_agg['schedule_week'].str.upper() == 'SUPERBOWL', 'schedule_week'] = 22
 
-df_agg
+#df_agg
 
 
 #pd.DataFrame(list(elo_df4.columns))
@@ -401,7 +425,7 @@ clf.fit(X_train,y_train)
 y_pred=clf.predict(X_test)
 
 
-y_pred
+#y_pred
 
 # from sklearn import metrics
 # # Model Accuracy, how often is the classifier correct?
@@ -422,7 +446,7 @@ print('Mean Absolute Error:', round(np.mean(errors), 2), 'degrees.')
 mape = 100 * (errors / test_labels)
 # Calculate and display accuracy
 accuracy = 100 - np.mean(mape)
-print('Accuracy:', round(accuracy, 2), '%.')
+#print('Accuracy:', round(accuracy, 2), '%.')
 
 
 # test_features['preds'] = np.array(predictions)
@@ -438,32 +462,12 @@ predictions2 = rf2.predict(test_features_win)
 # Calculate the absolute errors
 #errors2 = abs(predictions2 - test_labels_win)
 
-accuracy_score(test_labels_win, predictions2)
+#accuracy_score(test_labels_win, predictions2)
 
 
 # In[29]:
 
 
-
-##Updating Page Logo and Tab Title
-st.set_page_config(page_title='NFL Game Predictor',
-                   page_icon='https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png/revision/latest?cb=20120419223002',
-                   layout="wide")
-
-# div[data-baseweb="select"] > div {
-#     background-color: '#575757';
-# }
-
-##Creating Text format options with orange colors
-def highlight(text):
-     st.markdown(f'<p style="text-align: center;color:#f19e28;font-size:22px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
-def color(text):
-     st.markdown(f'<p style="color:#f19e28;font-size:20px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
-
-
-##Loading in Regression and Classification Models
-# model_reg = reg
-# model_class = clf
 
 
 
