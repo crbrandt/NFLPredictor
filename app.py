@@ -736,7 +736,7 @@ with col1:
         pic_vis = 'https://content.sportslogos.net/logos/7/160/full/1053.png'
     elif 'Washington Football Team' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/6741/full/8837_washington_football_team-wordmark-20201.png'
-    st.image(pic_vis)
+    st.image(pic_vis, width = 100)
     st.text(visitor)
     st.text(pic_vis)
 with col2:
@@ -808,7 +808,7 @@ with col3:
         pic_home = 'https://content.sportslogos.net/logos/7/160/full/1053.png'
     elif 'Washington Football Team' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/6741/full/8837_washington_football_team-wordmark-20201.png'
-    st.image(pic_home)
+    st.image(pic_home, width = 100)
     st.text(home)
     st.text(pic_home)
     
