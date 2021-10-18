@@ -658,7 +658,7 @@ with col_logo:
 st.write("#")
 
 
-col1, col2, col3 = st.beta_columns(3)
+col1, col2, col3 = st.beta_columns([3,1,3])
 visitor = ''
 home = ''
 
