@@ -751,7 +751,8 @@ with col1:
         pic_vis = 'https://content.sportslogos.net/logos/7/160/full/1053.png'
     elif 'Washington Football Team' in visitor:
         pic_vis = 'https://content.sportslogos.net/logos/7/6741/full/8837_washington_football_team-wordmark-20201.png'
-    st.image(pic_vis, width = 100)
+    if len(visitor)> 1:
+        st.image(pic_vis, width = 100)
 
 with col2:
     st.markdown("<h1 style='text-align: center;'>vs.</h1>", unsafe_allow_html=True)
@@ -823,10 +824,11 @@ with col3:
         pic_home = 'https://content.sportslogos.net/logos/7/160/full/1053.png'
     elif 'Washington Football Team' in home:
         pic_home = 'https://content.sportslogos.net/logos/7/6741/full/8837_washington_football_team-wordmark-20201.png'
-    st.image(pic_home, width = 100)
+    if len(home)> 1:
+        st.image(pic_vis, width = 100)
 
     
-if len(visitor) == 1 & len(home) == 1:
+if len(visitor) > 1 & len(home) > 1:
     if (home[0] in list(df_weather['Home_Team'])):
         df_weather = df_weather[df_weather['Home_Team'] == home[0]]
         st.header('Gametime Weather:')
@@ -896,13 +898,13 @@ if len(visitor) == 1 & len(home) == 1:
 #     width= 100, caption='2021 Caryt Marketing Co.')
 
 
-# In[98]:
+# In[104]:
 
 
 df_display = df_full[df_full['Team_x'].isin([visitor,home])]
 df_display.rename(columns={"Team_x": "Team Full Name", "G": "Games Played", 'Team_y': 'Nickname', 'adj_elo': 'QB-Adjusted ELO Rating'})
 
-if (len(home) == 1 & len(visitor) == 1):
+if (len(home)> 1 & len(visitor)> 1):
     st.table(df_display)
 
 
