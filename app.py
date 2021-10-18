@@ -496,7 +496,7 @@ season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
 current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 
-# In[102]:
+# In[113]:
 
 
 model_inputs = {
@@ -827,6 +827,14 @@ with col3:
     if len(home)> 1:
         st.image(pic_home, width = 100)
 
+favorite = ''
+if ((len(visitor)) > 2 & (len(home) > 2)):
+    st.markdown('Which team is favored to win?')
+    favorite = st.selectbox('Select the favorite', [visitor, home])
+    
+if (len(favorite) > 2 ):
+    st.markdown('What is the spread?')
+    spread = st.number_input('Insert a number', min_value = 0.0, max_value = 24.0)
     
 if ((len(visitor)) > 2 & (len(home) > 2)):
     if (home in list(df_weather['Home_Team'])):
@@ -837,7 +845,6 @@ if ((len(visitor)) > 2 & (len(home) > 2)):
         st.text('Wind (mph): ' + str(df_weather.iat[0,4]))
     else:
         st.text('Weather data not available for this game in week ' + str(current_week_num))
-        
         
 
 
@@ -899,14 +906,21 @@ if ((len(visitor)) > 2 & (len(home) > 2)):
 #     width= 100, caption='2021 Caryt Marketing Co.')
 
 
-# In[104]:
+# In[112]:
 
 
 df_display = df_full[df_full['Team_x'].isin([visitor,home])]
 df_display = df_display.rename(columns={"Team_x": "Team Full Name", "G": "Games Played", 'Team_y': 'Nickname', 'adj_elo': 'QB-Adjusted ELO Rating'})
 
 if ((len(home)> 1) & (len(visitor)> 1)):
+    st.header('')
+    st.header('Season Stats:')
     st.table(df_display)
+
+
+
+# In[109]:
+
 
 
 
