@@ -828,7 +828,7 @@ with col3:
         st.image(pic_home, width = 100)
 
     
-if (len(visitor) > 2 & len(home) > 2):
+if ((len(visitor)) > 2 & (len(home) > 2)):
     if (home in list(df_weather['Home_Team'])):
         df_weather = df_weather[df_weather['Home_Team'] == home]
         st.header('Gametime Weather:')
