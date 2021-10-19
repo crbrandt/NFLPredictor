@@ -722,10 +722,6 @@ with st.form(key='fav_form'):
         if len(visitor)> 1:
             st.image(pic_vis, width = 150)
         favorite = ''
-        st.header(' ')
-        if len(home) < 3:
-            st.header(' ')
-            st.header(' ')
 
     with col2:
         st.markdown("<h1 style='text-align: center;'>vs.</h1>", unsafe_allow_html=True)
@@ -798,7 +794,11 @@ with st.form(key='fav_form'):
         elif 'Washington Football Team' in home:
             pic_home = 'https://content.sportslogos.net/logos/7/6741/full/8837_washington_football_team-wordmark-20201.png'
         if len(home)> 1:
-            st.image(pic_home, width = 150)            
+            st.image(pic_home, width = 150)
+    st.header(' ')
+    if len(home) < 3:
+        st.header(' ')
+        st.header(' ')
     ca,cb,cc = st.beta_columns([3,1,3])
     with ca:
         st.markdown('Which team is favored to win?')
