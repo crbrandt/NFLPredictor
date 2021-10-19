@@ -905,7 +905,7 @@ if (len(favorite) > 2):
                    ]
     
     result_score = rf.predict(pd.DataFrame(model_inputs).T)
-    result_beat_spread = rf2.predict(pd.DataFrame(model_inputs).T)
+    #result_beat_spread = rf2.predict(pd.DataFrame(model_inputs).T)
     #pred_df
     #df_fav
     #model_inputs
