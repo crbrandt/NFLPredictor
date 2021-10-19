@@ -856,16 +856,18 @@ if (len(favorite) > 2):
     #df_fav
 
 
-# In[179]:
+# In[189]:
 
 
-underdog = df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)].iat[0,0]
+#df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)]
+#df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)].iat[0,0]
 
 
-# In[184]:
+# In[190]:
 
 
 if len(favorite) > 2:
+    underdog = df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)].iat[0,0]
     if result_score > 0.0:
         highlight(favorite + ' are projected to win by ' + str(result_score[0]) + ' points') 
     elif result_score < 0.0:
