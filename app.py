@@ -969,7 +969,7 @@ if (len(favorite) > 2):
 if len(favorite) > 2:
     underdog = df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)].iat[0,0]
     if round(result_score[0], 2) > 0.0:
-        highlight('The ' + teamcolor(favorite) + ' are projected to win by ' + str(round(result_score[0], 2)) + ' points') 
+        highlight('The ') + teamcolor(favorite) + highlight(' are projected to win by ') + highlight(str(round(result_score[0], 2))) + highlight(' points')) 
     elif round(result_score[0], 2) < 0.0:
         highlight('The ' + teamcolor(underdog) + ' are projected to win by ' + str(-1 * round(result_score[0],2)) + ' points') 
     else:
