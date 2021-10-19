@@ -746,9 +746,9 @@ with st.form(key='fav_form'):
 # favorite = 'Pittsburgh Steelers'
 # spread = 5.0
  
-if favorite == 'visitor':
+if favorite == 'Visitor':
     favorite = visitor
-elif favorite == 'home':
+elif favorite == 'Home':
     favorite = home
 else:
     favorite = ''
@@ -925,9 +925,9 @@ if (len(favorite) > 2):
 
 #df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)]
 #df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)].iat[0,0]
-st.markdown('Favorite: ' + favorite)
-st.markdown('Home: ' + home)
-st.markdown('Visitor: ' + visitor)
+# st.markdown('Favorite: ' + favorite)
+# st.markdown('Home: ' + home)
+# st.markdown('Visitor: ' + visitor)
 
 
 # In[321]:
