@@ -720,10 +720,10 @@ with st.form(key='fav_form'):
         elif 'Washington Football Team' in visitor:
             pic_vis = 'https://content.sportslogos.net/logos/7/6741/full/8837_washington_football_team-wordmark-20201.png'
         if len(visitor)> 1:
-            st.image(pic_vis, width = 100)
+            st.image(pic_vis, width = 200)
         favorite = ''
         st.header(' ')
-        if len(home) <= 2:
+        if len(home) < 3:
             st.header(' ')
             st.header(' ')
         st.markdown('Which team is favored to win?')
