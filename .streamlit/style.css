@@ -17,5 +17,8 @@
   background-color: lightblue;
 }
 .stform_submit_button>form_submit_button {
-    color: #013369;
+    background-color: #013369;
+    color: white
+    height: 3em
+    width: 10em
 }
