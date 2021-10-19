@@ -735,24 +735,20 @@ with st.form(key='fav_form'):
                 st.image(pic_home, width = 100)
 
         favorite = ''
-        st.header(' ')
-        st.header(' ')
-        st.header(' ')
+
         st.markdown('Which team is favored to win?')
         favorite = st.selectbox('Select the favorite', [' ','Visitor', 'Home'])
         st.markdown('')
         st.markdown('What is the spread?')
         spread = abs(st.number_input('Insert a number', min_value = -30.0, max_value = 30.0, value = 0.0, step = 0.5))
-        st.header(' ')
-        st.header(' ')
         submit_button = st.form_submit_button(label='Predict Result')    
 
 # favorite = 'Pittsburgh Steelers'
 # spread = 5.0
  
-if favorite == 'Visitor':
+if favorite == 'visitor':
     favorite = visitor
-elif favorite == 'Home':
+elif favorite == 'home':
     favorite = home
 else:
     favorite = ''
@@ -929,9 +925,9 @@ if (len(favorite) > 2):
 
 #df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)]
 #df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)].iat[0,0]
-# st.markdown('Favorite: ' + favorite)
-# st.markdown('Home: ' + home)
-# st.markdown('Visitor: ' + visitor)
+st.markdown('Favorite: ' + favorite)
+st.markdown('Home: ' + home)
+st.markdown('Visitor: ' + visitor)
 
 
 # In[321]:
