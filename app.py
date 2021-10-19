@@ -807,7 +807,7 @@ with st.form(key='fav_form'):
             st.image(pic_home, width = 100)            
 
     
-    c1, c2, c3 = st.beta_columns([3.2,1,3])
+    c1, c2, c3 = st.beta_columns([3.3,1,3])
     with c1:
         st.text('')
     with c2:
