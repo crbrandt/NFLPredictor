@@ -446,7 +446,7 @@ train_features_win, test_features_win, train_labels_win, test_labels_win = train
 
 
 # Instantiate model with 100 decision trees
-rf = RandomForestRegressor(n_estimators = 1000, random_state = 15)
+rf = RandomForestRegressor(n_estimators = 115, random_state = 15)
 #rf2 = RandomForestRegressor(n_estimators = 100, random_state = 15)
 # Train the model on training data
 
@@ -497,7 +497,7 @@ print('Mean Absolute Error:', round(np.mean(errors), 2), 'degrees.')
 mape = 100 * (errors / test_labels)
 # Calculate and display accuracy
 accuracy = 100 - np.mean(mape)
-print('Accuracy:', round(accuracy, 2), '%.')
+#print('Accuracy:', round(accuracy, 2), '%.')
 
 
 # test_features['preds'] = np.array(predictions)
@@ -508,7 +508,7 @@ print('Accuracy:', round(accuracy, 2), '%.')
 # In[329]:
 
 
-predictions
+#predictions
 
 
 # In[325]:
@@ -905,7 +905,7 @@ if (len(favorite) > 2):
                    ]
     
     result_score = rf.predict(pd.DataFrame(model_inputs).T)
-    #result_beat_spread = rf2.predict(pd.DataFrame(model_inputs).T)
+    result_beat_spread = rf2.predict(pd.DataFrame(model_inputs).T)
     #pred_df
     #df_fav
     #model_inputs
