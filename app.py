@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[70]:
+# In[195]:
 
 
 import pandas as pd
@@ -85,11 +85,17 @@ merged_df2 = merged_df2.rename(columns={"team_id_x": "home_id", "team_id_y": "aw
 merged_df2 = merged_df2.dropna(subset=['spread_favorite'])
 
 
-# In[6]:
+# In[223]:
 
 
-merged_df2['score_fav'] = np.where(merged_df2['team_favorite_id']== merged_df2['home_id'], merged_df2['score_home'] , np.where(merged_df2['spread_favorite'] != 0, merged_df2['score_away'], np.nan))
-merged_df2['score_underdog'] = np.where(merged_df2['team_favorite_id']== merged_df2['home_id'], np.where(merged_df2['spread_favorite'] != 0, merged_df2['score_away'], np.nan), merged_df2['score_home'])
+merged_df2['team_favorite_id'] = np.where(merged_df2['team_favorite_id']== 'PICK', merged_df2['home_id'] , merged_df2['team_favorite_id'])
+
+
+# In[224]:
+
+
+merged_df2['score_fav'] = np.where(merged_df2['team_favorite_id']== merged_df2['home_id'], merged_df2['score_home'] , merged_df2['score_away'])
+merged_df2['score_underdog'] = np.where(merged_df2['team_favorite_id'] != merged_df2['home_id'], merged_df2['score_home'] , merged_df2['score_away'])
 merged_df2['winner'] = np.where(merged_df2['score_fav'] > merged_df2['score_underdog'], 'Favorite', np.where(merged_df2['score_fav'] == merged_df2['score_underdog'], 'Tie', 'Underdog'))
 
 merged_df2['indoor_outdoor'] = np.where(merged_df2['weather_detail'].isna(), 'Outdoors',
@@ -102,7 +108,13 @@ merged_df2['schedule_week_numeric'] = np.where(merged_df2['schedule_week'] == 'W
 #merged_df2               
 
 
-# In[18]:
+# In[226]:
+
+
+#merged_df2.isna().any()
+
+
+# In[227]:
 
 
 threshold_year = 2002
@@ -127,7 +139,7 @@ elo_df4 = pd.merge(df3, elo_df3,  how='inner', left_on=['schedule_date','home_id
 #elo_df4
 
 
-# In[19]:
+# In[228]:
 
 
 elo_df4['elo_difference_homeaway'] = elo_df4['qbelo1_pre'] - elo_df4['qbelo2_pre']
@@ -135,11 +147,11 @@ elo_df4['elo_difference_fav_underdog']  = np.where(elo_df4['team_favorite_id'] =
                                                    elo_df4['qbelo1_pre'], elo_df4['qbelo2_pre']) - np.where(elo_df4['team_favorite_id'] == elo_df4['home_id'],
                                                    elo_df4['qbelo2_pre'], elo_df4['qbelo1_pre'])
 
-#elo_df4
+#elo_df4.sort_values(by=['schedule_date'])
 
 
 
-# In[20]:
+# In[229]:
 
 
 #Was the spread beaten? 
@@ -152,7 +164,7 @@ elo_df5 = elo_df4.iloc[:, [0,1,2,3,4,5,6]]
 #elo_df4.shape
 
 
-# In[21]:
+# In[230]:
 
 
 home_stats = stats_df.iloc[:, [0,2,10,9,12,11,14,13,16,15,18,17,20,19,26,25,28,36,37,38, 37]]
@@ -175,7 +187,7 @@ team_df1 = team_df1.sort_values(["team", "date"], ascending = (True, True))
 
 
 
-# In[22]:
+# In[231]:
 
 
 seasons = elo_df4.iloc[:,[0,1]]
@@ -254,7 +266,7 @@ ts_df = ts_df.assign(games_played =ts_df.groupby(['team','schedule_season']).dat
 #ts_df
 
 
-# In[23]:
+# In[235]:
 
 
 elo_data = elo_df4.iloc[:,[0,1,2,3,4,5,6,7,8,9,12,13,14,15,16,18,19,21,22,23,24,25,26,40,41,56,57,58,59,60,61,62]]
@@ -326,7 +338,11 @@ df_agg = df_agg.drop(columns=['sacks_team_x', 'sacks_team_y', 'sacks_opp_x', 'sa
 
 df_agg = df_agg.drop(columns=['rushing_attempts_team_x', 'rushing_attempts_opp_x','rushing_attempts_team_y','rushing_attempts_opp_y'])
 
-
+#Divide By Zero Handling
+df_agg['turnovers_team_x'] = np.where(df_agg['turnovers_team_x'] == 0, 1, df_agg['turnovers_team_x'])
+df_agg['turnovers_team_y'] = np.where(df_agg['turnovers_team_y'] == 0, 1, df_agg['turnovers_team_y'])
+                                        
+                                        
 df_agg['turnover_ratio_diff'] = np.where(df_agg['team_favorite_id']==df_agg['home_id'], 
                                         (df_agg['turnovers_opp_x']/df_agg['turnovers_team_x'])-(df_agg['turnovers_opp_y']/df_agg['turnovers_team_y']),
                                         (df_agg['turnovers_opp_y']/df_agg['turnovers_team_y'])-(df_agg['turnovers_opp_x']/df_agg['turnovers_team_x']))
@@ -353,17 +369,28 @@ df_agg.loc[df_agg['schedule_week'].str.upper() == 'DIVISION', 'schedule_week'] =
 df_agg.loc[df_agg['schedule_week'].str.upper() == 'CONFERENCE', 'schedule_week'] = 21
 df_agg.loc[df_agg['schedule_week'].str.upper() == 'SUPERBOWL', 'schedule_week'] = 22
 
-#df_agg
+#df_agg.sort_values(by=['schedule_date_x'])
 
 
 #pd.DataFrame(list(elo_df4.columns))
 
 
-# In[33]:
+# In[236]:
 
 
 df_agg.replace([np.inf, -np.inf], np.nan, inplace=True)
-df_agg = df_agg.dropna()
+df_agg['weather_detail'] = df_agg.fillna('FAIR')
+df_agg['weather_temperature'] = df_agg.fillna(72)
+df_agg['weather_wind_mph'] = df_agg.fillna(0)
+#df_agg = df_agg.dropna()
+#df_agg
+#df_agg.isna().any()
+
+
+# In[237]:
+
+
+
 goal = np.array(df_agg['score_difference_fav_underdog'])
 goal2 = np.array(np.where(df_agg['fav_beat_spread'] == True, 1, 0))
 
@@ -402,7 +429,8 @@ print('Testing Features Shape:', test_features.shape)
 print('Testing Labels Shape:', test_labels.shape)
 
 
-# In[36]:
+
+# In[239]:
 
 
 # Instantiate model with 1000 decision trees
@@ -436,7 +464,13 @@ y_pred=clf.predict(X_test)
 # print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
 
 
-# In[26]:
+# In[202]:
+
+
+
+
+
+# In[241]:
 
 
 # Use the forest's predict method on the test data
@@ -450,7 +484,7 @@ print('Mean Absolute Error:', round(np.mean(errors), 2), 'degrees.')
 mape = 100 * (errors / test_labels)
 # Calculate and display accuracy
 accuracy = 100 - np.mean(mape)
-#print('Accuracy:', round(accuracy, 2), '%.')
+print('Accuracy:', round(accuracy, 2), '%.')
 
 
 # test_features['preds'] = np.array(predictions)
@@ -458,7 +492,7 @@ accuracy = 100 - np.mean(mape)
 # test_features['errors'] = np.array(errors)
 
 
-# In[40]:
+# In[243]:
 
 
 # Use the forest's predict method on the test data
@@ -469,13 +503,13 @@ predictions2 = rf2.predict(test_features_win)
 #accuracy_score(test_labels_win, predictions2)
 
 
-# In[29]:
+# In[257]:
 
 
+#predictions2
 
 
-
-# In[144]:
+# In[258]:
 
 
 df_full_url = 'https://raw.githubusercontent.com/crbrandt/NFLPredictor/main/Data/df_full.csv'
@@ -485,7 +519,7 @@ df_full =  pd.read_csv(df_full_url, index_col=0)
 df_weather =  pd.read_csv(weather_url, index_col=0)
 
 
-# In[145]:
+# In[259]:
 
 
 current_week_num =0
@@ -495,7 +529,13 @@ season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
 current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 
-# In[170]:
+# In[193]:
+
+
+
+
+
+# In[260]:
 
 
 
@@ -856,14 +896,14 @@ if (len(favorite) > 2):
     #df_fav
 
 
-# In[189]:
+# In[261]:
 
 
 #df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)]
 #df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)].iat[0,0]
 
 
-# In[190]:
+# In[262]:
 
 
 if len(favorite) > 2:
@@ -885,7 +925,7 @@ if len(favorite) > 2:
         highlight('The ' + str(favorite) + ' and the ' + str(underdog) + ' would push') 
 
 
-# In[ ]:
+# In[263]:
 
 
 
@@ -901,7 +941,7 @@ if (len(visitor) > 2) & (len(home) > 2):
         
 
 
-# In[112]:
+# In[264]:
 
 
 df_display = df_full[df_full['Team_x'].isin([visitor,home])]
@@ -914,7 +954,7 @@ if ((len(home)> 1) & (len(visitor)> 1)):
 
 
 
-# In[109]:
+# In[265]:
 
 
 # Bottom info bar ------------------------------------------------------------------------
