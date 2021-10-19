@@ -969,19 +969,19 @@ if (len(favorite) > 2):
 if len(favorite) > 2:
     underdog = df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)].iat[0,0]
     if round(result_score[0], 2) > 0.0:
-        highlight(favorite + ' are projected to win by ' + str(round(result_score[0], 2)) + ' points') 
+        highlight('The ' + teamcolor(favorite) + ' are projected to win by ' + str(round(result_score[0], 2)) + ' points') 
     elif round(result_score[0], 2) < 0.0:
-        highlight(underdog + ' are projected to win by ' + str(-1 * round(result_score[0],2)) + ' points') 
+        highlight('The ' + teamcolor(underdog) + ' are projected to win by ' + str(-1 * round(result_score[0],2)) + ' points') 
     else:
-        highlight('The ' + str(favorite) + ' and the ' + str(underdog) + ' are expected to tie') 
+        highlight('The ' + teamcolor(favorite) + ' and the ' + teamcolor(underdog) + ' are expected to tie') 
 
     beat_spread_amt = result_score[0] - abs(spread)
     if beat_spread_amt > 0 :
-        highlight('The ' + teamcolor(str(favorite)) + ' would beat the spread by ' + str(round(beat_spread_amt, 2)) + ' points') 
+        highlight('The ' + teamcolor(favorite) + ' would beat the spread by ' + str(round(beat_spread_amt, 2)) + ' points') 
     elif beat_spread_amt < 0.0:
-        highlight('The ' + teamcolor(str(underdog)) + ' would beat the spread by ' + str(abs(round(beat_spread_amt, 2))) + ' points')   
+        highlight('The ' + teamcolor(underdog) + ' would beat the spread by ' + str(abs(round(beat_spread_amt, 2))) + ' points')   
     else:
-        highlight('The ' + teamcolor(str(favorite)) + ' and the ' + teamcolor(str(underdog)) + ' would push') 
+        highlight('The ' + teamcolor(str(favorite)) + ' and the ' + teamcolor(underdog) + ' would push') 
 
 
 # In[318]:
