@@ -735,7 +735,7 @@ with st.form(key='fav_form'):
                 st.image(pic_home, width = 100)
 
         favorite = ''
-
+        st.header(' ')
         st.markdown('Which team is favored to win?')
         favorite = st.selectbox('Select the favorite', [' ','Visitor', 'Home'])
         st.markdown('')
