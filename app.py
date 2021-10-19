@@ -564,13 +564,6 @@ highlight('NFL Week ' + str(current_week_num))
 # home = 'Pittsburgh Steelers'
 # visitor = 'Seattle Seahawks'
 
-# if st.button('Process'):
-#         with st.spinner("Processing..."):
-#             #pass flags to processing function
-#             df2 = process_data(df, cols, add_some_stuff, flag_other_stuff)
-#         st.markdown("The first 50 rows:")
-#         st.write(df2.head(50))
-#         st.balloons()
 
 
 
@@ -735,63 +728,34 @@ with st.form(key='fav_form'):
                 st.image(pic_home, width = 100)
 
         favorite = ''
-
+        st.header(' ')
+        st.header(' ')
+        st.header(' ')
         st.markdown('Which team is favored to win?')
         favorite = st.selectbox('Select the favorite', [' ','Visitor', 'Home'])
         st.markdown('')
         st.markdown('What is the spread?')
         spread = abs(st.number_input('Insert a number', min_value = -30.0, max_value = 30.0, value = 0.0, step = 0.5))
-        submit_button = st.form_submit_button(label='Predict Result')    
+        st.header(' ')
+        st.header(' ')
+        bs1, button, bs2 = st.beta_columns([4,1,4])
+        with bs1:
+            st.text('')
+        with button:
+            submit_button = st.form_submit_button(label='Predict Result')
+        with bs2:
+            st.text('')
 
+        
 # favorite = 'Pittsburgh Steelers'
 # spread = 5.0
  
-if favorite == 'visitor':
+if favorite == 'Visitor':
     favorite = visitor
-elif favorite == 'home':
+elif favorite == 'Home':
     favorite = home
 else:
     favorite = ''
-    
-# ##Selectbox for Favorite
-# away = st.multiselect(
-#       'Select the Away Team',
-#       (
-#           list(df_full['Team_x'].sort())
-#       ), help = 'Please select the road team for the game.'
-#       )
-
-# if len(favorite) > 1:
-#   color('Please limit your selection to one team.')
-
-# ##Selectbox for underdog (note: if more than one mood is selected, users will not be able to continue)
-# underdog = st.multiselect(
-#     'Select the Underdog',
-#     list(df_full['Team_x'].sort()), help = 'Please select the team which is not favored in the game.'
-#     )
-
-# if len(underdog) > 1:
-#   color('Please limit your mood selections to one team.')
-
-
-# # ##Multiselect for celebrity types. When celebrities are selected, their specific count values will be editable using sliders.
-# # celebs = st.multiselect(
-# #     'Select Types of Celebrities',
-# #     [x for x in celeb_map.keys()], help = 'Please select the type(s) of celebrities which will be included in your advertisement.'
-# #     )
-
-# # celeb_sliders = []
-# # for celeb in celebs:
-# #     
-# spread_slider = st.slider('Spread' , min_value=-30.0, max_value=30.0, step = 0.5)
-
-# spread = spread_slider
-    
-
-# ##Predictions for score and cluster
-# if len(favorite) <= 1 and len(underdog) <= 1:
-#     button = st.button('Predict')
-  
 
 
 
@@ -925,9 +889,9 @@ if (len(favorite) > 2):
 
 #df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)]
 #df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)].iat[0,0]
-st.markdown('Favorite: ' + favorite)
-st.markdown('Home: ' + home)
-st.markdown('Visitor: ' + visitor)
+# st.markdown('Favorite: ' + favorite)
+# st.markdown('Home: ' + home)
+# st.markdown('Visitor: ' + visitor)
 
 
 # In[321]:
