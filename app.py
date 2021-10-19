@@ -495,7 +495,7 @@ season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
 current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 
-# In[146]:
+# In[170]:
 
 
 
@@ -522,6 +522,9 @@ pic_vis = 'https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootb
 df_full = df_full.sort_values(by=['Team_x'])
 df_full = df_full.reset_index(drop=True)
 
+
+# home = 'Pittsburgh Steelers'
+# visitor = 'Seattle Seahawks'
 
 with col1:
     st.markdown("<h1 style='text-align: center;'>Visiting Team</h1>", unsafe_allow_html=True)
@@ -668,6 +671,9 @@ with col3:
 
 favorite = ''
 
+# home = 'Pittsburgh Steelers'
+# visitor = 'Seattle Seahawks'
+
 # if st.button('Process'):
 #         with st.spinner("Processing..."):
 #             #pass flags to processing function
@@ -686,9 +692,9 @@ if (len(visitor) > 2) & (len(home) > 2):
         spread = abs(st.number_input('Insert a number', min_value = -30.0, max_value = 30.0, value = 0.0, step = 0.5))
         submit_button = st.form_submit_button(label='Predict Result')
 
-
+# favorite = 'Pittsburgh Steelers'
+# spread = 5.0
  
-
 
     
 # ##Selectbox for Favorite
@@ -733,7 +739,7 @@ if (len(visitor) > 2) & (len(home) > 2):
 
 
 
-# In[153]:
+# In[178]:
 
 
 df_fav = df_full[df_full['Team_x'] == favorite]
@@ -787,7 +793,9 @@ if (('FOG' in weather) and (('SNOW' in weather) or ('FLURRIES' in weather))):
     ioo = 1
 if ((('SNOW' in weather) or ('FLURRIES' in weather)) and (('HAIL' in weather) or ('FREEZING RAIN' in weather))):
     weather_detail_sfr = 1
-    ioo = 1  
+    ioo = 1 
+    
+    
 if (len(favorite) > 2):
     elo_diff = df_fav.iat[0,3] - df_und.iat[0,3]  
 
@@ -810,8 +818,6 @@ if (len(favorite) > 2):
     dsack_diff = df_fav.iat[0,14] - df_und.iat[0,14]
 
     pd.set_option('display.max_columns', 50)
-
-
 
     model_inputs = [current_week_num,
                    isplayoffs,
@@ -841,12 +847,18 @@ if (len(favorite) > 2):
                     ioi,
                     ioo
                    ]
-
-    result_score = rf.predict(model_inputs)
+    
+    result_score = rf.predict(pd.DataFrame(model_inputs).T)
     #pred_df
     #df_fav
     #model_inputs
     #df_fav
+
+
+# In[179]:
+
+
+#df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)]
 
 
 # In[156]:
