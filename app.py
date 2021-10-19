@@ -446,7 +446,7 @@ train_features_win, test_features_win, train_labels_win, test_labels_win = train
 
 
 # Instantiate model with 100 decision trees
-rf = RandomForestRegressor(n_estimators = 115, random_state = 15)
+rf = RandomForestRegressor(n_estimators = 1000, random_state = 15)
 #rf2 = RandomForestRegressor(n_estimators = 100, random_state = 15)
 # Train the model on training data
 
