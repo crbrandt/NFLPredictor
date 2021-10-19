@@ -653,6 +653,17 @@ with st.form(key='fav_form'):
             pic_vis = 'https://content.sportslogos.net/logos/7/6741/full/8837_washington_football_team-wordmark-20201.png'
         if len(visitor)> 1:
             st.image(pic_vis, width = 100)
+        favorite = ''
+        st.header(' ')
+        st.header(' ')
+        st.header(' ')
+        st.markdown('Which team is favored to win?')
+        favorite = st.selectbox('Select the favorite', [' ','Visitor', 'Home'])
+        st.markdown('')
+        st.markdown('What is the spread?')
+        spread = abs(st.number_input('Insert a number', min_value = -30.0, max_value = 30.0, value = 0.0, step = 0.5))
+        st.header(' ')
+        st.header(' ')
 
     with col2:
         st.markdown("<h1 style='text-align: center;'>vs.</h1>", unsafe_allow_html=True)
@@ -727,17 +738,7 @@ with st.form(key='fav_form'):
         if len(home)> 1:
             st.image(pic_home, width = 100)            
 
-    favorite = ''
-    st.header(' ')
-    st.header(' ')
-    st.header(' ')
-    st.markdown('Which team is favored to win?')
-    favorite = st.selectbox('Select the favorite', [' ','Visitor', 'Home'])
-    st.markdown('')
-    st.markdown('What is the spread?')
-    spread = abs(st.number_input('Insert a number', min_value = -30.0, max_value = 30.0, value = 0.0, step = 0.5))
-    st.header(' ')
-    st.header(' ')
+    
     c1, c2, c3 = st.beta_columns([3,1,3])
     with c1:
         st.text('')
