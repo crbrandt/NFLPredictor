@@ -852,12 +852,13 @@ if (len(favorite) > 2):
 # In[156]:
 
 
-if result_score > 0.0:
-    highlight(favorite + ' is projected to win by ' + str(result_score) + ' points') 
-if result_score < 0.0:
-    highlight(underdog + ' is projected to win by ' + str(-1 * result_score) + ' points') 
-else:
-    highlight('The ' + str(favorite) + ' and the ' + str(underdog) + ' are expected to tie') 
+if len(favorite) > 2:
+    if result_score > 0.0:
+        highlight(favorite + ' is projected to win by ' + str(result_score) + ' points') 
+    if result_score < 0.0:
+        highlight(underdog + ' is projected to win by ' + str(-1 * result_score) + ' points') 
+    else:
+        highlight('The ' + str(favorite) + ' and the ' + str(underdog) + ' are expected to tie') 
 
 
 # In[ ]:
