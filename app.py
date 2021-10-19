@@ -475,7 +475,7 @@ predictions2 = rf2.predict(test_features_win)
 
 
 
-# In[30]:
+# In[144]:
 
 
 df_full_url = 'https://raw.githubusercontent.com/crbrandt/NFLPredictor/main/Data/df_full.csv'
@@ -485,8 +485,7 @@ df_full =  pd.read_csv(df_full_url, index_col=0)
 df_weather =  pd.read_csv(weather_url, index_col=0)
 
 
-
-# In[74]:
+# In[145]:
 
 
 current_week_num =0
@@ -496,167 +495,7 @@ season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
 current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 
-# In[117]:
-
-
-model_inputs = {
-  'ppg_diff':0,
-  'opp_ppg_diff':0,
-  'turnover_ratio_diff':0,
-  'elo_difference_fav_underdog':0,
-  'passing_ypg_opp_diff':0,
-  'passing_comp_pct_diff_opp':0,
-  'rushing_ypg_opp_diff':0,
-  'sacks_per_game_diff':0,
-  'passing_ypg_diff':0,
-  'rushing_ypg_diff':0,
-  'passing_comp_pct_diff':0,
-  'weather_temperature':0,
-  'schedule_week':0,
-  'weather_wind_mph':0,
-  'fav_home':0,
-  'weather_detail_DOME':0,
-  'indoor_outdoor_Outdoors':0,
-  'indoor_outdoor_Indoors':0,
-  'weather_detail_Rain':0,
-  'weather_detail_DOME (Open Roof)':0,
-  'schedule_playoff':0,
-  'weather_detail_Fog':0,
-  'weather_detail_Rain | Fog':0,
-  'weather_detail_Snow':0,
-  'stadium_neutral':0,
-  'weather_detail_Snow | Fog':0,
-  'weather_detail_Snow | Freezing Rain':0
-}
-
-##Creating prediction functions
-def predict(industry,moods,celebs):
-    for industry_selection in industry:
-        if industry_map[industry_selection] in model_inputs:
-            model_inputs[industry_map[industry_selection]] = 1
-
-    for mood in moods:
-        if mood_map[mood] in model_inputs:
-          model_inputs[mood_map[mood]] = 1
-          
-    # Interaction Inputs
-    model_inputs['industry_mortgages * mood_funny'] = model_inputs['industry_mortgages'] * model_inputs['mood_funny']
-    model_inputs['industry_cars1 * mood_funny'] = model_inputs['industry_cars1'] * model_inputs['mood_funny']
-
-    prediction = round(model.predict(model_inputs)[0]*100,2)
-    if prediction < 0:
-      prediction = 0
-    if prediction > 100:
-      prediction = 100
-    
-    return prediction
-
-###Mapping industry values in the data to their display options on the application
-industry_map = {
-    'Auto Parts & Accessories':'industry_auto_parts_accessories',
-    'Airlines':'industry_airline_industry',
-    'Beauty':'industry_beauty',
-    'Beer':'industry_beer',
-    'Beverages':'industry_beverages',
-    'Candy':'industry_candy',
-    'Cars':'industry_cars1',
-    'Cellular, Internet, and TV Providers': 'industry_cellular',
-    'Cleaning Supplies':'industry_cleaning_supplies',
-    'Cola Drinks': 'industry_cola_drinks',
-    'Software and Technology':'industry_computer_software',
-    'Computer Hardware':'industry_computer_hardware',
-    'Credit Cards':'industry_credit_cards',
-    'Deodorant':'industry_deodorant',
-    'Dips':'industry_dips',
-    'Music, Movies, and Entertainment':'industry_entertainment',
-    'Energy Drinks':'industry_energy_drinks',
-    'Restaurants and Fast Food':'industry_fast_food',
-    'Financial Services_1':'industry_financial_services',
-    'Food Delivery':'industry_food_delivery',
-    'Freelancers':'industry_freelancers',
-    'Games':'industry_games',
-    'Home Security':'industry_home_security',
-    'Hotels':'industry_hotels',
-    'Hygiene':'industry_hygiene',
-    'Insurance':'industry_insurance',
-    'Investments':'industry_investments',
-    'Job Search':'industry_job_search',
-    'Lawn Care':'industry_lawn_care',
-    'Liquors':'industry_alcoholic_beverages',
-    'Financial Services':'industry_loans',
-    'Mobile Phones':'industry_mobile_phones',
-    'Mortgages':'industry_mortgages',
-    'Movies':'industry_movies',
-    'Nuts':'industry_nuts',
-    'Online Retailers':'industry_online_retailers',
-    'Online Streaming Services':'industry_online_streaming',
-    'Pizza':'industry_pizza',
-    'Potato Chips':'industry_potato_chips',
-    'Retail Stores':'industry_retail_stores',
-    'Search Engines':'industry_search_engines',
-    'Shoes':'industry_shoes',
-    'Snacks':'industry_snacks1',
-    'Soap':'industry_soap',
-    'Social Media':'industry_social_media',
-    'Soft Drinks':'industry_soft_drinks',
-    'Sports Leagues':'industry_sports_leagues',
-    'Taxes':'industry_taxes',
-    'Travel':'industry_travel_industry',
-    'Trucks':'industry_trucks',
-    'TV Providers':'industry_TV_providers',
-    'Virtual Assistants':'industry_virtual_assistants',
-    'Water':'industry_water',
-    'Yogurt':'industry_yogurt',
-    'Other':'other'
-    }
-
-mood_map = {
-    'Adventurous':'mood_adventurous',
-    'Alluring':'mood_alluring',
-    'Boring':'mood_boring',
-    'Controversial':'mood_controversial',
-    'Cute/Adorable':'mood_cute\adorable',
-    'Dramatic':'mood_dramatic',
-    'Emotional':'mood_emotional',
-    'Exciting':'mood_exciting',
-    'Flirty':'mood_flirty',
-    'Funny':'mood_funny',
-    'Goofy':'mood_goofy',
-    'Gross':'mood_gross',
-    'Heartwarming':'mood_heartwarming',
-    'Informative':'mood_informative',
-    'Inspirational':'mood_inspirational',
-    'Light-hearted':'mood_light hearted',
-    'Mysterious':'mood_mysterious',
-    'Party-themed':'mood_party themed',
-    'Patriotic':'mood_patriotic',
-    'Romantic':'mood_romantic',
-    'Scary':'mood_scary',
-    'Serious':'mood_serious',
-    'Sexy':'mood_sexy',
-    'Shocking':'mood_shocking',
-    'Somber':'mood_somber',
-    'Suspenseful':'mood_suspenseful',
-    'Unique':'mood_unique',
-    'Weird':'mood_weird'
-    }
-
-celeb_map = {
-    'Athletes':'n_athlete',
-    'Bands':'n_band',
-    'Business Leaders':'n_business_leader',
-    'Comedians':'n_comedian',
-    'Football Coaches':'n_football_coaches',
-    'Historical Figures':'n_historical_figures',
-    'Models':'n_models',
-    'Musicians':'n_musician',
-    'NFL Players':'n_nfl',
-    'Politicians':'n_politician',
-    'Reality TV Stars':'n_reality_tv_stars',
-    'Sports Commentators':'n_sports_commentators',
-    'Talk Show Hosts':'n_talk_show_hosts',
-    'Top Actors':'n_top_actors'
-    }
+# In[146]:
 
 
 
@@ -838,7 +677,6 @@ favorite = ''
 #         st.balloons()
 
 
-
 if (len(visitor) > 2) & (len(home) > 2):
     with st.form(key='fav_form'):
         st.markdown('Which team is favored to win?')
@@ -850,18 +688,6 @@ if (len(visitor) > 2) & (len(home) > 2):
 
 
  
-
-if (len(visitor) > 2) & (len(home) > 2):
-    if (home in list(df_weather['Home_Team'])):
-        df_weather = df_weather[df_weather['Home_Team'] == home]
-        st.header('Gametime Weather:')
-        st.text('Weather: '  + str(df_weather.iat[0,2]))
-        st.text('Temperature (degrees Fahrenheit): '  + str(df_weather.iat[0,3]))
-        st.text('Wind (mph): ' + str(df_weather.iat[0,4]))
-    else:
-        st.text('Weather data not available for this game in week ' + str(current_week_num))
-        
-        
 
 
     
@@ -905,21 +731,149 @@ if (len(visitor) > 2) & (len(home) > 2):
 #     button = st.button('Predict')
   
 
-# # Bottom info bar ------------------------------------------------------------------------
-# st.markdown('___')
-# about = st.beta_expander('About')
-# with about:
-#     '''
-#     Thank you for visiting the Super Bowl Advertisement Optimizer, powered by Caryt Marketing Co. For more information, please visit our team's [Github repository] (https://github.com/crbrandt/CarytMarketingCo).
+
+
+# In[153]:
+
+
+df_fav = df_full[df_full['Team_x'] == favorite]
+df_und = df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)]
+result_score = 0
+result_prob = 0
+
+if(current_week_num) > 18:
+    isplayoffs = True
+else:
+    isplayoffs = False
     
-#     Curated by the Caryt Marketing Co. Analytics team: \n
-#     Cole Brandt, Anton Averin, Ranaa Ansari, Young Jang, Tyrone Brown
     
-#     [Contact Our Team] (mailto:colebrandt2021@u.northwestern.edu)
-#     '''
-    
-# st.image("https://i.ibb.co/9qDzx87/Sunrise-Abstract-Shapes-Logo-Template-copy.png",
-#     width= 100, caption='2021 Caryt Marketing Co.')
+if (home in list(df_weather['Home_Team'])):
+        df_weather = df_weather[df_weather['Home_Team'] == home]
+        weather = df_weather.iat[0,2]
+        temp = df_weather.iat[0,3]
+        wind = df_weather.iat[0,4]
+else:
+        weather = 'FAIR'
+        temp = 72.0
+        wind = 0.0
+        
+weather_detail_dome = 0
+weather_detail_fog = 0
+weather_detail_rain = 0
+weather_detail_rf = 0
+weather_detail_snow = 0
+weather_detail_sf = 0
+weather_detail_sfr = 0
+ioi = 0
+ioo = 0
+
+if ('DOME' in weather):
+    weather_detail_dome = 1
+    ioi = 1
+if (('RAIN' in weather) or ('SHOWERS' in weather)):
+    weather_detail_rain = 1
+    ioo = 1
+if (('SNOW' in weather) or ('FLURRIES' in weather)):
+    weather_detail_snow = 1
+    ioo = 1
+if ('FOG' in weather):
+    weather_detail_fog = 1
+    ioo = 1
+if (('FOG' in weather) and (('RAIN' in weather) or ('SHOWERS' in weather))):
+    weather_detail_rf = 1
+    ioo = 1
+if (('FOG' in weather) and (('SNOW' in weather) or ('FLURRIES' in weather))):
+    weather_detail_sf = 1
+    ioo = 1
+if ((('SNOW' in weather) or ('FLURRIES' in weather)) and (('HAIL' in weather) or ('FREEZING RAIN' in weather))):
+    weather_detail_sfr = 1
+    ioo = 1  
+if (len(favorite) > 2):
+    elo_diff = df_fav.iat[0,3] - df_und.iat[0,3]  
+
+    if home == df_fav.iat[0,3]:
+        fh = True
+    else:
+        fh = False
+
+
+    pypg_diff = df_fav.iat[0,7] - df_und.iat[0,7]
+    rypg_diff = df_fav.iat[0,8] - df_und.iat[0,8]
+    PFpg_diff = df_fav.iat[0,4] - df_und.iat[0,4]
+    PApg_diff = df_fav.iat[0,5] - df_und.iat[0,5]
+    offsack_diff = df_fav.iat[0,9] - df_und.iat[0,9]
+    TOMgn_diff = df_fav.iat[0,10] - df_und.iat[0,10]
+    comppct_diff = df_fav.iat[0,6] - df_und.iat[0,6]
+    comppct_def_diff = df_fav.iat[0,11] - df_und.iat[0,11]
+    pypg_def_diff = df_fav.iat[0,12] - df_und.iat[0,12]
+    rypg_def_diff = df_fav.iat[0,13] - df_und.iat[0,13]
+    dsack_diff = df_fav.iat[0,14] - df_und.iat[0,14]
+
+    pd.set_option('display.max_columns', 50)
+
+
+
+    model_inputs = [current_week_num,
+                   isplayoffs,
+                    False,
+                    temp,
+                    wind,
+                    elo_diff,
+                    fh,
+                    pypg_diff,
+                    pypg_def_diff,
+                    rypg_diff,
+                    rypg_def_diff,
+                    comppct_diff,
+                    comppct_def_diff,
+                    offsack_diff,
+                    TOMgn_diff,
+                    PFpg_diff,
+                    PApg_diff,
+                    1,
+                    0,
+                    weather_detail_fog,
+                    weather_detail_rain,
+                    weather_detail_rf,
+                    weather_detail_snow,
+                    weather_detail_sf,
+                    weather_detail_sfr,
+                    ioi,
+                    ioo
+                   ]
+
+    result_score = rf.predict(model_inputs)
+    #pred_df
+    #df_fav
+    #model_inputs
+    #df_fav
+
+
+# In[156]:
+
+
+if result_score > 0.0:
+    highlight(favorite + ' is projected to win by ' + str(result_score) + ' points') 
+if result_score < 0.0:
+    highlight(underdog + ' is projected to win by ' + str(-1 * result_score) + ' points') 
+else:
+    highlight('The ' + str(favorite) + ' and the ' + str(underdog) + ' are expected to tie') 
+
+
+# In[ ]:
+
+
+
+if (len(visitor) > 2) & (len(home) > 2):
+    if (home in list(df_weather['Home_Team'])):
+        df_weather = df_weather[df_weather['Home_Team'] == home]
+        st.header('Gametime Weather:')
+        st.text('Weather: '  + str(df_weather.iat[0,2]))
+        st.text('Temperature (degrees Fahrenheit): '  + str(df_weather.iat[0,3]))
+        st.text('Wind (mph): ' + str(df_weather.iat[0,4]))
+    else:
+        st.text('Weather data not available for this game in week ' + str(current_week_num))
+        
 
 
 # In[112]:
@@ -938,7 +892,20 @@ if ((len(home)> 1) & (len(visitor)> 1)):
 # In[109]:
 
 
-
+# Bottom info bar ------------------------------------------------------------------------
+st.markdown('___')
+about = st.beta_expander('About')
+with about:
+    '''
+    Thank you for visiting the NFL Game Predictor, developed by Cole Brandt. For more information, please visit my [Github repository] (https://github.com/crbrandt/NFLPredictor).
+    
+    All images sourced from sportslogos.net
+    
+    [Contact Me] (mailto:cole.r.brandt@gmail.com)
+    '''
+    
+st.image("https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png",
+    width= 100, caption='2021 Cole Brandt')
 
 
 # In[ ]:
