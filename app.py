@@ -868,11 +868,19 @@ if (len(favorite) > 2):
 if len(favorite) > 2:
     if result_score > 0.0:
         highlight(favorite + ' are projected to win by ' + str(result_score[0]) + ' points') 
-        highlight(result_beat_spread)
     elif result_score < 0.0:
         highlight(underdog + ' are projected to win by ' + str(-1 * result_score[0]) + ' points') 
     else:
         highlight('The ' + str(favorite) + ' and the ' + str(underdog) + ' are expected to tie') 
+
+if len(favorite) > 2:
+    beat_spread_amt = result_score[0] - abs(spread)
+    if beat_spread_amt > 0 :
+        highlight('The ' + str(favorite) + ' would beat the spread by ' + str(beat_spread_amt) + ' points') 
+    elif beat_spread_amt < 0.0:
+        highlight('The ' + str(underdog) + ' would beat the spread by ' + str(abs(beat_spread_amt)) + ' points')   
+    else:
+        highlight('The ' + str(favorite) + ' and the ' + str(underdog) + ' would push') 
 
 
 # In[ ]:
