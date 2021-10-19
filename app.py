@@ -861,14 +861,14 @@ if (len(favorite) > 2):
 #df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)]
 
 
-# In[180]:
+# In[181]:
 
 
 if len(favorite) > 2:
     if result_score > 0.0:
-        highlight(favorite + ' are projected to win by ' + str(result_score) + ' points') 
+        highlight(favorite + ' are projected to win by ' + str(round(result_score[0])) + ' points') 
     elif result_score < 0.0:
-        highlight(underdog + ' are projected to win by ' + str(-1 * result_score) + ' points') 
+        highlight(underdog + ' are projected to win by ' + str(-1 * round(result_score[0],2)) + ' points') 
     else:
         highlight('The ' + str(favorite) + ' and the ' + str(underdog) + ' are expected to tie') 
 
