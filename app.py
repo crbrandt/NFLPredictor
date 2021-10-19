@@ -434,8 +434,8 @@ print('Testing Labels Shape:', test_labels.shape)
 
 
 # Instantiate model with 1000 decision trees
-rf = RandomForestRegressor(n_estimators = 1000, random_state = 15)
-rf2 = RandomForestClassifier(n_estimators = 1000, random_state = 15)
+rf = RandomForestRegressor(n_estimators = 115, random_state = 15)
+rf2 = RandomForestClassifier(n_estimators = 115, random_state = 15)
 # Train the model on training data
 
 rf.fit(train_features, train_labels)
