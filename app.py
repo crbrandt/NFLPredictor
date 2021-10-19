@@ -979,7 +979,7 @@ if len(favorite) > 2:
     if beat_spread_amt > 0 :
         teamcolor('The ' + favorite + ' would beat the spread by ' + str(round(beat_spread_amt, 2)) + ' points') 
     elif beat_spread_amt < 0.0:
-        teamclor('The ' + underdog + ' would beat the spread by ' + str(abs(round(beat_spread_amt, 2))) + ' points')   
+        teamcolor('The ' + underdog + ' would beat the spread by ' + str(abs(round(beat_spread_amt, 2))) + ' points')   
     else:
         highlight('The ' + favorite + ' and the ' + underdog + ' would push') 
 
