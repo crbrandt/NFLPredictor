@@ -913,7 +913,7 @@ if (len(favorite) > 2):
                    ]
     
     result_score = rf.predict(pd.DataFrame(model_inputs).T)
-    result_beat_spread = rf2.predict(pd.DataFrame(model_inputs).T)
+    #result_beat_spread = rf2.predict(pd.DataFrame(model_inputs).T)
     #pred_df
     #df_fav
     #model_inputs
@@ -925,6 +925,9 @@ if (len(favorite) > 2):
 
 #df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)]
 #df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)].iat[0,0]
+st.markdown('Favorite: ' + favorite)
+st.markdown('Home: ' + home)
+st.markdown('Visitor: ' + visitor)
 
 
 # In[321]:
