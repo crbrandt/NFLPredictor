@@ -16,3 +16,6 @@
 .red {
   background-color: lightblue;
 }
+.stform_submit_button>form_submit_button {
+    color: #013369;
+}
