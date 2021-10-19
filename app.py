@@ -739,7 +739,7 @@ if (len(visitor) > 2) & (len(home) > 2):
 
 
 
-# In[178]:
+# In[183]:
 
 
 df_fav = df_full[df_full['Team_x'] == favorite]
@@ -849,6 +849,7 @@ if (len(favorite) > 2):
                    ]
     
     result_score = rf.predict(pd.DataFrame(model_inputs).T)
+    result_beat_spread = rf2.predict(pd.DataFrame(model_inputs).T)
     #pred_df
     #df_fav
     #model_inputs
@@ -861,14 +862,15 @@ if (len(favorite) > 2):
 #df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)]
 
 
-# In[181]:
+# In[184]:
 
 
 if len(favorite) > 2:
     if result_score > 0.0:
-        highlight(favorite + ' are projected to win by ' + str(round(result_score[0])) + ' points') 
+        highlight(favorite + ' are projected to win by ' + str(result_score[0]) + ' points') 
+        highlight(result_beat_spread)
     elif result_score < 0.0:
-        highlight(underdog + ' are projected to win by ' + str(-1 * round(result_score[0],2)) + ' points') 
+        highlight(underdog + ' are projected to win by ' + str(-1 * result_score[0]) + ' points') 
     else:
         highlight('The ' + str(favorite) + ' and the ' + str(underdog) + ' are expected to tie') 
 
