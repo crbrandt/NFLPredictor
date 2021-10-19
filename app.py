@@ -720,7 +720,7 @@ with st.form(key='fav_form'):
         elif 'Washington Football Team' in visitor:
             pic_vis = 'https://content.sportslogos.net/logos/7/6741/full/8837_washington_football_team-wordmark-20201.png'
         if len(visitor)> 1:
-            st.image(pic_vis, width = 200)
+            st.image(pic_vis, height = 200)
         favorite = ''
         st.header(' ')
         if len(home) < 3:
@@ -805,7 +805,7 @@ with st.form(key='fav_form'):
         elif 'Washington Football Team' in home:
             pic_home = 'https://content.sportslogos.net/logos/7/6741/full/8837_washington_football_team-wordmark-20201.png'
         if len(home)> 1:
-            st.image(pic_home, width = 200)            
+            st.image(pic_home, height = 200)            
 
     
     c1, c2, c3 = st.beta_columns([3.3,1,3])
