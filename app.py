@@ -543,7 +543,7 @@ current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 
 
-# In[330]:
+# In[332]:
 
 
 
@@ -738,13 +738,7 @@ with st.form(key='fav_form'):
         spread = abs(st.number_input('Insert a number', min_value = -30.0, max_value = 30.0, value = 0.0, step = 0.5))
         st.header(' ')
         st.header(' ')
-        bs1, button, bs2 = st.beta_columns([4,1,4])
-        with bs1:
-            st.text('')
-        with button:
-            submit_button = st.form_submit_button(label='Predict Result')
-        with bs2:
-            st.text('')
+        submit_button = st.form_submit_button(label='Predict Result')
 
         
 # favorite = 'Pittsburgh Steelers'
