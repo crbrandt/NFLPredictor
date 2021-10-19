@@ -43,71 +43,71 @@ def highlight(text):
      st.markdown(f'<p style="text-align: center;color:#013369;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
 def teamcolor(text):
      if 'Arizona' in text:
-         st.markdown(f'<p style="color:#97233F;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#97233F;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Atlanta' in text:
-         st.markdown(f'<p style="color:#A71930;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#A71930;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Baltimore' in text:
-         st.markdown(f'<p style="color:#241773;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#241773;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Buffalo' in text:
-         st.markdown(f'<p style="color:#00338D;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#00338D;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Carolina' in text:
-         st.markdown(f'<p style="color:#0085CA;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#0085CA;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Chicago' in text:
-         st.markdown(f'<p style="color:#C83803;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#C83803;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Cincinnati' in text:
-         st.markdown(f'<p style="color:#FB4F14;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#FB4F14;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Cleveland' in text:
-         st.markdown(f'<p style="color:#FF3C00;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#FF3C00;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Dallas' in text:
-         st.markdown(f'<p style="color:#003594;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#003594;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Denver' in text:
-         st.markdown(f'<p style="color:#FB4F14;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#FB4F14;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Detroit' in text:
-         st.markdown(f'<p style="color:#0076B6;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#0076B6;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Green Bay' in text:
-         st.markdown(f'<p style="color:#203731;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#203731;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Houston' in text:
-         st.markdown(f'<p style="color:#A71930;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#A71930;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Indianapolis' in text:
-         st.markdown(f'<p style="color:#002C5F;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#002C5F;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Jacksonville' in text:
-         st.markdown(f'<p style="color:#006778;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#006778;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Kansas City' in text:
-         st.markdown(f'<p style="color:#E31837;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#E31837;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Las Vegas' in text:
-         st.markdown(f'<p style="color:#A5ACAF;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#A5ACAF;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Chargers' in text:
-         st.markdown(f'<p style="color:#0080C6;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#0080C6;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Rams' in text:
-         st.markdown(f'<p style="color:#003594;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#003594;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Miami' in text:
-         st.markdown(f'<p style="color:#008E97;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#008E97;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Minnesota' in text:
-         st.markdown(f'<p style="color:#4F2683;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#4F2683;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'New England' in text:
-         st.markdown(f'<p style="color:#002244;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#002244;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'New Orleans' in text:
-         st.markdown(f'<p style="color:#D3BC8D;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#D3BC8D;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Giants' in text:
-         st.markdown(f'<p style="color:#0B2265;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#0B2265;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Jets' in text:
-         st.markdown(f'<p style="color:#125740;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#125740;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Eagles' in text:
-         st.markdown(f'<p style="color:#004C54;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#004C54;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Steelers' in text:
-         st.markdown(f'<p style="color:#FFB612;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#FFB612;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'San Francisco' in text:
-         st.markdown(f'<p style="color:#AA0000;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#AA0000;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Seahawks' in text:
-         st.markdown(f'<p style="color:#69BE28;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#69BE28;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Buccaneers' in text:
-         st.markdown(f'<p style="color:#D50A0A;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#D50A0A;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Titans' in text:
-         st.markdown(f'<p style="color:#4B92DB;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#4B92DB;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      elif 'Washington' in text:
-         st.markdown(f'<p style="color:#773141;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#773141;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
      else:
-         st.markdown(f'<p style="color:#575757;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
+         st.markdown(f'<p style="text-align: center;color:#575757;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
 def color(text):
      st.markdown(f'<p style="color:#013369;font-size:20px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
 
@@ -969,19 +969,19 @@ if (len(favorite) > 2):
 if len(favorite) > 2:
     underdog = df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)].iat[0,0]
     if round(result_score[0], 2) > 0.0:
-        highlight('The ') + teamcolor(favorite) + highlight(' are projected to win by ') + highlight(str(round(result_score[0], 2))) + highlight(' points')) 
+        teamcolor('The ' + favorite + ' are projected to win by ' + str(round(result_score[0], 2)) + ' points') 
     elif round(result_score[0], 2) < 0.0:
-        highlight('The ' + teamcolor(underdog) + ' are projected to win by ' + str(-1 * round(result_score[0],2)) + ' points') 
+        teamcolor('The ' + underdog + ' are projected to win by ' + str(-1 * round(result_score[0],2)) + ' points') 
     else:
-        highlight('The ' + teamcolor(favorite) + ' and the ' + teamcolor(underdog) + ' are expected to tie') 
+        highlight('The ' + favorite + ' and the ' + underdog + ' are expected to tie') 
 
     beat_spread_amt = result_score[0] - abs(spread)
     if beat_spread_amt > 0 :
-        highlight('The ' + teamcolor(favorite) + ' would beat the spread by ' + str(round(beat_spread_amt, 2)) + ' points') 
+        teamcolor('The ' + favorite + ' would beat the spread by ' + str(round(beat_spread_amt, 2)) + ' points') 
     elif beat_spread_amt < 0.0:
-        highlight('The ' + teamcolor(underdog) + ' would beat the spread by ' + str(abs(round(beat_spread_amt, 2))) + ' points')   
+        teamclor('The ' + underdog + ' would beat the spread by ' + str(abs(round(beat_spread_amt, 2))) + ' points')   
     else:
-        highlight('The ' + teamcolor(str(favorite)) + ' and the ' + teamcolor(underdog) + ' would push') 
+        highlight('The ' + favorite + ' and the ' + underdog + ' would push') 
 
 
 # In[318]:
