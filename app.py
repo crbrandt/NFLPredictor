@@ -429,36 +429,42 @@ train_features_win, test_features_win, train_labels_win, test_labels_win = train
 
 
 
-print('Training Features Shape:', train_features.shape)
-print('Training Labels Shape:', train_labels.shape)
-print('Testing Features Shape:', test_features.shape)
-print('Testing Labels Shape:', test_labels.shape)
+# print('Training Features Shape:', train_features.shape)
+# print('Training Labels Shape:', train_labels.shape)
+# print('Testing Features Shape:', test_features.shape)
+# print('Testing Labels Shape:', test_labels.shape)
 
 
 
-# In[314]:
+# In[ ]:
 
 
-# Instantiate model with 1000 decision trees
-rf = RandomForestRegressor(n_estimators = 115, random_state = 15)
-rf2 = RandomForestClassifier(n_estimators = 115, random_state = 15)
+
+
+
+# In[323]:
+
+
+# Instantiate model with 100 decision trees
+rf = RandomForestRegressor(n_estimators = 1000, random_state = 15)
+#rf2 = RandomForestRegressor(n_estimators = 100, random_state = 15)
 # Train the model on training data
 
 rf.fit(train_features, train_labels)
-rf2.fit(train_features_win, train_labels_win)
+#rf2.fit(train_features_win, train_labels_win)
 
 
 
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import make_classification
+# from sklearn.ensemble import RandomForestClassifier
+# from sklearn.datasets import make_classification
 
 
-X_train, X_test, y_train, y_test = train_test_split(pred_df, goal, test_size=0.3) # 70% training and 30% test
+# X_train, X_test, y_train, y_test = train_test_split(pred_df, goal, test_size=0.3) # 70% training and 30% test
 
-clf=RandomForestClassifier(n_estimators=100)
+# clf=RandomForestClassifier(n_estimators=100)
 
-#Train the model using the training sets y_pred=clf.predict(X_test)
-clf.fit(X_train,y_train)
+# #Train the model using the training sets y_pred=clf.predict(X_test)
+# clf.fit(X_train,y_train)
 
 y_pred=clf.predict(X_test)
 
@@ -470,10 +476,11 @@ y_pred=clf.predict(X_test)
 # print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
 
 
-# In[315]:
+# In[328]:
 
 
-#test_features
+#predictions2 = rf2.predict(test_features_win)
+#predictions2
 
 
 # In[267]:
@@ -498,21 +505,16 @@ print('Accuracy:', round(accuracy, 2), '%.')
 # test_features['errors'] = np.array(errors)
 
 
-# In[269]:
+# In[329]:
 
 
-# Use the forest's predict method on the test data
-predictions2 = rf2.predict(test_features_win)
-# Calculate the absolute errors
-#errors2 = abs(predictions2 - test_labels_win)
-
-accuracy_score(test_labels_win, predictions2)
+predictions
 
 
-# In[257]:
+# In[325]:
 
 
-#predictions2
+
 
 
 # In[270]:
@@ -903,7 +905,7 @@ if (len(favorite) > 2):
                    ]
     
     result_score = rf.predict(pd.DataFrame(model_inputs).T)
-    result_beat_spread = rf2.predict(pd.DataFrame(model_inputs).T)
+    #result_beat_spread = rf2.predict(pd.DataFrame(model_inputs).T)
     #pred_df
     #df_fav
     #model_inputs
