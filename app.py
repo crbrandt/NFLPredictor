@@ -85,13 +85,13 @@ merged_df2 = merged_df2.rename(columns={"team_id_x": "home_id", "team_id_y": "aw
 merged_df2 = merged_df2.dropna(subset=['spread_favorite'])
 
 
-# In[223]:
+# In[284]:
 
 
 merged_df2['team_favorite_id'] = np.where(merged_df2['team_favorite_id']== 'PICK', merged_df2['home_id'] , merged_df2['team_favorite_id'])
 
 
-# In[224]:
+# In[285]:
 
 
 merged_df2['score_fav'] = np.where(merged_df2['team_favorite_id']== merged_df2['home_id'], merged_df2['score_home'] , merged_df2['score_away'])
@@ -114,7 +114,7 @@ merged_df2['schedule_week_numeric'] = np.where(merged_df2['schedule_week'] == 'W
 #merged_df2.isna().any()
 
 
-# In[227]:
+# In[286]:
 
 
 threshold_year = 2002
@@ -139,7 +139,7 @@ elo_df4 = pd.merge(df3, elo_df3,  how='inner', left_on=['schedule_date','home_id
 #elo_df4
 
 
-# In[228]:
+# In[287]:
 
 
 elo_df4['elo_difference_homeaway'] = elo_df4['qbelo1_pre'] - elo_df4['qbelo2_pre']
@@ -151,7 +151,7 @@ elo_df4['elo_difference_fav_underdog']  = np.where(elo_df4['team_favorite_id'] =
 
 
 
-# In[229]:
+# In[288]:
 
 
 #Was the spread beaten? 
@@ -164,7 +164,7 @@ elo_df5 = elo_df4.iloc[:, [0,1,2,3,4,5,6]]
 #elo_df4.shape
 
 
-# In[230]:
+# In[289]:
 
 
 home_stats = stats_df.iloc[:, [0,2,10,9,12,11,14,13,16,15,18,17,20,19,26,25,28,36,37,38, 37]]
@@ -187,7 +187,7 @@ team_df1 = team_df1.sort_values(["team", "date"], ascending = (True, True))
 
 
 
-# In[231]:
+# In[290]:
 
 
 seasons = elo_df4.iloc[:,[0,1]]
@@ -266,7 +266,7 @@ ts_df = ts_df.assign(games_played =ts_df.groupby(['team','schedule_season']).dat
 #ts_df
 
 
-# In[235]:
+# In[305]:
 
 
 elo_data = elo_df4.iloc[:,[0,1,2,3,4,5,6,7,8,9,12,13,14,15,16,18,19,21,22,23,24,25,26,40,41,56,57,58,59,60,61,62]]
@@ -375,19 +375,25 @@ df_agg.loc[df_agg['schedule_week'].str.upper() == 'SUPERBOWL', 'schedule_week'] 
 #pd.DataFrame(list(elo_df4.columns))
 
 
-# In[236]:
+# In[312]:
 
 
 df_agg.replace([np.inf, -np.inf], np.nan, inplace=True)
-df_agg['weather_detail'] = df_agg.fillna('FAIR')
-df_agg['weather_temperature'] = df_agg.fillna(72)
-df_agg['weather_wind_mph'] = df_agg.fillna(0)
+df_agg['weather_detail'] = np.where(df_agg['weather_detail'].isnull(), 'FAIR', df_agg['weather_detail'])
+df_agg['weather_temperature'] = np.where(df_agg['weather_temperature'].isnull(), 72.0, df_agg['weather_temperature'])
+df_agg['weather_wind_mph'] = np.where(df_agg['weather_wind_mph'].isnull(), 0.0, df_agg['weather_wind_mph'])
 #df_agg = df_agg.dropna()
 #df_agg
 #df_agg.isna().any()
 
 
-# In[237]:
+# In[311]:
+
+
+
+
+
+# In[313]:
 
 
 
@@ -430,12 +436,12 @@ print('Testing Labels Shape:', test_labels.shape)
 
 
 
-# In[239]:
+# In[314]:
 
 
 # Instantiate model with 1000 decision trees
-rf = RandomForestRegressor(n_estimators = 115, random_state = 15)
-rf2 = RandomForestClassifier(n_estimators = 115, random_state = 15)
+rf = RandomForestRegressor(n_estimators = 100, random_state = 15)
+rf2 = RandomForestClassifier(n_estimators = 100, random_state = 15)
 # Train the model on training data
 
 rf.fit(train_features, train_labels)
@@ -464,13 +470,13 @@ y_pred=clf.predict(X_test)
 # print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
 
 
-# In[202]:
+# In[315]:
 
 
+test_features
 
 
-
-# In[241]:
+# In[267]:
 
 
 # Use the forest's predict method on the test data
@@ -492,7 +498,7 @@ print('Accuracy:', round(accuracy, 2), '%.')
 # test_features['errors'] = np.array(errors)
 
 
-# In[243]:
+# In[269]:
 
 
 # Use the forest's predict method on the test data
@@ -500,7 +506,7 @@ predictions2 = rf2.predict(test_features_win)
 # Calculate the absolute errors
 #errors2 = abs(predictions2 - test_labels_win)
 
-#accuracy_score(test_labels_win, predictions2)
+accuracy_score(test_labels_win, predictions2)
 
 
 # In[257]:
@@ -509,7 +515,7 @@ predictions2 = rf2.predict(test_features_win)
 #predictions2
 
 
-# In[258]:
+# In[270]:
 
 
 df_full_url = 'https://raw.githubusercontent.com/crbrandt/NFLPredictor/main/Data/df_full.csv'
@@ -519,7 +525,7 @@ df_full =  pd.read_csv(df_full_url, index_col=0)
 df_weather =  pd.read_csv(weather_url, index_col=0)
 
 
-# In[259]:
+# In[271]:
 
 
 current_week_num =0
@@ -529,13 +535,13 @@ season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
 current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 
-# In[193]:
+# In[ ]:
 
 
 
 
 
-# In[260]:
+# In[272]:
 
 
 
@@ -779,7 +785,7 @@ if (len(visitor) > 2) & (len(home) > 2):
 
 
 
-# In[183]:
+# In[316]:
 
 
 df_fav = df_full[df_full['Team_x'] == favorite]
@@ -805,6 +811,7 @@ else:
         
 weather_detail_dome = 0
 weather_detail_fog = 0
+weather_detail_fair = 1
 weather_detail_rain = 0
 weather_detail_rf = 0
 weather_detail_snow = 0
@@ -819,21 +826,27 @@ if ('DOME' in weather):
 if (('RAIN' in weather) or ('SHOWERS' in weather)):
     weather_detail_rain = 1
     ioo = 1
+    weather_detail_fair = 0
 if (('SNOW' in weather) or ('FLURRIES' in weather)):
     weather_detail_snow = 1
     ioo = 1
+    weather_detail_fair = 0
 if ('FOG' in weather):
     weather_detail_fog = 1
     ioo = 1
+    weather_detail_fair = 0
 if (('FOG' in weather) and (('RAIN' in weather) or ('SHOWERS' in weather))):
     weather_detail_rf = 1
     ioo = 1
+    weather_detail_fair = 0
 if (('FOG' in weather) and (('SNOW' in weather) or ('FLURRIES' in weather))):
     weather_detail_sf = 1
     ioo = 1
+    weather_detail_fair = 0
 if ((('SNOW' in weather) or ('FLURRIES' in weather)) and (('HAIL' in weather) or ('FREEZING RAIN' in weather))):
     weather_detail_sfr = 1
     ioo = 1 
+    weather_detail_fair = 0
     
     
 if (len(favorite) > 2):
@@ -876,8 +889,9 @@ if (len(favorite) > 2):
                     TOMgn_diff,
                     PFpg_diff,
                     PApg_diff,
-                    1,
+                    weather_detail_dome,
                     0,
+                    weather_detail_fair,
                     weather_detail_fog,
                     weather_detail_rain,
                     weather_detail_rf,
@@ -896,14 +910,14 @@ if (len(favorite) > 2):
     #df_fav
 
 
-# In[261]:
+# In[274]:
 
 
 #df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)]
 #df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)].iat[0,0]
 
 
-# In[262]:
+# In[317]:
 
 
 if len(favorite) > 2:
@@ -925,7 +939,7 @@ if len(favorite) > 2:
         highlight('The ' + str(favorite) + ' and the ' + str(underdog) + ' would push') 
 
 
-# In[263]:
+# In[318]:
 
 
 
@@ -941,7 +955,7 @@ if (len(visitor) > 2) & (len(home) > 2):
         
 
 
-# In[264]:
+# In[319]:
 
 
 df_display = df_full[df_full['Team_x'].isin([visitor,home])]
@@ -954,7 +968,7 @@ if ((len(home)> 1) & (len(visitor)> 1)):
 
 
 
-# In[265]:
+# In[320]:
 
 
 # Bottom info bar ------------------------------------------------------------------------
@@ -971,6 +985,12 @@ with about:
     
 st.image("https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png",
     width= 100, caption='2021 Cole Brandt')
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
