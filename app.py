@@ -859,7 +859,7 @@ if (len(favorite) > 2):
 # In[179]:
 
 
-#df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)]
+underdog = df_full[(df_full['Team_x'].isin([visitor,home])) & (df_full['Team_x'] != favorite)].iat[0,0]
 
 
 # In[184]:
