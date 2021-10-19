@@ -466,7 +466,7 @@ rf.fit(train_features, train_labels)
 # #Train the model using the training sets y_pred=clf.predict(X_test)
 # clf.fit(X_train,y_train)
 
-y_pred=clf.predict(X_test)
+#y_pred=clf.predict(X_test)
 
 
 #y_pred
