@@ -7,8 +7,7 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-#conda install statsmodels
-#pip install statsmodels
+
 
 from scipy import stats
 import requests
@@ -32,9 +31,7 @@ st.set_page_config(page_title='NFL Game Predictor',
                    page_icon='https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png',
                    layout="wide")
 
-# div[data-baseweb="select"] > div {
-#     background-color: '#575757';
-# }
+
 
 ##Creating Text format options with base and team colors
 def highlight(text):
@@ -113,6 +110,8 @@ def color(text):
 # In[28]:
 
 
+#Getting current week number
+
 current_week_num =0
 
 season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
@@ -126,6 +125,7 @@ current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 ##--------------------------------------------------------Application Displayed Portion-----------------------------------------
 
+#Reading modeldata from Github
 preds_url = 'https://raw.githubusercontent.com/crbrandt/NFLPredictor/main/Data/preds.csv'
 preds = pd.read_csv(preds_url, error_bad_lines=False)
 
@@ -134,6 +134,7 @@ pic_home = 'https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFoot
 pic_vis = 'https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png'
 
 df_weather =  pd.read_csv(weather_url, index_col=0)
+
 
 ##Header and Logo
 col_title, col_logo = st.beta_columns([4,1])
@@ -332,15 +333,12 @@ home = ['']
 # In[62]:
 
 
+#Predicted result:
 preds['Model Prediction'] = ''
 
 for p in range(0,len(preds['Predicted_Difference'])):
     preds['Model Prediction'][p] = np.where(preds['Predicted_Difference'][p] < 0, preds['Underdog'][p] + ' by ' + str(abs(round(preds['Predicted_Difference'][p], 1))),
                                     np.where(preds['Predicted_Difference'][p] > 0, preds['Favorite'][p] + ' by ' + str(abs(round(preds['Predicted_Difference'][p], 1))), 'PUSH' ))
-
-
-#df_weather
-#df_weather.iat[0,3]
 
 
 # In[74]:
@@ -362,20 +360,25 @@ for p in range(0,len(preds['Predicted_Difference'])-1):
     if (len(preds['Weather'][p]) < 2):
         preds['Weather'][p] = 'Weather Not Available'
     
-#preds
+preds
 
 
-# In[82]:
+# In[84]:
 
+
+#Final displayed table
 
 final = preds[['Visitor', 'Home', 'Weather', 'Team_Spread', 'Model Prediction', 'Spread_Beater' ]]
 final = final.rename(columns = {'Team_Spread': 'Spread', 'Spread_Beater': 'Winner Against Spread'})
+
+#Listing games by game index beginning at 1
 final.index = final.index+1
 
+#Final table display
 st.table(final)
 
 
-# In[83]:
+# In[85]:
 
 
 
@@ -390,15 +393,8 @@ st.table(final)
 # In[ ]:
 
 
-# df_display = df_full[df_full['Team_x'].isin([visitor,home])]
-# df_display = df_display.rename(columns={"Team_x": "Team Full Name", "G": "Games Played", 'Team_y': 'Nickname', 'adj_elo': 'QB-Adjusted ELO Rating'})
 
-# if ((len(home)> 1) & (len(visitor)> 1)):
-#     st.header('')
-#     st.header('Season Stats:')
-#     st.table(df_display)
 
-#st.table(df_full)
 
 # In[6]:
 
@@ -412,7 +408,7 @@ with about:
     
     Feel free to support via Venmo, @ColeBrandt
     
-    All images sourced from sportslogos.net
+    Spreads from MGM Sportsbook, scraped from VegasInsider.com. All images sourced from sportslogos.net. 
     
     [Contact Me] (mailto:cole.r.brandt@gmail.com)
     '''
