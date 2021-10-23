@@ -154,6 +154,23 @@ home = ['']
 pic_home = 'https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png'
 pic_vis = 'https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png'
 
+c_visitor1, vp1, c_home1, cp1, c_weather1, c_spread1, c_prediction1, c_spread_beater1 = st.beta_columns([1,1,1,1,1,1,1,1])
+with c_visitor1:
+    st.markdown('Visitor')
+with vp1:
+    st.markdown('')
+with c_home1:
+    st.markdown('Home')
+with cp1:
+    st.markdown('')
+with c_weather1:
+    st.markdown('Weather')
+with c_spread1:
+    st.markdown('Spread')
+with c_prediction1:
+    st.markdown('Predicted Score Difference')
+c_spread_beater1:
+    st.markdown('Winner Against the Spread')
 
 for i in range(0,len(preds['Visitor'])):
     c_visitor, vp, c_home, cp, c_weather, c_spread, c_prediction, c_spread_beater = st.beta_columns([1,1,1,1,1,1,1,1])
