@@ -360,7 +360,6 @@ for p in range(0,len(preds['Predicted_Difference'])-1):
     if (len(preds['Weather'][p]) < 2):
         preds['Weather'][p] = 'Weather Not Available'
     
-preds
 
 
 # In[84]:
