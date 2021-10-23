@@ -140,7 +140,7 @@ col_title, col_logo = st.beta_columns([4,1])
 with col_title:
   st.title('NFL Game Predictor')
   st.markdown(' ## Created by Cole Brandt')
-  st.markdown('  Last updated: Friday, October 22nd, 2021')  
+  st.markdown('  Last updated: Tuesday, October 19th, 2021')  
 with col_logo:
   st.image("https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png")
 st.write("#")
@@ -329,7 +329,7 @@ home = ['']
     
 
 
-# In[31]:
+# In[62]:
 
 
 preds['Model Prediction'] = ''
@@ -339,25 +339,47 @@ for p in range(0,len(preds['Predicted_Difference'])):
                                     np.where(preds['Predicted_Difference'][p] > 0, preds['Favorite'][p] + ' by ' + str(abs(round(preds['Predicted_Difference'][p], 1))), 'PUSH' ))
 
 
+df_weather
+#df_weather.iat[0,3]
 
 
+# In[74]:
 
 
-# In[35]:
+df_weather[df_weather['Home_Team'] == 'Los Angeles Rams'].iat[0,2]
+len(preds['Predicted_Difference'])
 
 
-final = preds[['Visitor', 'Home', 'Team_Spread', 'Model Prediction', 'Spread_Beater' ]]
+# In[81]:
+
+
+preds['Weather'] = ''
+
+for p in range(0,len(preds['Predicted_Difference'])-1):
+    preds['Weather'][p] = ('Weather: ' + df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,2] + """ 
+                            Temperature: """ + str(df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,3]) + """ 
+                            Wind: """ + str(df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,4]))
+    if (len(preds['Weather'][p]) < 2):
+        preds['Weather'][p] = 'Weather Not Available'
+    
+preds
+
+
+# In[82]:
+
+
+final = preds[['Visitor', 'Home', 'Weather', 'Team_Spread', 'Model Prediction', 'Spread_Beater' ]]
 final = final.rename(columns = {'Team_Spread': 'Spread', 'Spread_Beater': 'Winner Against Spread'})
-final.index = 1+final.index
 st.table(final)
 
-# In[36]:
+
+# In[83]:
 
 
-#final
 
 
-# In[ ]:
+
+# In[38]:
 
 
 
