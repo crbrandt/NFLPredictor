@@ -370,6 +370,8 @@ for p in range(0,len(preds['Predicted_Difference'])-1):
 
 final = preds[['Visitor', 'Home', 'Weather', 'Team_Spread', 'Model Prediction', 'Spread_Beater' ]]
 final = final.rename(columns = {'Team_Spread': 'Spread', 'Spread_Beater': 'Winner Against Spread'})
+final.index = final.index+1
+
 st.table(final)
 
 
