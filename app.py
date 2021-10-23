@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[22]:
+# In[86]:
 
 
 import pandas as pd
@@ -23,7 +23,7 @@ from datetime import datetime
 import math
 
 
-# In[27]:
+# In[101]:
 
 
 ##Updating Page Logo and Tab Title
@@ -107,7 +107,7 @@ def color(text):
      st.markdown(f'<p style="color:#013369;font-size:20px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
 
 
-# In[28]:
+# In[102]:
 
 
 #Getting current week number
@@ -119,7 +119,7 @@ season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
 current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 
-# In[29]:
+# In[103]:
 
 
 
@@ -330,7 +330,13 @@ home = ['']
     
 
 
-# In[62]:
+# In[98]:
+
+
+
+
+
+# In[104]:
 
 
 #Predicted result:
@@ -341,14 +347,14 @@ for p in range(0,len(preds['Predicted_Difference'])):
                                     np.where(preds['Predicted_Difference'][p] > 0, preds['Favorite'][p] + ' by ' + str(abs(round(preds['Predicted_Difference'][p], 1))), 'PUSH' ))
 
 
-# In[74]:
+# In[105]:
 
 
 #df_weather[df_weather['Home_Team'] == 'Los Angeles Rams'].iat[0,2]
 #len(preds['Predicted_Difference'])
 
 
-# In[81]:
+# In[106]:
 
 
 preds['Weather'] = ''
@@ -362,12 +368,12 @@ for p in range(0,len(preds['Predicted_Difference'])-1):
     
 
 
-# In[84]:
+# In[108]:
 
 
 #Final displayed table
 
-final = preds[['Visitor', 'Home', 'Weather', 'Team_Spread', 'Model Prediction', 'Spread_Beater' ]]
+final = preds[['Visitor', 'Home', 'Game Time', 'Weather', 'Team_Spread', 'Model Prediction', 'Spread_Beater' ]]
 final = final.rename(columns = {'Team_Spread': 'Spread', 'Spread_Beater': 'Winner Against Spread'})
 
 #Listing games by game index beginning at 1
@@ -377,13 +383,7 @@ final.index = final.index+1
 st.table(final)
 
 
-# In[85]:
-
-
-
-
-
-# In[38]:
+# In[ ]:
 
 
 
@@ -395,7 +395,13 @@ st.table(final)
 
 
 
-# In[6]:
+# In[ ]:
+
+
+
+
+
+# In[94]:
 
 
 # Bottom info bar ------------------------------------------------------------------------
