@@ -169,7 +169,7 @@ with c_spread1:
     st.markdown('Spread')
 with c_prediction1:
     st.markdown('Predicted Score Difference')
-c_spread_beater1:
+with c_spread_beater1:
     st.markdown('Winner Against the Spread')
 
 for i in range(0,len(preds['Visitor'])):
