@@ -398,7 +398,7 @@ st.table(final)
 #     st.header('Season Stats:')
 #     st.table(df_display)
 
-
+st.table(df_full)
 
 # In[6]:
 
