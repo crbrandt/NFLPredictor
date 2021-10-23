@@ -339,15 +339,15 @@ for p in range(0,len(preds['Predicted_Difference'])):
                                     np.where(preds['Predicted_Difference'][p] > 0, preds['Favorite'][p] + ' by ' + str(abs(round(preds['Predicted_Difference'][p], 1))), 'PUSH' ))
 
 
-df_weather
+#df_weather
 #df_weather.iat[0,3]
 
 
 # In[74]:
 
 
-df_weather[df_weather['Home_Team'] == 'Los Angeles Rams'].iat[0,2]
-len(preds['Predicted_Difference'])
+#df_weather[df_weather['Home_Team'] == 'Los Angeles Rams'].iat[0,2]
+#len(preds['Predicted_Difference'])
 
 
 # In[81]:
@@ -362,7 +362,7 @@ for p in range(0,len(preds['Predicted_Difference'])-1):
     if (len(preds['Weather'][p]) < 2):
         preds['Weather'][p] = 'Weather Not Available'
     
-preds
+#preds
 
 
 # In[82]:
