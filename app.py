@@ -339,7 +339,7 @@ for i in range(0,len(preds['Visitor'])):
 
 
 # In[ ]:
-
+st.table(preds)
 
 
 
