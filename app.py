@@ -357,6 +357,9 @@ for p in range(0,len(preds['Predicted_Difference'])):
 #df_weather
 
 
+# In[12]:
+
+
 preds['Weather'] = ''
 
 
@@ -376,11 +379,10 @@ for p in range(0,len(preds['Predicted_Difference'])-1):
 
 
 
+# In[15]:
 
-# In[13]:
 
-
-#preds
+preds['Weather']
 
 
 # In[14]:
@@ -404,16 +406,28 @@ st.table(final)
 
 
 
-# In[ ]:
+# In[25]:
 
 
+df_full_url = 'https://raw.githubusercontent.com/crbrandt/NFLPredictor/main/Data/df_full.csv'
 
 
+df_full =  pd.read_csv(df_full_url, index_col=0)
+df_full = df_full.sort_values(by=['adj_elo'], ascending = False)
+df_full = df_full.reset_index(drop=True)
+df_full.index = df_full.index+1
 
-# In[ ]:
+df_full
 
 
+# In[27]:
 
+
+st.markdown('___')
+Rankings = st.beta_expander('Statistics and Power Rankings')
+with Rankings:
+    st.markdown('Team Statistics Sorted by Power Ranking')
+    df_full
 
 
 # In[94]:
