@@ -141,7 +141,7 @@ col_title, col_logo = st.beta_columns([4,1])
 with col_title:
   st.title('NFL Game Predictor')
   st.markdown(' ## Created by Cole Brandt')
-  st.markdown('  Last updated: Monday, October 25th, 2021')  
+  st.markdown('  Last updated: Saturday, October 23rd, 2021')  
 with col_logo:
   st.image("https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png")
 st.write("#")
@@ -400,13 +400,13 @@ final.index = final.index+1
 st.table(final)
 
 
-# In[ ]:
+# In[45]:
 
 
+df_full.head()
 
 
-
-# In[29]:
+# In[48]:
 
 
 df_full_url = 'https://raw.githubusercontent.com/crbrandt/NFLPredictor/main/Data/df_full.csv'
@@ -417,31 +417,37 @@ df_full = df_full.sort_values(by=['adj_elo'], ascending = False)
 df_full = df_full.reset_index(drop=True)
 df_full.index = df_full.index+1
 
-df_full['PFpg'] = round(df_full['PFpg'],1)
-df_full['PApg'] = round(df_full['PApg'],1)
-df_full['CompPCT_Off'] = round(df_full['CompPCT_Off'],3)
-df_full['CompPCT_Def'] = round(df_full['CompPCT_Def'],3)
-df_full['PassYardspg'] = round(df_full['PassYardspg'],1)
-df_full['RushYardspg'] = round(df_full['RushYardspg'],1)
-df_full['PassYardspg_Def'] = round(df_full['PassYardspg_Def'],1)
-df_full['RushYardspg_Def'] = round(df_full['RushYardspg_Def'],1)
-df_full['OffSackspg'] = round(df_full['OffSackspg'],1)
-df_full['DefSackspg'] = round(df_full['DefSackspg'],1)
-df_full['TurnoverMargin'] = round(df_full['TurnoverMargin'],2)
+for i in range(0, len(df_full['Team_x'])):
+    df_full.iat[i,4] = str(round(df_full.iat[i,4],1))
+    df_full.iat[i,5] = str(round(df_full.iat[i,5],1))
+    #
+#     df_full.iat[i,6] = "{:.1%}".format(round(df_full.iat[i,6],3))
+#     df_full.iat[i,11] = "{:.1%}".format(round(df_full.iat[i,11],3))
+    df_full.iat[i,6] = str(round(df_full.iat[i,6],3))
+    df_full.iat[i,11] = str(round(df_full.iat[i,11],3))
+    df_full.iat[i,8] = str(round(df_full.iat[i,8],1))
+    df_full.iat[i,13] = str(round(df_full.iat[i,13],1))
+    df_full.iat[i,7] = str(round(df_full.iat[i,7],1))
+    df_full.iat[i,12] = str(round(df_full.iat[i,12],1))
+    df_full.iat[i,9] = str(round(df_full.iat[i,9],1))
+    df_full.iat[i,14] = str(round(df_full.iat[i,14],1))
+    df_full.iat[i,14] = str(round(df_full.iat[i,10],2))
+
+
 
 df_full = df_full.rename(columns = {'Team_x': 'Team Name', 'Team_y': 'Nickname', 'adj_elo': 'ELO Rating'})
 
 #df_full
 
 
-# In[30]:
+# In[50]:
 
 
 st.markdown('___')
 Rankings = st.beta_expander('Statistics and Power Rankings')
 with Rankings:
     st.markdown('Team Statistics Sorted by Power Ranking')
-    st.dataframe(df_full)
+    df_full
 
 
 # In[31]:
