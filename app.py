@@ -441,7 +441,7 @@ st.markdown('___')
 Rankings = st.beta_expander('Statistics and Power Rankings')
 with Rankings:
     st.markdown('Team Statistics Sorted by Power Ranking')
-    df_full
+    st.table(df_full)
 
 
 # In[31]:
