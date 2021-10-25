@@ -382,7 +382,7 @@ for p in range(0,len(preds['Predicted_Difference'])-1):
 # In[15]:
 
 
-preds['Weather']
+#preds['Weather']
 
 
 # In[14]:
@@ -417,7 +417,7 @@ df_full = df_full.sort_values(by=['adj_elo'], ascending = False)
 df_full = df_full.reset_index(drop=True)
 df_full.index = df_full.index+1
 
-df_full
+#df_full
 
 
 # In[27]:
