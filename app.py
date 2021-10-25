@@ -406,7 +406,7 @@ st.table(final)
 #df_full.head()
 
 
-# In[48]:
+# In[60]:
 
 
 df_full_url = 'https://raw.githubusercontent.com/crbrandt/NFLPredictor/main/Data/df_full.csv'
@@ -418,22 +418,30 @@ df_full = df_full.reset_index(drop=True)
 df_full.index = df_full.index+1
 
 for i in range(0, len(df_full['Team_x'])):
-    df_full.iat[i,4] = str(round(df_full.iat[i,4],1))
-    df_full.iat[i,5] = str(round(df_full.iat[i,5],1))
-    #
-#     df_full.iat[i,6] = "{:.1%}".format(round(df_full.iat[i,6],3))
-#     df_full.iat[i,11] = "{:.1%}".format(round(df_full.iat[i,11],3))
-    df_full.iat[i,6] = str(round(df_full.iat[i,6],3))
-    df_full.iat[i,11] = str(round(df_full.iat[i,11],3))
-    df_full.iat[i,8] = str(round(df_full.iat[i,8],1))
-    df_full.iat[i,13] = str(round(df_full.iat[i,13],1))
-    df_full.iat[i,7] = str(round(df_full.iat[i,7],1))
-    df_full.iat[i,12] = str(round(df_full.iat[i,12],1))
-    df_full.iat[i,9] = str(round(df_full.iat[i,9],1))
-    df_full.iat[i,14] = str(round(df_full.iat[i,14],1))
-    df_full.iat[i,14] = str(round(df_full.iat[i,10],2))
+    df_full.iat[i,4] = round(df_full.iat[i,4],1).astype(str)
+    df_full.iat[i,5] = round(df_full.iat[i,5],1).astype(str)
+    df_full.iat[i,6] = round(df_full.iat[i,6],3).astype(str)
+    df_full.iat[i,11] = round(df_full.iat[i,11],3).astype(str)
+    df_full.iat[i,8] = round(df_full.iat[i,8],1).astype(str)
+    df_full.iat[i,13] = round(df_full.iat[i,13],1).astype(str)
+    df_full.iat[i,7] = round(df_full.iat[i,7],1).astype(str)
+    df_full.iat[i,12] = round(df_full.iat[i,12],1).astype(str)
+    df_full.iat[i,9] = round(df_full.iat[i,9],1).astype(str)
+    df_full.iat[i,14] = round(df_full.iat[i,14],1).astype(str)
+    df_full.iat[i,10] = round(df_full.iat[i,10],2).astype(str)
+    
 
-
+df_full['PFpg'] = df_full['PFpg'].astype(str)
+df_full['PApg'] = df_full['PApg'].astype(str)
+df_full['CompPCT_Off'] = df_full['CompPCT_Off'].astype(str)
+df_full['PassYardspg'] = df_full['PassYardspg'].astype(str)
+df_full['RushYardspg'] = df_full['RushYardspg'].astype(str)
+df_full['OffSackspg'] = df_full['OffSackspg'].astype(str)
+df_full['TurnoverMargin'] = df_full['TurnoverMargin'].astype(str)
+df_full['CompPCT_Def'] = df_full['CompPCT_Def'].astype(str)
+df_full['PassYardspg_Def'] = df_full['PassYardspg_Def'].astype(str)
+df_full['RushYardspg_Def'] = df_full['RushYardspg_Def'].astype(str)
+df_full['DefSackspg'] = df_full['DefSackspg'].astype(str)
 
 df_full = df_full.rename(columns = {'Team_x': 'Team Name', 'Team_y': 'Nickname', 'adj_elo': 'ELO Rating'})
 
