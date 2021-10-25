@@ -417,6 +417,18 @@ df_full = df_full.sort_values(by=['adj_elo'], ascending = False)
 df_full = df_full.reset_index(drop=True)
 df_full.index = df_full.index+1
 
+df_full['PFpg'] = round(df_full['PFpg'],1)
+df_full['PApg'] = round(df_full['PApg'],1)
+df_full['CompPCT_Off'] = round(df_full['CompPCT_Off'],3)
+df_full['CompPCT_Def'] = round(df_full['CompPCT_Def'],3)
+df_full['PassYardspg'] = round(df_full['PassYardspg'],1)
+df_full['RushYardspg'] = round(df_full['RushYardspg'],1)
+df_full['PassYardspg_Def'] = round(df_full['PassYardspg_Def'],1)
+df_full['RushYardspg_Def'] = round(df_full['RushYardspg_Def'],1)
+df_full['OffSackspg'] = round(df_full['OffSackspg'],1)
+df_full['DefSackspg'] = round(df_full['DefSackspg'],1)
+df_full['TurnoverMargin'] = round(df_full['TurnoverMargin'],2)
+
 df_full = df_full.rename(columns = {'Team_x': 'Team Name', 'Team_y': 'Nickname', 'adj_elo': 'ELO Rating'})
 
 #df_full
