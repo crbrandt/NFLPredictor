@@ -406,7 +406,7 @@ st.table(final)
 
 
 
-# In[25]:
+# In[29]:
 
 
 df_full_url = 'https://raw.githubusercontent.com/crbrandt/NFLPredictor/main/Data/df_full.csv'
@@ -417,10 +417,12 @@ df_full = df_full.sort_values(by=['adj_elo'], ascending = False)
 df_full = df_full.reset_index(drop=True)
 df_full.index = df_full.index+1
 
+df_full = df_full.rename(columns = {'Team_x': 'Team Name', 'Team_y': 'Nickname', 'adj_elo': 'ELO Rating'})
+
 #df_full
 
 
-# In[27]:
+# In[30]:
 
 
 st.markdown('___')
@@ -430,7 +432,7 @@ with Rankings:
     df_full
 
 
-# In[94]:
+# In[31]:
 
 
 # Bottom info bar ------------------------------------------------------------------------
