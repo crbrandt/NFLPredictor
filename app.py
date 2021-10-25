@@ -403,7 +403,7 @@ st.table(final)
 # In[45]:
 
 
-df_full.head()
+#df_full.head()
 
 
 # In[48]:
