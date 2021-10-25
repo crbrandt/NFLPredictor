@@ -335,7 +335,7 @@ home = ['']
 
 # preds_url = 'https://raw.githubusercontent.com/crbrandt/NFLPredictor/main/Data/preds.csv'
 # preds = pd.read_csv(preds_url, error_bad_lines=False)
-preds
+#preds
 
 
 # In[10]:
@@ -354,7 +354,7 @@ for p in range(0,len(preds['Predicted_Difference'])):
 
 #df_weather[df_weather['Home_Team'] == 'Los Angeles Rams'].iat[0,2]
 #len(preds['Predicted_Difference'])
-df_weather
+#df_weather
 
 
 # In[12]:
@@ -372,7 +372,7 @@ for p in range(0,len(preds['Predicted_Difference'])-1):
             preds['Weather'][p] = 'Weather Not Available'
     except IndexError as err:
         preds['Weather'][p] = 'Weather Not Available'
-        print(err)
+        #print(err)
     
 #preds['Weather']
 
@@ -380,7 +380,7 @@ for p in range(0,len(preds['Predicted_Difference'])-1):
 # In[13]:
 
 
-preds
+#preds
 
 
 # In[14]:
