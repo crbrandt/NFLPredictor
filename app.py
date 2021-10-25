@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[86]:
+# In[1]:
 
 
 import pandas as pd
@@ -23,7 +23,7 @@ from datetime import datetime
 import math
 
 
-# In[101]: 
+# In[2]:
 
 
 ##Updating Page Logo and Tab Title
@@ -107,7 +107,7 @@ def color(text):
      st.markdown(f'<p style="color:#013369;font-size:20px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
 
 
-# In[102]:
+# In[3]:
 
 
 #Getting current week number
@@ -119,7 +119,7 @@ season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
 current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 
-# In[103]:
+# In[8]:
 
 
 
@@ -141,8 +141,7 @@ col_title, col_logo = st.beta_columns([4,1])
 with col_title:
   st.title('NFL Game Predictor')
   st.markdown(' ## Created by Cole Brandt')
-  st.markdown('  Last updated: Saturday, October 23rd, 2021')
-  #st.markdown('  All-time accuracy against the spread: 63.5%')
+  st.markdown('  Last updated: Saturday, October 23rd, 2021')  
 with col_logo:
   st.image("https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png")
 st.write("#")
@@ -331,13 +330,15 @@ home = ['']
     
 
 
-# In[98]:
+# In[9]:
 
 
+# preds_url = 'https://raw.githubusercontent.com/crbrandt/NFLPredictor/main/Data/preds.csv'
+# preds = pd.read_csv(preds_url, error_bad_lines=False)
+preds
 
 
-
-# In[104]:
+# In[10]:
 
 
 #Predicted result:
@@ -348,28 +349,41 @@ for p in range(0,len(preds['Predicted_Difference'])):
                                     np.where(preds['Predicted_Difference'][p] > 0, preds['Favorite'][p] + ' by ' + str(abs(round(preds['Predicted_Difference'][p], 1))), 'PUSH' ))
 
 
-# In[105]:
+# In[11]:
 
 
 #df_weather[df_weather['Home_Team'] == 'Los Angeles Rams'].iat[0,2]
 #len(preds['Predicted_Difference'])
+df_weather
 
 
-# In[106]:
+# In[12]:
 
 
 preds['Weather'] = ''
 
+
 for p in range(0,len(preds['Predicted_Difference'])-1):
-    preds['Weather'][p] = ('Weather: ' + df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,2] + """ 
-                            Temperature: """ + str(df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,3]) + """ 
-                            Wind: """ + str(df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,4]))
-    if (len(preds['Weather'][p]) < 2):
+    try:
+        preds['Weather'][p] = ('Weather: ' + df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,2] + """ 
+                                Temperature: """ + str(df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,3]) + """ 
+                                Wind: """ + str(df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,4]))
+        if (len(preds['Weather'][p]) < 2):
+            preds['Weather'][p] = 'Weather Not Available'
+    except IndexError as err:
         preds['Weather'][p] = 'Weather Not Available'
+        print(err)
     
+#preds['Weather']
 
 
-# In[108]:
+# In[13]:
+
+
+preds
+
+
+# In[14]:
 
 
 #Final displayed table
