@@ -359,14 +359,13 @@ for p in range(0,len(preds['Predicted_Difference'])):
 
 # In[12]:
 
-
 preds['Weather'] = ''
 
 
 for p in range(0,len(preds['Predicted_Difference'])-1):
     try:
-        preds['Weather'][p] = ('Weather: ' + df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,2] + """                 
-                                Temperature (Degrees Fahrenheit): """ + str(df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,3]) + """           
+        preds['Weather'][p] = ('Weather: ' + df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,2] + """            \n /n     
+                                Temperature (Degrees Fahrenheit): """ + str(df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,3]) + """     \n /n        
                                 Wind (mph): """ + str(df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,4]))
         if (len(preds['Weather'][p]) < 2):
             preds['Weather'][p] = 'Weather Not Available'
@@ -375,6 +374,8 @@ for p in range(0,len(preds['Predicted_Difference'])-1):
         #print(err)
     
 #preds['Weather']
+
+
 
 
 
