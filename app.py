@@ -106,7 +106,7 @@ def teamcolor(text):
 def color(text):
      st.markdown(f'<p style="color:#013369;font-size:20px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
 def accuracy(text):
-     st.markdown(f'<p style="color:#013369;font-size:18px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
+     st.markdown(f'<p style="color:#013369;font-size:14px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
 
 
 # In[3]:
