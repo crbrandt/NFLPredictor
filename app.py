@@ -144,7 +144,7 @@ with col_title:
   st.title('NFL Game Predictor')
   st.markdown(' ## Created by Cole Brandt')
   st.markdown('  Last updated: Wednesday, October 27th, 2021')  
-  accuract('Lifetime ATS accuracy: 67.5%')
+  accuracy('Lifetime ATS accuracy: 67.5%')
 with col_logo:
   st.image("https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png")
 st.write("#")
