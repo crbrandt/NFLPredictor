@@ -105,6 +105,8 @@ def teamcolor(text):
          st.markdown(f'<p style="text-align: center;color:#575757;font-size:26px;border-radixus:2%;">{text}</p>', unsafe_allow_html=True)
 def color(text):
      st.markdown(f'<p style="color:#013369;font-size:20px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
+def accuracy(text):
+     st.markdown(f'<p style="color:#013369;font-size:18px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
 
 
 # In[3]:
@@ -142,6 +144,7 @@ with col_title:
   st.title('NFL Game Predictor')
   st.markdown(' ## Created by Cole Brandt')
   st.markdown('  Last updated: Wednesday, October 27th, 2021')  
+  accuract('Lifetime ATS accuracy: 67.5%')
 with col_logo:
   st.image("https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png")
 st.write("#")
