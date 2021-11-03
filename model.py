@@ -26,7 +26,7 @@ from datetime import datetime
 import math
 
 
-# In[335]:
+# In[412]:
 
 
 
@@ -37,7 +37,7 @@ import math
 # model_class = clf
 
 
-# In[4]:
+# In[413]:
 
 
 url_nfl = 'https://raw.githubusercontent.com/peanutshawny/nfl-sports-betting/master/data/spreadspoke_scores.csv'
@@ -463,11 +463,16 @@ rf.fit(train_features, train_labels)
 # print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
 
 
-# In[328]:
+# In[443]:
 
 
-#predictions2 = rf2.predict(test_features_win)
-#predictions2
+#Getting Feature Importance:
+
+dd = pd.DataFrame(zip(train_features.columns,rf.feature_importances_))
+
+dd.sort_values(1, ascending = False)
+
+#plot(train_features, rf.feature_importances_)
 
 
 # In[267]:
@@ -504,8 +509,12 @@ accuracy = 100 - np.mean(mape)
 
 
 
-# In[270]:
+# In[464]:
 
+
+
+
+#-----CURRENT-----------------------
 
 df_full_url = 'https://raw.githubusercontent.com/crbrandt/NFLPredictor/main/Data/df_full.csv'
 weather_url = 'https://raw.githubusercontent.com/crbrandt/NFLPredictor/main/Data/weather_df.csv'
@@ -514,7 +523,7 @@ df_full =  pd.read_csv(df_full_url, index_col=0)
 df_weather =  pd.read_csv(weather_url, index_col=0)
 
 
-# In[271]:
+# In[465]:
 
 
 current_week_num =0
@@ -524,7 +533,7 @@ season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
 current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
 
-# In[385]:
+# In[466]:
 
 
 current_week_df = pd.read_csv('/Users/colebrandt/Documents/NFL_Predictor/Data/spread_df.csv')
@@ -535,7 +544,7 @@ spread_list = current_week_df['Spread']
 fav_list = current_week_df['fav_team']
 
 
-# In[392]:
+# In[467]:
 
 
 
@@ -562,6 +571,7 @@ for g in range(0,len(visitor_list)):
     spread = spread_list[g]
     favorite = fav_list[g]
     und = und_list[g]
+    gt = gt_list[g]
     home_team_full = ''
     away_team_full = ''
     fav_team_full = ''
@@ -694,30 +704,39 @@ for g in range(0,len(visitor_list)):
 
 
 
-# In[ ]:
+# In[481]:
 
 
+preds
 
 
+# In[490]:
 
-# In[393]:
 
-
-preds = pd.DataFrame(zip(visitor_list, home_list, home_full_list, fav_list, und_list, fav_team_spread_list, spread_list, result_scores))
+preds = pd.DataFrame(zip(visitor_list, home_list, home_full_list, fav_list, und_list, fav_team_spread_list, spread_list, result_scores, gt_list))
 preds = preds.rename(columns = {0:'Visitor', 1: 'Home', 2: 'Home Full', 3: 'Favorite', 4: 'Underdog', 5: 'Team_Spread', 6: 'Spread', 7: 'Predicted_Difference', 8: 'Game Time'})
+
+for sp in range(0,len(preds['Spread'])):
+    if preds.iat[sp,6] == 'PK':
+        preds.iat[sp,6] = 0.0
+    else:
+        preds['Spread'][sp] = float(preds['Spread'][sp])
+        
+preds['Spread'] = preds['Spread'].astype('float')
+
 preds['Amount_Beat_Spread'] = round(preds['Predicted_Difference'] + preds['Spread'], 2)
 preds['Spread_Beater'] = np.where(preds['Amount_Beat_Spread'] > 0, preds['Favorite'], np.where(preds['Amount_Beat_Spread'] < 0, preds['Underdog'], 'Push') )
 
 preds.to_csv('/Users/colebrandt/Documents/NFL_Predictor/Data/preds.csv')
 
 
-# In[ ]:
+# In[491]:
 
 
+preds
 
 
-
-# In[388]:
+# In[492]:
 
 
 
@@ -733,7 +752,7 @@ if (len(visitor) > 2) & (len(home) > 2):
         
 
 
-# In[389]:
+# In[493]:
 
 
 df_display = df_full[df_full['Team_x'].isin([visitor,home])]
@@ -752,7 +771,7 @@ if ((len(home)> 1) & (len(visitor)> 1)):
 
 
 
-# In[390]:
+# In[452]:
 
 
 df_full
