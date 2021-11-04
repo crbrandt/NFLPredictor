@@ -366,7 +366,7 @@ for p in range(0,len(preds['Predicted_Difference'])):
 preds['Weather'] = ''
 
 
-for p in range(0,len(preds['Predicted_Difference'])-1):
+for p in range(0,len(preds['Predicted_Difference'])):
     try:
         preds['Weather'][p] = ('Weather: ' + df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,2] + '     ' + """        
                                 Temperature (Degrees Fahrenheit): """ + str(df_weather[df_weather['Home_Team'] == preds['Home Full'][p]].iat[0,3]) + '     ' + """                              
