@@ -450,6 +450,7 @@ df_full = df_full.rename(columns = {'Team_x': 'Team Name', 'Team_y': 'Nickname',
 
 #df_full
 
+accuracy('Note: Aaron Rodgers is not playing for the Packers in Week Nine, so predictions above might not be the most complete picture.')
 
 # In[50]:
 
