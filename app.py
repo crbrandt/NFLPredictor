@@ -107,6 +107,8 @@ def color(text):
      st.markdown(f'<p style="color:#013369;font-size:20px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
 def accuracy(text):
      st.markdown(f'<p style="color:#013369;font-size:15px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
+def disclaimer(text):
+     st.markdown(f'<p style="color:red;font-size:15px;border-radius:2%;">{text}</p>', unsafe_allow_html=True)
 
 
 # In[3]:
@@ -450,7 +452,7 @@ df_full = df_full.rename(columns = {'Team_x': 'Team Name', 'Team_y': 'Nickname',
 
 #df_full
 
-accuracy('Note: Aaron Rodgers is not playing for the Packers in Week Nine, so predictions above might not be the most complete picture.')
+disclaimer('Note: Aaron Rodgers is not playing for the Packers in Week Nine, so predictions for the Packers/Chiefs game might be skewed.')
 
 # In[50]:
 
