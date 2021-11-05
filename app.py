@@ -395,8 +395,8 @@ for p in range(0,len(preds['Predicted_Difference'])):
 
 #Final displayed table
 
-final = preds[['Visitor', 'Home', 'Game Time', 'Weather', 'Team_Spread', 'Model Prediction', 'Spread_Beater' ]]
-final = final.rename(columns = {'Team_Spread': 'Spread', 'Spread_Beater': 'Winner Against Spread'})
+final = preds[['Visitor', 'Home', 'Game Time', 'Weather', 'Team_Spread', 'Model Prediction', 'Spread_Beater', 'Probability' ]]
+final = final.rename(columns = {'Team_Spread': 'Spread', 'Spread_Beater': 'Winner Against Spread', 'Probability': 'Confidence'})
 
 #Listing games by game index beginning at 1
 final.index = final.index+1
