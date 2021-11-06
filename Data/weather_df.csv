@@ -1,0 +1,16 @@
+,Away_Team,Home_Team,Weather,Temp,Game_Wind_Avg
+0,Minnesota Vikings,Baltimore Ravens,MOSTLY SUNNY ,54,8.5
+1,New England Patriots,Carolina Panthers,PARTLY CLOUDY ,61,7.5
+2,Cleveland Browns,Cincinnati Bengals,MOSTLY SUNNY ,55,5.5
+3,Denver Broncos,Dallas Cowboys,MOSTLY SUNNY ,66,6.5
+4,Buffalo Bills,Jacksonville Jaguars,PARTLY CLOUDY ,63,9.5
+5,Houston Texans,Miami Dolphins,PARTLY SUNNY ,72,8.5
+6,Atlanta Falcons,New Orleans Saints,DOME,72,0.0
+7,Las Vegas Raiders,New York Giants,PARTLY SUNNY ,51,5.5
+8,Los Angeles Chargers,Philadelphia Eagles,PARTLY SUNNY ,55,8.5
+9,Green Bay Packers,Kansas City Chiefs,MOSTLY SUNNY ,68,10.5
+10,Arizona Cardinals,San Francisco 49ers,MOSTLY SUNNY ,62,9.5
+11,Tennessee Titans,Los Angeles Rams,DOME,72,0.0
+12,Chicago Bears,Pittsburgh Steelers,PARTLY CLOUDY ,53,5.5
+13,Pittsburgh Steelers,Cleveland Browns,"CLOUDY, 70% CHANCE LIGHT RAIN. ",42,6.5
+14,Dallas Cowboys,New York Giants,"CLOUDY, 40% CHANCE LIGHT SHOWERS. ",41,8.5
