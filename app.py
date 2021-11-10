@@ -452,7 +452,7 @@ df_full = df_full.rename(columns = {'Team_x': 'Team Name', 'Team_y': 'Nickname',
 
 #df_full
 
-disclaimer('Note: Aaron Rodgers and Kyler Murray are not playing in Week Nine, so predictions for the Packers and Cardinals games might be skewed.')
+#disclaimer('Note: Aaron Rodgers and Kyler Murray are not playing in Week Nine, so predictions for the Packers and Cardinals games might be skewed.')
 
 # In[50]:
 
