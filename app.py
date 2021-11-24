@@ -145,8 +145,8 @@ col_title, col_logo = st.beta_columns([4,1])
 with col_title:
   st.title('NFL Game Predictor')
   st.markdown(' ## Created by Cole Brandt')
-  st.markdown('  Last updated: Thursday, November 18th, 2021')  
-  accuracy('Lifetime ATS accuracy: 61.8%')
+  st.markdown('  Last updated: Wednesday, November 24th, 2021')  
+  accuracy('Lifetime ATS accuracy: 58.5%')
 with col_logo:
   st.image("https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png")
 st.write("#")
