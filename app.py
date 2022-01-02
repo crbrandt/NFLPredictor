@@ -453,7 +453,7 @@ df_full = df_full.rename(columns = {'Team_x': 'Team Name', 'Team_y': 'Nickname',
 
 #df_full
 
-disclaimer('Note: Jared Goff, Lamar Jackson, and Taysom Hill/Trevor Siemian likely will not play, for which this model does not currently account.')
+disclaimer('Note: This model does not currently account for players being out due to COVID or injury.')
 
 # In[50]:
 
