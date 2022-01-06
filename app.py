@@ -145,7 +145,7 @@ col_title, col_logo = st.beta_columns([4,1])
 with col_title:
   st.title('NFL Game Predictor')
   st.markdown(' ## Created by Cole Brandt')
-  st.markdown('  Last updated: Thursday, Janueary 6th, 2022')  
+  st.markdown('  Last updated: Thursday, January 6th, 2022')  
   #accuracy('Lifetime ATS accuracy: 54.6%')
   #accuracy('Lifetime ML accuracy: 67.3%')
 with col_logo:
