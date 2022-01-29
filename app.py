@@ -424,17 +424,17 @@ df_full = df_full.reset_index(drop=True)
 df_full.index = df_full.index+1
 
 for i in range(0, len(df_full['Team_x'])):
-    df_full.iat[i,4] = round(df_full.iat[i,4],1).astype(str)
-    df_full.iat[i,5] = round(df_full.iat[i,5],1).astype(str)
-    df_full.iat[i,6] = round(df_full.iat[i,6],3).astype(str)
-    df_full.iat[i,11] = round(df_full.iat[i,11],3).astype(str)
-    df_full.iat[i,8] = round(df_full.iat[i,8],1).astype(str)
-    df_full.iat[i,13] = round(df_full.iat[i,13],1).astype(str)
-    df_full.iat[i,7] = round(df_full.iat[i,7],1).astype(str)
-    df_full.iat[i,12] = round(df_full.iat[i,12],1).astype(str)
-    df_full.iat[i,9] = round(df_full.iat[i,9],1).astype(str)
-    df_full.iat[i,14] = round(df_full.iat[i,14],1).astype(str)
-    df_full.iat[i,10] = round(df_full.iat[i,10],2).astype(str)
+    df_full.iat[i,4] = str(round(df_full.iat[i,4],1))
+    df_full.iat[i,5] = str(round(df_full.iat[i,5],1).astype(str))
+    df_full.iat[i,6] = str(round(df_full.iat[i,6],3).astype(str))
+    df_full.iat[i,11] = str(round(df_full.iat[i,11],3).astype(str))
+    df_full.iat[i,8] = str(round(df_full.iat[i,8],1).astype(str))
+    df_full.iat[i,13] = str(round(df_full.iat[i,13],1).astype(str))
+    df_full.iat[i,7] = str(round(df_full.iat[i,7],1).astype(str))
+    df_full.iat[i,12] = str(round(df_full.iat[i,12],1).astype(str))
+    df_full.iat[i,9] = str(round(df_full.iat[i,9],1).astype(str))
+    df_full.iat[i,14] = str(round(df_full.iat[i,14],1).astype(str))
+    df_full.iat[i,10] = str(round(df_full.iat[i,10],2).astype(str))
     
 
 df_full['PFpg'] = df_full['PFpg'].astype(str)
