@@ -146,12 +146,13 @@ with col_title:
   st.title('NFL Game Predictor')
   st.markdown(' ## Created by Cole Brandt')
   st.markdown('  Last updated: Friday, January 28th, 2022')  
-  #accuracy('Lifetime ATS accuracy: 54.6%')
+  accuracy('Lifetime ATS accuracy: 54.6%')
   #accuracy('Lifetime ML accuracy: 67.3%')
 with col_logo:
   st.image("https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png")
 st.write("#")
-highlight('NFL Week ' + str(current_week_num))
+#highlight('NFL Week ' + str(current_week_num))
+highlight('NFL Week: Conference Championship Round')
 
 
 
