@@ -116,9 +116,9 @@ def disclaimer(text):
 
 #Getting current week number
 
-current_week_num =0
+current_week_num = 1
 
-season_start = datetime.strptime('2021-09-07', '%Y-%m-%d').date()
+season_start = datetime.strptime('2022-09-08', '%Y-%m-%d').date()
 
 current_week_num = math.ceil(((date.today()-season_start).days/7)+.01)
 
@@ -145,14 +145,14 @@ col_title, col_logo = st.beta_columns([4,1])
 with col_title:
   st.title('NFL Game Predictor')
   st.markdown(' ## Created by Cole Brandt')
-  st.markdown('  Last updated: Friday, January 28th, 2022')  
+  st.markdown('  Last updated: Thursday, September 8th, 2022')  
   accuracy('Lifetime ATS accuracy: 54.6%')
   #accuracy('Lifetime ML accuracy: 67.3%')
 with col_logo:
   st.image("https://static.wikia.nocookie.net/logopedia/images/b/bc/NationalFootballLeague_PMK01a_1940-1959_SCC_SRGB.png")
 st.write("#")
 #highlight('NFL Week ' + str(current_week_num))
-highlight('NFL Week: Conference Championship Round')
+highlight('NFL Week One')
 
 
 
